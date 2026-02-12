@@ -1,63 +1,682 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <title>Mongocyber</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lin Yue · 用户体验设计师</title>
   <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #0f172a;
-      color: #f8fafc;
+    :root {
+      --bg: #070b14;
+      --surface: rgba(15, 23, 42, 0.72);
+      --surface-strong: rgba(15, 23, 42, 0.92);
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --primary: #67e8f9;
+      --secondary: #c084fc;
+      --accent: #22d3ee;
+      --line: rgba(148, 163, 184, 0.28);
+      --radius: 20px;
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      --gradient: linear-gradient(120deg, #67e8f9 0%, #c084fc 50%, #22d3ee 100%);
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      padding: 60px;
+      padding: 0;
     }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", "SF Pro Display", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(34, 211, 238, 0.24), transparent 26%),
+        radial-gradient(circle at 85% 15%, rgba(192, 132, 252, 0.22), transparent 28%),
+        radial-gradient(circle at 50% 90%, rgba(30, 64, 175, 0.38), transparent 32%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    .cursor-glow {
+      position: fixed;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(103, 232, 249, 0.22), transparent 70%);
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      transition: left 0.1s linear, top 0.1s linear;
+      mix-blend-mode: screen;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 48px));
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .top-nav {
+      position: sticky;
+      top: 16px;
+      margin: 18px auto 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      background: rgba(2, 6, 23, 0.58);
+      border: 1px solid rgba(148, 163, 184, 0.24);
+      border-radius: 999px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      box-shadow: 0 10px 35px rgba(2, 6, 23, 0.45);
+    }
+
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      font-size: 14px;
+      text-transform: uppercase;
+      color: #f8fafc;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 999px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #f8fafc;
+      background: rgba(148, 163, 184, 0.2);
+    }
+
+    section {
+      margin-top: 84px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-main {
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-main::before {
+      content: "";
+      position: absolute;
+      inset: -20%;
+      background: conic-gradient(from 90deg, rgba(103, 232, 249, 0.22), rgba(192, 132, 252, 0.1), transparent 42%);
+      animation: slow-spin 16s linear infinite;
+      pointer-events: none;
+    }
+
+    .hero-main > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 12px;
+      margin-bottom: 14px;
+    }
+
     h1 {
-      font-size: 48px;
+      font-size: clamp(32px, 4.6vw, 58px);
+      line-height: 1.08;
+      margin-bottom: 16px;
+      max-width: 14ch;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 56ch;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.2s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--gradient);
+      color: #062033;
+      box-shadow: 0 10px 24px rgba(103, 232, 249, 0.35);
+    }
+
+    .btn-secondary {
+      color: #f8fafc;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: rgba(15, 23, 42, 0.42);
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 16px;
+    }
+
+    .metric-card,
+    .availability-card {
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .metric-card::after,
+    .availability-card::after {
+      content: "";
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      right: -40px;
+      top: -60px;
+      background: radial-gradient(circle, rgba(192, 132, 252, 0.24), transparent 70%);
+      pointer-events: none;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .metric {
+      border: 1px solid rgba(148, 163, 184, 0.24);
+      border-radius: 14px;
+      padding: 14px;
+      background: rgba(15, 23, 42, 0.52);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 24px;
+      color: #f8fafc;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .availability-card ul {
+      margin-top: 12px;
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .availability-card li::before {
+      content: "▹";
+      color: var(--primary);
+      margin-right: 8px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 18px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: clamp(24px, 3.5vw, 36px);
+      line-height: 1.2;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 50ch;
+    }
+
+    .cap-grid,
+    .cases,
+    .process-grid,
+    .testimonial-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .cap-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .cap-card,
+    .case-card,
+    .process-card,
+    .quote-card {
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(15, 23, 42, 0.64);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .cap-card:hover,
+    .case-card:hover,
+    .process-card:hover,
+    .quote-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(103, 232, 249, 0.6);
+    }
+
+    .cap-card h3,
+    .case-card h3,
+    .process-card h3 {
       margin-bottom: 10px;
-    }
-    p {
       font-size: 18px;
+      color: #f8fafc;
+    }
+
+    .cap-card p,
+    .case-card p,
+    .process-card p,
+    .quote-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .cases {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .case-cover {
+      border-radius: 14px;
+      min-height: 160px;
+      margin-bottom: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .case-cover::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(2, 6, 23, 0.75), rgba(2, 6, 23, 0.1));
+    }
+
+    .case-tag {
+      position: absolute;
+      left: 12px;
+      bottom: 10px;
+      font-size: 12px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.76);
+      color: var(--primary);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      z-index: 2;
+    }
+
+    .case-meta {
+      margin-top: 12px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      border-radius: 999px;
+      padding: 4px 10px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      color: #cbd5e1;
+      font-size: 12px;
+    }
+
+    .process-grid {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .process-card span {
+      display: inline-block;
+      margin-bottom: 10px;
+      font-size: 12px;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .testimonial-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .quote-card {
+      background: var(--surface-strong);
+      position: relative;
+    }
+
+    .quote-card::before {
+      content: "“";
+      font-size: 64px;
+      line-height: 1;
+      position: absolute;
+      top: 2px;
+      right: 14px;
+      color: rgba(103, 232, 249, 0.24);
+    }
+
+    .quote-name {
+      margin-top: 16px;
+      font-size: 13px;
+      color: #cbd5e1;
+    }
+
+    .cta {
+      padding: 38px;
+      margin: 84px 0 52px;
+      background:
+        linear-gradient(130deg, rgba(103, 232, 249, 0.14), rgba(192, 132, 252, 0.16)),
+        rgba(15, 23, 42, 0.88);
+      border-radius: 20px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      text-align: center;
+    }
+
+    .cta p {
+      color: var(--muted);
+      margin: 12px auto 18px;
+      max-width: 64ch;
+    }
+
+    footer {
+      text-align: center;
       color: #94a3b8;
+      font-size: 12px;
+      margin-bottom: 32px;
     }
-    .section {
-      margin-top: 80px;
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
     }
-    .card {
-      background: #1e293b;
-      padding: 20px;
-      border-radius: 12px;
-      margin-top: 20px;
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes slow-spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 1080px) {
+      .hero,
+      .cap-grid,
+      .cases,
+      .process-grid,
+      .testimonial-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .process-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        width: min(1120px, calc(100% - 28px));
+      }
+
+      .top-nav {
+        border-radius: 16px;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .hero,
+      .cap-grid,
+      .cases,
+      .process-grid,
+      .testimonial-grid,
+      .metric-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-main,
+      .metric-card,
+      .availability-card,
+      .cta {
+        padding: 24px;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="cursor-glow" aria-hidden="true"></div>
 
-<h1>Mongocyber</h1>
-<p>AI Product Designer building intelligent tools for everyday life.</p>
+  <div class="container">
+    <header class="top-nav">
+      <div class="logo">Lin Yue · UX Designer</div>
+      <nav class="nav-links">
+        <a href="#capabilities">能力矩阵</a>
+        <a href="#cases">案例精选</a>
+        <a href="#process">设计流程</a>
+        <a href="#contact">合作方式</a>
+      </nav>
+    </header>
 
-<div class="section">
-  <h2>Projects</h2>
+    <section class="hero">
+      <article class="panel hero-main reveal">
+        <p class="eyebrow">用户体验设计师 / 交互设计专家</p>
+        <h1>把复杂产品，设计成「好用 + 好看 + 有记忆点」的体验。</h1>
+        <p>你好，我是 Lin Yue，8 年用户体验设计经验，擅长从 0 到 1 搭建设计系统、优化关键流程，并通过细腻动效提升产品情感价值。已主导 16+ 个跨端项目，覆盖 AI 产品、B2B SaaS 与消费互联网。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">预约设计咨询</a>
+          <a class="btn btn-secondary" href="#cases">查看作品案例</a>
+        </div>
+      </article>
 
-  <div class="card">
-    <h3>AI Recipe Planner</h3>
-    <p>Personalized meal planning powered by AI.</p>
+      <aside class="hero-side">
+        <div class="panel metric-card reveal">
+          <h3>影响力指标</h3>
+          <div class="metric-grid">
+            <div class="metric"><strong>+41%</strong><span>关键流程转化率提升</span></div>
+            <div class="metric"><strong>-33%</strong><span>平均任务完成时长</span></div>
+            <div class="metric"><strong>4.8/5</strong><span>用户满意度评分</span></div>
+            <div class="metric"><strong>16+</strong><span>跨平台项目落地</span></div>
+          </div>
+        </div>
+
+        <div class="panel availability-card reveal">
+          <h3>当前可合作方向</h3>
+          <ul>
+            <li>AI 产品体验升级与交互重构</li>
+            <li>设计系统建设（Design Ops）</li>
+            <li>增长漏斗与用户行为优化</li>
+            <li>中英文双语产品体验设计</li>
+          </ul>
+        </div>
+      </aside>
+    </section>
+
+    <section id="capabilities" class="reveal">
+      <div class="section-head">
+        <h2>综合能力矩阵</h2>
+        <p>以用户研究为起点，串联产品策略、交互设计、视觉系统与数据验证，确保体验既可感知也可量化。</p>
+      </div>
+      <div class="cap-grid">
+        <article class="cap-card">
+          <h3>用户洞察</h3>
+          <p>通过访谈、可用性测试与行为数据分析，识别用户动机与痛点优先级，建立可执行的机会地图。</p>
+        </article>
+        <article class="cap-card">
+          <h3>交互架构</h3>
+          <p>擅长复杂流程拆解与信息架构规划，构建低认知负担的任务路径，提升用户完成效率。</p>
+        </article>
+        <article class="cap-card">
+          <h3>视觉与动效</h3>
+          <p>建立高辨识度界面语言，通过微交互与反馈动效增强状态感知，提升品牌记忆点。</p>
+        </article>
+        <article class="cap-card">
+          <h3>设计协同</h3>
+          <p>搭建组件库、规范文档与评审机制，提升跨团队协作效率，实现设计到开发高质量交付。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="cases" class="reveal">
+      <div class="section-head">
+        <h2>案例精选</h2>
+        <p>以下案例信息为演示版构建，展示一名高级用户体验设计师可覆盖的业务深度与方法广度。</p>
+      </div>
+      <div class="cases">
+        <article class="case-card">
+          <div class="case-cover" style="background-image: linear-gradient(130deg, #0891b2, #1d4ed8, #7c3aed);">
+            <span class="case-tag">AI 协作平台</span>
+          </div>
+          <h3>FlowMind Copilot</h3>
+          <p>重构智能工作流创建流程，设计分步引导 + 智能建议面板，降低首次使用门槛，激活率提升 39%。</p>
+          <div class="case-meta">
+            <span class="pill">信息架构</span><span class="pill">可用性测试</span><span class="pill">高保真原型</span>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <div class="case-cover" style="background-image: linear-gradient(130deg, #0f766e, #14b8a6, #67e8f9);">
+            <span class="case-tag">医疗健康 App</span>
+          </div>
+          <h3>CarePulse Mobile</h3>
+          <p>为慢病管理场景建立「任务-反馈-激励」闭环，优化日常打卡与报告查看体验，7 日留存提升 27%。</p>
+          <div class="case-meta">
+            <span class="pill">服务设计</span><span class="pill">动效设计</span><span class="pill">Design Token</span>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <div class="case-cover" style="background-image: linear-gradient(130deg, #7c3aed, #db2777, #f97316);">
+            <span class="case-tag">企业后台 SaaS</span>
+          </div>
+          <h3>Orbit Admin Suite</h3>
+          <p>搭建跨产品统一设计系统与组件库，缩短新页面设计开发周期 45%，并提升可访问性一致性。</p>
+          <div class="case-meta">
+            <span class="pill">Design System</span><span class="pill">协同流程</span><span class="pill">无障碍优化</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="process" class="reveal">
+      <div class="section-head">
+        <h2>我的设计流程</h2>
+        <p>注重“研究驱动 + 快速验证 + 持续优化”，让体验设计真正支撑业务目标。</p>
+      </div>
+      <div class="process-grid">
+        <article class="process-card"><span>01</span><h3>定义问题</h3><p>明确业务目标、用户群体与成功指标，形成统一的问题陈述。</p></article>
+        <article class="process-card"><span>02</span><h3>研究洞察</h3><p>结合定性访谈与定量分析，识别关键摩擦点与高价值机会。</p></article>
+        <article class="process-card"><span>03</span><h3>方案发散</h3><p>通过用户旅程、线框图与交互原型探索多路径方案并筛选优解。</p></article>
+        <article class="process-card"><span>04</span><h3>验证迭代</h3><p>开展可用性测试与 A/B 验证，持续迭代关键路径直至达成目标。</p></article>
+        <article class="process-card"><span>05</span><h3>落地增长</h3><p>与研发和产品协作交付，并建立体验指标看板，追踪长期表现。</p></article>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <div class="section-head">
+        <h2>合作反馈</h2>
+        <p>来自产品、研发与业务团队的典型反馈（示例文案）。</p>
+      </div>
+      <div class="testimonial-grid">
+        <article class="quote-card">
+          <p>“Lin 在复杂业务中仍能抓住用户核心任务，输出的方案不仅美观，更显著提升了业务转化。”</p>
+          <div class="quote-name">— 产品总监 / AI 工具平台</div>
+        </article>
+        <article class="quote-card">
+          <p>“她搭建的组件体系与交互规范让我们前后端协作效率明显提高，设计资产复用率大幅提升。”</p>
+          <div class="quote-name">— 前端负责人 / 企业 SaaS 团队</div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="cta reveal">
+      <h2>准备好一起打造高价值体验了吗？</h2>
+      <p>支持项目制合作、短期设计冲刺和长期顾问模式。如果你正在推进 AI 产品、复杂后台或高增长场景，欢迎联系我共同打磨更好的用户体验。</p>
+      <a class="btn btn-primary" href="mailto:linyue.ux@example.com">linyue.ux@example.com</a>
+    </section>
+
+    <footer>© 2026 Lin Yue · UX Designer Portfolio</footer>
   </div>
 
-  <div class="card">
-    <h3>Self Talk AI</h3>
-    <p>AI-assisted reflective thinking tool.</p>
-  </div>
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
 
-  <div class="card">
-    <h3>Plane War Game</h3>
-    <p>Interactive browser-based shooting game.</p>
-  </div>
-</div>
+    reveals.forEach((item) => observer.observe(item));
 
-<div class="section">
-  <h2>About</h2>
-  <p>I design AI-native products that combine technology, creativity, and real-world utility.</p>
-</div>
-
+    const cursorGlow = document.querySelector('.cursor-glow');
+    window.addEventListener('pointermove', (event) => {
+      cursorGlow.style.left = `${event.clientX}px`;
+      cursorGlow.style.top = `${event.clientY}px`;
+    });
+  </script>
 </body>
 </html>
