@@ -4,1439 +4,428 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Liu Lu · UX Designer</title>
-  <meta name="description" content="Liu Lu — UX Designer specializing in AI Products, B2B SaaS & Consumer Internet." />
+  <title>Liu Lu · Product Designer</title>
+  <meta name="description" content="Liu Lu is a product designer focused on AI products, SaaS growth, and calm digital experiences." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;1,400&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
   <style>
-    /* ============================
-       1. Design Tokens & Variables
-       ============================ */
     :root {
-      /* Colors */
-      --ink: #1A1A2E;
-      --ivory: #FAFAF8;
-      --muted: #6B7280;
-      --glass: rgba(255, 255, 255, 0.7);
-      --glass-border: rgba(255, 255, 255, 0.5);
-      --amber: #F59E0B;
-      --amber-glow: rgba(245, 158, 11, 0.3);
-      --purple: #8B5CF6;
-      --sky: #0EA5E9;
-
-      /* Elevations */
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-      --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.08);
-      --inner-glow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
-
-      /* Typography */
-      --font-heading: 'DM Sans', sans-serif;
-      --font-body: 'Inter', sans-serif;
-
-      /* Layout */
+      --bg: #eff3ff;
+      --surface: rgba(255, 255, 255, 0.78);
+      --surface-strong: #ffffff;
+      --text: #15172b;
+      --text-muted: #5f647f;
+      --brand: #4338ca;
+      --brand-soft: rgba(67, 56, 202, 0.13);
+      --ok: #0ea5e9;
       --radius-lg: 24px;
-      --radius-full: 999px;
-      --container: 1200px;
+      --radius-md: 16px;
+      --shadow: 0 14px 40px rgba(24, 32, 77, 0.1);
+      --shadow-hover: 0 20px 50px rgba(24, 32, 77, 0.16);
+      --container: min(1120px, 92vw);
     }
 
-    /* ============================
-       2. Reset & Utilities
-       ============================ */
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: var(--font-body);
-      background: var(--ivory);
-      color: var(--muted);
-      line-height: 1.6;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    h1,
-    h2,
-    h3,
-    h4 {
-      font-family: var(--font-heading);
-      color: var(--ink);
-      line-height: 1.1;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-      transition: 0.3s;
-    }
-
-    ul {
-      list-style: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    .container {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 24px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .section-padding {
-      padding: 120px 0;
-    }
-
-    .text-gradient {
-      background: linear-gradient(135deg, var(--amber) 0%, #F87171 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      display: inline-block;
-    }
-
-    /* ============================
-       3. Animations & Background
-       ============================ */
-    .mesh-bg {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-
-    .mesh-blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(90px);
-      opacity: 0.4;
-      animation: float 20s ease-in-out infinite;
-      will-change: transform;
-    }
-
-    .blob-1 {
-      width: 700px;
-      height: 700px;
-      background: radial-gradient(circle, var(--amber), transparent 70%);
-      top: -10%;
-      left: -10%;
-    }
-
-    .blob-2 {
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, var(--purple), transparent 70%);
-      top: 40%;
-      right: -15%;
-      animation-delay: -5s;
-    }
-
-    .blob-3 {
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, var(--sky), transparent 70%);
-      bottom: -10%;
-      left: 20%;
-      animation-delay: -10s;
-    }
-
-    @keyframes float {
-
-      0%,
-      100% {
-        transform: translate(0, 0) scale(1);
-      }
-
-      33% {
-        transform: translate(30px, -50px) scale(1.1);
-      }
-
-      66% {
-        transform: translate(-20px, 20px) scale(0.95);
-      }
-    }
-
-    /* New Animation: Text Reveal */
-    .reveal-text {
-      clip-path: inset(0 0 100% 0);
-      transition: clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .reveal-text.visible {
-      clip-path: inset(0 0 0 0);
-    }
-
-    /* Stagger Animation Base */
-    .stagger-item {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .stagger-item.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ============================
-       4. Components
-       ============================ */
-    /* Pill Navigation */
-    .nav-pill-wrapper {
-      position: fixed;
-      top: 32px;
-      left: 0;
-      right: 0;
-      display: flex;
-      justify-content: center;
-      z-index: 100;
-      pointer-events: none;
-      /* Let clicks pass through around the pill */
-    }
-
-    .nav-pill {
-      pointer-events: auto;
-      /* Initial transparent state */
-      background: transparent;
-      backdrop-filter: blur(0px);
-      -webkit-backdrop-filter: blur(0px);
-      border: 1px solid transparent;
-      padding: 12px 24px;
-      border-radius: var(--radius-full);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      max-width: var(--container);
-      box-shadow: none;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .nav-pill.scrolled {
-      background: var(--glass);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
-      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
-    }
-
-    .nav-logo {
-      width: 40px;
-      height: 40px;
-      background: var(--ink);
-      color: #fff;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 14px;
-      letter-spacing: -0.5px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 4px;
-      padding: 0 12px;
-    }
-
-    .nav-item {
-      padding: 8px 16px;
-      border-radius: var(--radius-full);
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--ink);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .nav-item:hover {
-      background: rgba(0, 0, 0, 0.03);
-    }
-
-    .lang-switch {
-      background: var(--ink);
-      color: #fff;
-      border: none;
-      padding: 8px 16px;
-      border-radius: var(--radius-full);
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      margin-left: 8px;
-      transition: transform 0.2s;
-    }
-
-    .lang-switch:hover {
-      transform: scale(1.05);
-    }
-
-    /* Glass Card */
-    .glass-card {
-      background: rgba(255, 255, 255, 0.6);
-      backdrop-filter: blur(24px);
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-sm), var(--inner-glow);
-      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
-      overflow: hidden;
-    }
-
-    .glass-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-lg), var(--inner-glow);
-    }
-
-    /* Bento Grid */
-    .bento-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    .bento-col-2 {
-      grid-column: span 2;
-    }
-
-    .bento-row-2 {
-      grid-row: span 2;
-    }
-
-    /* ============================
-       5. Sections
-       ============================ */
-    /* Hero (V3 Aurora) */
-    .hero {
-      position: relative;
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at 10% 12%, #d9e2ff, transparent 44%), radial-gradient(circle at 88% 8%, #d9f2ff, transparent 42%), var(--bg);
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding-top: 80px;
-      overflow: hidden;
-      /* Background logic handled by aurora-bg */
     }
 
-    .aurora-bg {
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at 50% 50%, #FFD29D, transparent 40%),
-        radial-gradient(circle at 80% 20%, #C8E6C9, transparent 30%),
-        radial-gradient(circle at 20% 80%, #E1BEE7, transparent 30%);
-      filter: blur(80px);
-      animation: auroraMove 20s infinite alternate;
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0));
       z-index: -1;
-      opacity: 0.6;
     }
 
-    @keyframes auroraMove {
-      0% {
-        transform: rotate(0deg) scale(1);
-      }
+    .container { width: var(--container); margin: 0 auto; }
 
-      100% {
-        transform: rotate(10deg) scale(1.1);
-      }
+    .topbar {
+      position: sticky;
+      top: 14px;
+      z-index: 40;
+      padding: 18px 0;
     }
 
-    .hero-content {
-      max-width: 1000px;
-      z-index: 2;
-    }
-
-    .hero-title {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 700;
-      color: var(--ink);
-      line-height: 1;
-      letter-spacing: -2px;
-      margin-bottom: 24px;
-      font-size: clamp(3.5rem, 8vw, 6.5rem);
-    }
-
-    .serif-line {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-weight: 400;
-      display: block;
-      color: #555;
-      letter-spacing: -1px;
-      margin-bottom: -10px;
-    }
-
-    .sans-line {
-      display: block;
-      color: var(--ink);
-      /* background-clip removed for visibility */
-    }
-
-    /* Char Reveal Animation */
-    .char-reveal {
-      display: inline-block;
-      opacity: 0;
-      transform: translateY(100%);
-      clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-      animation: charSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    @keyframes charSlideUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-      }
-    }
-
-    .hero-subtitle {
-      font-size: 20px;
-      max-width: 500px;
-      margin-bottom: 40px;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.6s forwards;
-      color: var(--muted);
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Stats */
-    .stat-card {
-      padding: 40px;
+    .topbar-inner {
       display: flex;
-      flex-direction: column;
+      align-items: center;
       justify-content: space-between;
-      height: 240px;
-      position: relative;
+      gap: 12px;
+      background: var(--surface);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      border-radius: 999px;
+      padding: 10px 12px 10px 18px;
+      box-shadow: var(--shadow);
     }
 
-    .stat-bg {
-      position: absolute;
-      inset: 0;
-      opacity: 0.05;
-      background-image: radial-gradient(var(--ink) 1px, transparent 1px);
-      background-size: 20px 20px;
-      z-index: -1;
-    }
-
-    .stat-val {
-      font-size: 56px;
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 8px;
-    }
-
-    .stat-label {
-      font-size: 16px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    /* Capabilities */
-    .cap-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-    }
-
-    .cap-card {
-      padding: 40px;
-      min-height: 280px;
-    }
-
-    .cap-icon {
-      width: 64px;
-      height: 64px;
-      background: #fff;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      margin-bottom: 32px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    /* Philosophy */
-    .philo-wrapper {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start;
-    }
-
-    .philo-list {
-      border-left: 2px solid rgba(0, 0, 0, 0.05);
-      padding-left: 40px;
-    }
-
-    .philo-item {
-      position: relative;
-      padding-bottom: 60px;
-    }
-
-    .philo-item::before {
-      content: '';
-      position: absolute;
-      left: -49px;
-      top: 0;
-      width: 16px;
-      height: 16px;
-      background: var(--ivory);
-      border: 4px solid var(--amber);
-      border-radius: 50%;
-      transition: 0.3s;
-    }
-
-    .philo-item:hover::before {
-      transform: scale(1.3);
-      background: var(--amber);
-    }
-
-    /* Bento Projects */
-    .project-card {
-      position: relative;
-      height: 400px;
-      group: cursor-pointer;
-    }
-
-    .project-bg {
-      position: absolute;
-      inset: 0;
-      transition: transform 0.6s var(--ease);
-      background-size: cover;
-      background-position: center;
-    }
-
-    .project-card:hover .project-bg {
-      transform: scale(1.05);
-    }
-
-    .project-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 40px;
-      color: #fff;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: 0.4s var(--ease);
-    }
-
-    .project-card:hover .project-overlay {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Spotlight Effect */
-    .project-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.15), transparent 40%);
-      opacity: 0;
-      transition: opacity 0.5s;
-      pointer-events: none;
-      z-index: 2;
-    }
-
-    .project-card:hover::before {
-      opacity: 1;
-    }
-
-    /* Hobbies (Parallax) */
-    .hobby-section {
-      position: relative;
-      overflow: hidden;
-      height: 600px;
-      border-radius: var(--radius-lg);
-    }
-
-    .hobby-img {
-      position: absolute;
-      inset: -50px;
-      background-size: cover;
-      background-position: center;
-      transition: transform 0.1s linear;
-      /* For js parallax */
-    }
-
-    .hobby-content {
-      position: absolute;
-      bottom: 40px;
-      left: 40px;
-      background: rgba(255, 255, 255, 0.9);
-      padding: 24px;
-      border-radius: 16px;
-      max-width: 300px;
-    }
-
-    /* Marquee */
-    .marquee-wrapper {
-      overflow: hidden;
-      white-space: nowrap;
-      position: relative;
-      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-    }
-
-    .marquee-track {
-      display: inline-flex;
-      gap: 32px;
-      animation: scroll 40s linear infinite;
-    }
-
-    .testimonial-card {
-      width: 350px;
-      padding: 32px;
-      background: #fff;
-      border-radius: 16px;
-      border: 1px solid rgba(0, 0, 0, 0.05);
-      white-space: normal;
-    }
-
-    @keyframes scroll {
-      from {
-        transform: translateX(0);
-      }
-
-      to {
-        transform: translateX(-50%);
-      }
-    }
-
-    /* Footer & CTA */
-    .cta-section {
-      text-align: center;
-      margin-bottom: 80px;
-    }
-
-    .magnetic-btn {
-      display: inline-flex;
-      height: 80px;
-      padding: 0 48px;
-      background: var(--ink);
-      color: #fff;
-      border-radius: var(--radius-full);
-      align-items: center;
-      font-size: 20px;
-      font-weight: 600;
-      transition: transform 0.1s;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .ripple {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.3);
-      transform: scale(0);
-      animation: ripple 0.6s linear;
-      pointer-events: none;
-    }
-
-    @keyframes ripple {
-      to {
-        transform: scale(4);
-        opacity: 0;
-      }
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .hero-title {
-        font-size: 48px;
-      }
-
-      .bento-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .bento-col-2 {
-        grid-column: auto;
-      }
-
-      .philo-wrapper {
-        grid-template-columns: 1fr;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      /* Simplified nav for mobile */
-    }
-
-    /* Manifesto (V3) */
-    .manifesto-wrapper {
-      padding: 100px 0;
-    }
-
-    .manifesto-text {
-      font-size: clamp(2.5rem, 5vw, 4.5rem);
-      line-height: 1.2;
-      font-family: var(--font-heading);
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 24px;
-      /* transition: color 0.5s ease; */
-      /* For scroll reveal */
-      opacity: 0.1;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    .manifesto-text.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .highlight-serif {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-weight: 400;
-      color: var(--ink);
-    }
-
-    .highlight-sans {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 700;
-      color: var(--muted);
-      /* Contrast play */
-    }
-
-    .manifesto-deco {
-      position: absolute;
-      top: 5%;
-      right: 5%;
-      font-size: 240px;
-      /* Larger */
-      color: var(--amber-glow);
-      opacity: 0.15;
-      animation: rotateSlow 60s linear infinite;
-      /* Slower */
-      z-index: 0;
-      font-family: 'Playfair Display', serif;
-      pointer-events: none;
-    }
-
-    @keyframes rotateSlow {
-      from {
-        transform: rotate(0deg);
-      }
-
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    /* Footer Grand Finale (V3) */
-    .big-footer {
-      background: var(--ink);
-      color: #fff;
-      padding-top: 160px;
-      padding-bottom: 60px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .footer-marquee-wrapper {
-      position: absolute;
-      top: 10%;
-      left: 0;
-      width: 100%;
-      opacity: 0.05;
-      pointer-events: none;
-      z-index: 0;
-      white-space: nowrap;
-    }
-
-    .footer-marquee-text {
-      font-size: 200px;
+    .brand {
       font-weight: 800;
-      text-transform: uppercase;
-      display: inline-block;
-      animation: footerScroll 60s linear infinite;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      letter-spacing: 0.3px;
+      color: var(--text);
     }
 
-    @keyframes footerScroll {
-      from {
-        transform: translateX(0);
-      }
-
-      to {
-        transform: translateX(-50%);
-      }
-    }
-
-    .noise-overlay {
-      position: absolute;
-      inset: 0;
-      background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-      opacity: 0.1;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .footer-content {
-      position: relative;
-      z-index: 2;
-    }
-
-    .footer-cta-title {
-      font-size: clamp(3rem, 7vw, 6rem);
-      line-height: 1;
-      margin-bottom: 48px;
-    }
-
-    .social-links-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 24px;
-      margin-top: 80px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding-top: 40px;
-    }
-
-    .social-link {
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 18px;
-      text-decoration: none;
-      transition: color 0.3s;
-      display: inline-block;
-    }
-
-    .social-link:hover {
-      color: var(--amber);
-    }
-
-    .footer-bottom {
-      margin-top: 100px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
+    nav { display: flex; gap: 18px; }
+    nav a {
       font-size: 14px;
-      opacity: 0.6;
+      color: var(--text-muted);
+      font-weight: 600;
+      transition: .2s;
+      padding: 7px 10px;
+      border-radius: 999px;
+    }
+    nav a:hover {
+      color: var(--brand);
+      background: rgba(67, 56, 202, 0.08);
     }
 
-    .studio-time {
-      font-family: 'DM Sans', sans-serif;
-      letter-spacing: 1px;
+    .lang-btn {
+      border: 0;
+      background: var(--text);
+      color: white;
+      font-weight: 700;
+      border-radius: 999px;
+      padding: 8px 14px;
+      cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .lang-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(21, 23, 43, 0.25);
+    }
+
+    .hero {
+      padding: 76px 0 48px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 34px;
+      align-items: stretch;
+      position: relative;
+    }
+
+    .hero-main,
+    .hero-panel,
+    .card {
+      background: var(--surface);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .hero-main:hover,
+    .hero-panel:hover,
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .hero-main {
+      padding: 50px;
+      display: grid;
+      gap: 24px;
+      align-content: start;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-main::after {
+      content: '';
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border-radius: 999px;
+      right: -110px;
+      top: -120px;
+      background: radial-gradient(circle, rgba(14, 165, 233, 0.2), transparent 72%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 8px;
+      background: var(--brand-soft);
+      color: var(--brand);
+      border-radius: 999px;
+      font-size: 13px;
+      padding: 7px 12px;
+      font-weight: 700;
+      border: 1px solid rgba(67, 56, 202, 0.2);
+    }
+
+    h1 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(2rem, 4.6vw, 4rem);
+      line-height: 1.02;
+      letter-spacing: -1.2px;
+    }
+
+    .gradient { background: linear-gradient(135deg, #4f46e5, #0ea5e9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+    .lead {
+      color: var(--text-muted);
+      font-size: 18px;
+      max-width: 56ch;
+      line-height: 1.7;
+    }
+
+    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn {
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 700;
+      font-size: 15px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+    .btn-primary { background: var(--text); color: #fff; }
+    .btn-soft { background: #fff; color: var(--text); border: 1px solid rgba(0,0,0,.08); }
+
+    .btn-primary:hover,
+    .btn-soft:hover {
+      transform: translateY(-1px);
+    }
+
+    .hero-panel { padding: 28px; display: grid; gap: 14px; }
+    .metric {
+      background: var(--surface-strong);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(11, 20, 63, 0.08);
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .metric::before {
+      content: '';
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 4px;
+      background: linear-gradient(180deg, #4338ca, #0ea5e9);
+      opacity: .45;
+    }
+    .metric strong { font-size: 36px; display: block; font-family: 'Plus Jakarta Sans', sans-serif; }
+    .metric span { color: var(--text-muted); }
+
+    section { padding: 18px 0 68px; }
+    .section-head { margin-bottom: 18px; }
+    .section-head h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.6rem, 2.5vw, 2.4rem); }
+    .section-head p { color: var(--text-muted); margin-top: 8px; }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card { padding: 24px; }
+    .card h3 { font-size: 20px; margin-bottom: 10px; }
+    .card p { color: var(--text-muted); line-height: 1.65; }
+
+    .project {
+      display: grid;
+      gap: 10px;
+      background: linear-gradient(160deg, #141833, #252d63 55%, #0a8bc8);
+      color: #fff;
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      min-height: 200px;
+      box-shadow: 0 18px 28px rgba(19, 24, 48, 0.2);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .project small { opacity: .8; letter-spacing: .4px; }
+
+    .project:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 38px rgba(19, 24, 48, 0.26);
+    }
+
+    .footer {
+      padding: 34px 0 56px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+
+    @media (max-width: 900px) {
+      nav { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-main { padding: 32px 26px; }
+      .grid-3 { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 
 <body>
-  < !-- Mesh Background -->
-    <div class="mesh-bg">
-      <div class="mesh-blob blob-1"></div>
-      <div class="mesh-blob blob-2"></div>
-      <div class="mesh-blob blob-3"></div>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">LL / Product Design</div>
+      <nav>
+        <a href="#about" data-en="About" data-zh="关于">About</a>
+        <a href="#services" data-en="Capabilities" data-zh="能力">Capabilities</a>
+        <a href="#projects" data-en="Projects" data-zh="项目">Projects</a>
+        <a href="#contact" data-en="Contact" data-zh="联系">Contact</a>
+      </nav>
+      <button id="langBtn" class="lang-btn" type="button">EN / 中</button>
     </div>
-    < !-- Navigation -->
-      <div class="nav-pill-wrapper">
-        <nav class="nav-pill"><a href="#" class="nav-logo">LL</a>
-          <div class="nav-links"><a href="#capabilities" class="nav-item" data-en="Capabilities"
-              data-zh="能力">Capabilities</a><a href="#philosophy" class="nav-item" data-en="Philosophy"
-              data-zh="理念">Philosophy</a><a href="#projects" class="nav-item" data-en="Work" data-zh="作品">Work</a><a
-              href="#stats" class="nav-item" data-en="Clients" data-zh="评价">Clients</a><a href="#contact"
-              class="nav-item" data-en="Contact" data-zh="联系">Contact</a></div><button class="lang-switch"
-            id="lang-btn">EN / 中</button>
-        </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero" id="about">
+      <article class="hero-main">
+        <div class="eyebrow" data-en="Available for new product collaborations" data-zh="可承接新的产品设计合作">Available for new product collaborations</div>
+        <h1>
+          <span data-en="Designing" data-zh="设计">Designing</span>
+          <span class="gradient" data-en="clear experiences" data-zh="清晰的体验">clear experiences</span><br />
+          <span data-en="for complex products." data-zh="让复杂产品变简单。">for complex products.</span>
+        </h1>
+        <p class="lead" data-en="I help teams turn AI and SaaS ideas into products users can understand, trust, and enjoy. From strategy to polished UI systems, every decision is grounded in user value."
+          data-zh="我帮助团队把 AI 和 SaaS 想法变成用户看得懂、愿意用、值得信任的产品。从策略到高保真界面，每一步都围绕真实用户价值。">
+          I help teams turn AI and SaaS ideas into products users can understand, trust, and enjoy. From strategy to polished UI systems, every decision is grounded in user value.
+        </p>
+        <div class="cta-row">
+          <a href="#contact" class="btn btn-primary" data-en="Book a design call" data-zh="预约沟通">Book a design call</a>
+          <a href="#projects" class="btn btn-soft" data-en="View selected work" data-zh="查看案例">View selected work</a>
+        </div>
+      </article>
+
+      <aside class="hero-panel">
+        <div class="metric">
+          <strong>8+</strong>
+          <span data-en="Years in product and UX design" data-zh="年产品与体验设计经验">Years in product and UX design</span>
+        </div>
+        <div class="metric">
+          <strong>30+</strong>
+          <span data-en="Shipped features and design systems" data-zh="交付功能与设计系统">Shipped features and design systems</span>
+        </div>
+        <div class="metric">
+          <strong id="studioTime">--:--</strong>
+          <span data-en="Shanghai studio time" data-zh="上海工作室时间">Shanghai studio time</span>
+        </div>
+      </aside>
+    </section>
+
+    <section id="services">
+      <div class="section-head">
+        <h2 data-en="What I can help with" data-zh="我能提供的服务">What I can help with</h2>
+        <p data-en="A focused toolkit for startups and product teams building fast."
+          data-zh="为快速迭代的创业团队和产品团队准备的核心能力。">A focused toolkit for startups and product teams building fast.</p>
       </div>
-      <main class="container">
-        < !-- Hero Section (V3) -->
-          <section class="hero">
-            <div class="aurora-bg"></div>
-            <div class="hero-content">
-              <h1 class="hero-title"><span class="serif-line" id="hero-l1" data-en="Designing"
-                  data-zh="设计">Designing</span><span class="sans-line" id="hero-l2" data-en="Intelligent Experiences"
-                  data-zh="智能体验">Intelligent Experiences</span></h1>
-              <p class="hero-subtitle"
-                data-en="Crafting clarity from complexity. Specialized in AI interfaces and B2B SaaS systems."
-                data-zh="在复杂中构建清晰。专注于 AI 界面与 B2B SaaS 系统设计。">Crafting clarity from complexity. Specialized in AI
-                interfaces and B2B SaaS systems. </p><button class="magnetic-btn"
-                onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})"
-                style="opacity: 0; animation: fadeUp 0.8s 0.8s forwards;"><span data-en="View Projects"
-                  data-zh="查看作品">View Projects</span></button>
-            </div>
-          </section>
-          < !-- Capabilities Section -->
-            <section id="capabilities" class="section-padding">
-              <div class="section-header stagger-item" style="margin-bottom: 60px;">
-                <h4 style="text-transform: uppercase; letter-spacing: 2px; color: var(--amber); margin-bottom: 16px;"
-                  data-en="Capabilities" data-zh="核心能力">Capabilities</h4>
-                <h2 style="font-size: 48px;" data-en="Full-stack Design" data-zh="全栈设计能力">Full-stack Design</h2>
-              </div>
-              <div class="bento-grid">
-                <div class="glass-card cap-card stagger-item bento-col-2 tilt-card">
-                  <div class="cap-icon">✨</div>
-                  <h3 style="margin-bottom: 16px;" data-en="Product Strategy" data-zh="产品策略">Product Strategy</h3>
-                  <p data-en="Defining MVPs, user journeys, and roadmap planning for scalable products."
-                    data-zh="定义 MVP，用户旅程，以及可扩展产品的路线图规划。">Defining MVPs,
-                    user journeys,
-                    and roadmap planning for scalable products.</p>
-                </div>
-                <div class="glass-card cap-card stagger-item tilt-card">
-                  <div class="cap-icon">🎨</div>
-                  <h3 style="margin-bottom: 16px;" data-en="UI/Visual" data-zh="视觉设计">UI/Visual</h3>
-                  <p data-en="Pixel-perfect interfaces with robust design systems." data-zh="基于严谨设计系统的像素级完美界面。">
-                    Pixel-perfect interfaces with robust design systems.</p>
-                </div>
-                <div class="glass-card cap-card stagger-item tilt-card">
-                  <div class="cap-icon">⚡</div>
-                  <h3 style="margin-bottom: 16px;" data-en="Prototyping" data-zh="交互原型">Prototyping</h3>
-                  <p data-en="High-fidelity interactive prototypes in Framer & Figma."
-                    data-zh="Framer 与 Figma 高保真交互原型。">High-fidelity interactive prototypes in Framer & Figma.</p>
-                </div>
-                <div class="glass-card cap-card stagger-item bento-col-2 tilt-card">
-                  <div class="cap-icon">🔍</div>
-                  <h3 style="margin-bottom: 16px;" data-en="User Research" data-zh="用户研究">User Research</h3>
-                  <p data-en="Usability testing, interviews, and data-driven iteration cycles."
-                    data-zh="可用性测试、访谈与数据驱动的迭代周期。">Usability testing,
-                    interviews,
-                    and data-driven iteration cycles.</p>
-                </div>
-              </div>
-            </section>
-            < !-- Philosophy (V3 Manifesto) -->
-              <section id="philosophy" class="section-padding" style="position: relative; overflow: hidden;">
-                < !-- Decorative rotating element -->
-                  <div class="manifesto-deco">✻</div>
-                  <div class="container" style="max-width: 1000px; text-align: center;">
-                    <div class="manifesto-wrapper">
-                      <p class="manifesto-text reveal-type" data-bg-color="#1A1A2E" data-fg-color="#1A1A2E"><span
-                          data-en="Design is not just about visuals." data-zh="设计不仅仅是视觉表现。">Design is not just about
-                          visuals.</span></p>
-                      <p class="manifesto-text reveal-type"><span class="highlight-serif"
-                          data-en="It is the silent ambassador" data-zh="它是你品牌的">It is the silent ambassador</span><span
-                          class="highlight-sans" data-en="of your brand." data-zh="无声大使。">of your brand.</span></p>
-                      <p class="manifesto-text reveal-type"><span data-en="We strip away the non-essential"
-                          data-zh="我们剥离非本质的一切，">We strip away the non-essential</span></p>
-                      <p class="manifesto-text reveal-type"><span class="highlight-serif" data-en="to reveal the chaos"
-                          data-zh="以揭示混乱中的">to reveal the chaos</span><span class="highlight-sans"
-                          data-en="within order." data-zh="秩序。">within order.</span></p>
-                      <p class="manifesto-text reveal-type"><span
-                          style="font-size: 0.6em; display: block; margin-top: 40px; color: var(--amber); letter-spacing: 2px; text-transform: uppercase;"
-                          data-en="— The Philosophy" data-zh="— 设计哲学">— The Philosophy</span></p>
-                    </div>
-                  </div>
-              </section>
-              < !-- Projects (Bento) -->
-                <section id="projects" class="section-padding">
-                  <div class="section-header stagger-item" style="margin-bottom: 40px;">
-                    <h2 style="font-size: 48px;" data-en="Selected Work" data-zh="精选案例">Selected Work</h2>
-                  </div>
-                  <div class="bento-grid">
-                    <div class="glass-card project-card bento-col-2 stagger-item">
-                      <div class="project-bg"
-                        style="background-image: linear-gradient(135deg, #1A1A2E 0%, #4C1D95 100%);"></div>
-                      <div class="project-overlay">
-                        <div data-en="FinTech · AI Analytics" data-zh="金融科技 · AI 分析"
-                          style="color: var(--amber); margin-bottom: 8px;">FinTech · AI Analytics</div>
-                        <h3 style="color: #fff; font-size: 32px;" data-en="Nexus Dashboard" data-zh="Nexus 数据看板">Nexus
-                          Dashboard </h3>
-                      </div>
-                    </div>
-                    <div class="glass-card project-card stagger-item">
-                      <div class="project-bg"
-                        style="background-image: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);"></div>
-                      <div class="project-overlay">
-                        <div data-en="SaaS · Design System" data-zh="SaaS · 设计系统"
-                          style="color: #fff; margin-bottom: 8px; opacity: 0.8;">SaaS · Design System</div>
-                        <h3 style="color: #fff;" data-en="Flow UI Kit" data-zh="Flow UI 组件库">Flow UI Kit</h3>
-                      </div>
-                    </div>
-                    <div class="glass-card project-card stagger-item">
-                      <div class="project-bg"
-                        style="background-image: linear-gradient(135deg, #0EA5E9 0%, #2563EB 100%);"></div>
-                      <div class="project-overlay">
-                        <div data-en="Mobile · Consumer" data-zh="移动端 · 消费类"
-                          style="color: #fff; margin-bottom: 8px; opacity: 0.8;">Mobile · Consumer</div>
-                        <h3 style="color: #fff;" data-en="Zen Habit App" data-zh="Zen 习惯养成 App">Zen Habit App</h3>
-                      </div>
-                    </div>
-                    <div class="glass-card project-card bento-col-2 stagger-item">
-                      <div class="project-bg"
-                        style="background-image: linear-gradient(135deg, #10B981 0%, #059669 100%);"></div>
-                      <div class="project-overlay">
-                        <div data-en="Web3 · Platform" data-zh="Web3 · 平台"
-                          style="color: #fff; margin-bottom: 8px; opacity: 0.8;">Web3 · Platform</div>
-                        <h3 style="color: #fff; font-size: 32px;" data-en="Ether Exchange" data-zh="Ether 交易平台">Ether
-                          Exchange</h3>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-                < !-- Hobbies (Parallax) -->
-                  <section class="section-padding">
-                    <div class="bento-grid">
-                      <div class="hobby-section stagger-item bento-col-2">
-                        <div class="hobby-img"
-                          style="background-image: url('https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=2690&auto=format&fit=crop');">
-                        </div>
-                        <div class="hobby-content glass-card">
-                          <h3 data-en="Basketball" data-zh="篮球">Basketball</h3>
-                          <p data-en="Teamwork and quick decision making on the court." data-zh="球场上的团队协作与快速决策。">
-                            Teamwork and quick decision making on the court.</p>
-                        </div>
-                      </div>
-                      <div class="hobby-section stagger-item">
-                        <div class="hobby-img"
-                          style="background-image: url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=2670&auto=format&fit=crop');">
-                        </div>
-                        <div class="hobby-content glass-card">
-                          <h3 data-en="Music" data-zh="音乐">Music</h3>
-                          <p data-en="Finding rhythm and harmony in noise." data-zh="在喧嚣中寻找韵律与和声。">Finding rhythm and
-                            harmony in noise.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-                  < !-- Testimonials & Stats -->
-                    <section id="stats" class="section-padding" style="overflow: hidden;">
-                      <div class="container" style="margin-bottom: 60px;">
-                        <h2 style="font-size: 48px; margin-bottom: 16px;" data-en="What Our Clients Say" data-zh="客户评价">
-                          What Our Clients Say</h2>
-                        <p class="stagger-item" style="font-size: 20px; opacity: 0.8;"
-                          data-en="Join customers who trust AI to transform their business."
-                          data-zh="加入那些信赖 AI 转型业务的客户行列。">Join customers who trust AI to transform their business.</p>
-                      </div>
-                      <div class="container" style="margin-bottom: 80px;">
-                        <div class="bento-grid">
-                          <div class="glass-card stat-card stagger-item">
-                            <div class="stat-bg"></div>
-                            <div class="stat-val counter" data-target="7">0</div>
-                            <div class="stat-label" data-en="Years Exp" data-zh="从业年限">Years Exp</div>
-                          </div>
-                          <div class="glass-card stat-card stagger-item">
-                            <div class="stat-bg"></div>
-                            <div class="stat-val counter" data-target="45">0</div>
-                            <div class="stat-label" data-en="Projects" data-zh="成功项目">Projects</div>
-                          </div>
-                          <div class="glass-card stat-card stagger-item">
-                            <div class="stat-bg"></div>
-                            <div class="stat-val counter" data-target="98">0</div>
-                            <div class="stat-label" data-en="NPS Score" data-zh="客户推荐率">% NPS Score</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="marquee-wrapper">
-                        <div class="marquee-track">
-                          < !-- Item 1 -->
-                            <div class="testimonial-card glass-card">
-                              <p>"Liu is a visionary designer who bridges the gap between complex tech and intuitive
-                                UX." </p>
-                              <div style="margin-top: 16px; font-weight: 600;">— Sarah J. (PM, Google)</div>
-                            </div>
-                            < !-- Item 2 -->
-                              <div class="testimonial-card glass-card">
-                                <p>"Delivered the project 2 weeks ahead of schedule. The design system is top notch."
-                                </p>
-                                <div style="margin-top: 16px; font-weight: 600;">— Mike R. (CTO, StartUp)</div>
-                              </div>
-                              < !-- Item 3 -->
-                                <div class="testimonial-card glass-card">
-                                  <p>"Incredible attention to detail. The animations added so much delight." </p>
-                                  <div style="margin-top: 16px; font-weight: 600;">— Emily W. (Founder)</div>
-                                </div>
-                                < !-- Repeat for smooth loop -->
-                                  <div class="testimonial-card glass-card">
-                                    <p>"Liu is a visionary designer who bridges the gap between complex tech and
-                                      intuitive UX." </p>
-                                    <div style="margin-top: 16px; font-weight: 600;">— Sarah J. (PM, Google)</div>
-                                  </div>
-                                  <div class="testimonial-card glass-card">
-                                    <p>"Delivered the project 2 weeks ahead of schedule. The design system is top
-                                      notch." </p>
-                                    <div style="margin-top: 16px; font-weight: 600;">— Mike R. (CTO, StartUp)</div>
-                                  </div>
-                        </div>
-                      </div>
-                    </section>
-                    <!-- Contact & Footer (The Grand Finale V3) -->
-                    <footer id="contact" class="big-footer">
-                      <div class="noise-overlay"></div>
+      <div class="grid-3">
+        <article class="card">
+          <h3 data-en="Product Strategy" data-zh="产品策略">Product Strategy</h3>
+          <p data-en="Clarify business goals, shape MVP scope, and map flows that align product value with measurable outcomes."
+            data-zh="梳理业务目标，定义 MVP 范围，并规划能把产品价值转化为结果的关键流程。">Clarify business goals, shape MVP scope, and map flows that align product value with measurable outcomes.</p>
+        </article>
+        <article class="card">
+          <h3 data-en="UX & Interaction" data-zh="体验与交互">UX & Interaction</h3>
+          <p data-en="Design task flows and micro-interactions that reduce friction and make complex products feel intuitive."
+            data-zh="设计任务路径与微交互，降低使用阻力，让复杂产品更直觉。">Design task flows and micro-interactions that reduce friction and make complex products feel intuitive.</p>
+        </article>
+        <article class="card">
+          <h3 data-en="Visual Systems" data-zh="视觉与系统">Visual Systems</h3>
+          <p data-en="Build scalable UI libraries with clear tokens, components, and documentation for fast team collaboration."
+            data-zh="构建设计 Token、组件和规范文档齐全的 UI 系统，提升团队协作效率。">Build scalable UI libraries with clear tokens, components, and documentation for fast team collaboration.</p>
+        </article>
+      </div>
+    </section>
 
-                      <!-- Background Marquee -->
-                      <div class="footer-marquee-wrapper">
-                        <div class="footer-marquee-text">
-                          SAY HELLO · CONTACT · SAY HELLO · CONTACT · SAY HELLO · CONTACT · SAY HELLO · CONTACT ·
-                        </div>
-                        <div class="footer-marquee-text">
-                          SAY HELLO · CONTACT · SAY HELLO · CONTACT · SAY HELLO · CONTACT · SAY HELLO · CONTACT ·
-                        </div>
-                      </div>
+    <section id="projects">
+      <div class="section-head">
+        <h2 data-en="Selected Work" data-zh="精选项目">Selected Work</h2>
+      </div>
+      <div class="grid-3">
+        <article class="project">
+          <small data-en="FinTech · AI Analytics" data-zh="金融科技 · AI 分析">FinTech · AI Analytics</small>
+          <h3>Nexus Insights</h3>
+          <p data-en="Redesigned a B2B dashboard that improved task completion and reduced onboarding time by creating clearer information hierarchy."
+            data-zh="重构 B2B 数据看板，通过更清晰的信息层级提升任务完成率并缩短上手时间。">Redesigned a B2B dashboard that improved task completion and reduced onboarding time by creating clearer information hierarchy.</p>
+        </article>
+        <article class="project">
+          <small data-en="SaaS · Growth" data-zh="SaaS · 增长">SaaS · Growth</small>
+          <h3>Flow Suite</h3>
+          <p data-en="Built a modular design system and key funnel pages for a collaboration product, helping the team launch faster across devices."
+            data-zh="为协作产品建立模块化设计系统和核心转化页面，帮助团队更快实现多端上线。">Built a modular design system and key funnel pages for a collaboration product, helping the team launch faster across devices.</p>
+        </article>
+        <article class="project">
+          <small data-en="Consumer · Mobile" data-zh="消费级 · 移动端">Consumer · Mobile</small>
+          <h3>Pulse Habit</h3>
+          <p data-en="Designed a calmer, habit-focused app experience with better retention cues and accessibility improvements."
+            data-zh="设计更平静的习惯养成体验，通过留存机制和无障碍优化提升长期使用。">Designed a calmer, habit-focused app experience with better retention cues and accessibility improvements.</p>
+        </article>
+      </div>
+    </section>
 
-                      <div class="container footer-content">
-                        <div class="cta-section" style="text-align: left;">
-                          <h2 class="footer-cta-title" data-en="Let's build something future-proof."
-                            data-zh="让我们构建面向未来的产品。">
-                            Let's build something future-proof.
-                          </h2>
-                          <button class="magnetic-btn" id="contact-btn"
-                            style="height: 100px; padding: 0 60px; font-size: 24px;">
-                            <span data-en="Start a Project" data-zh="开启合作">Start a Project</span>
-                          </button>
-                        </div>
+    <section id="contact" class="card" style="margin-bottom: 42px;">
+      <div class="section-head">
+        <h2 data-en="Let's build something meaningful" data-zh="一起做点有意义的产品">Let's build something meaningful</h2>
+        <p data-en="If you're working on a product that needs clarity and momentum, I'd love to help."
+          data-zh="如果你正在做需要清晰方向和执行速度的产品，我很愿意一起推进。">If you're working on a product that needs clarity and momentum, I'd love to help.</p>
+      </div>
+      <a class="btn btn-primary" href="mailto:hello@example.com">hello@example.com</a>
+    </section>
+  </main>
 
-                        <div class="social-links-grid">
-                          <a href="#" class="social-link magnetic-link" data-en="Twitter" data-zh="推特">Twitter</a>
-                          <a href="#" class="social-link magnetic-link" data-en="LinkedIn" data-zh="领英">LinkedIn</a>
-                          <a href="#" class="social-link magnetic-link" data-en="Dribbble" data-zh="追波">Dribbble</a>
-                          <a href="#" class="social-link magnetic-link" data-en="Email" data-zh="邮件">Email</a>
-                        </div>
+  <footer class="footer">
+    <div class="container">© <span id="year"></span> Liu Lu · Product Designer</div>
+  </footer>
 
-                        <div class="footer-bottom">
-                          <div>
-                            <div>&copy; 2024 Liu Lu. Based in Shanghai.</div>
-                            <div style="margin-top: 8px;" data-en="Available for new opportunities."
-                              data-zh="即刻启程，探索新机遇。">
-                              Available for new opportunities.
-                            </div>
-                          </div>
-                          <div class="studio-time" id="studio-time">
-                            Design Studio · 09:48 AM GMT+8
-                          </div>
-                        </div>
-                      </div>
-                    </footer>
-      </main>
-      <script>
-        /* ============================
-           Interactive Logic
-           ============================ */
+  <script>
+    const langBtn = document.getElementById('langBtn');
+    let currentLang = localStorage.getItem('site_lang') || 'en';
 
-        // 1. Language Switcher
-        const langBtn = document.getElementById('lang-btn');
-        let currentLang = localStorage.getItem('site_lang') || 'en';
+    function applyLanguage() {
+      document.querySelectorAll('[data-en]').forEach((el) => {
+        const text = el.getAttribute(`data-${currentLang}`);
+        if (text) el.textContent = text;
+      });
+      langBtn.textContent = currentLang === 'en' ? 'EN / 中' : '中 / EN';
+      document.documentElement.lang = currentLang === 'en' ? 'en' : 'zh-CN';
+      localStorage.setItem('site_lang', currentLang);
+    }
 
-        function updateLanguage() {
-          const elements = document.querySelectorAll('[data-en]');
+    langBtn.addEventListener('click', () => {
+      currentLang = currentLang === 'en' ? 'zh' : 'en';
+      applyLanguage();
+    });
 
-          elements.forEach(el => {
-            // Simple fade out/in effect
-            el.style.opacity = '0';
+    function updateTime() {
+      const now = new Date();
+      const time = now.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+        timeZone: 'Asia/Shanghai'
+      });
+      const el = document.getElementById('studioTime');
+      if (el) el.textContent = time;
+    }
 
-            setTimeout(() => {
-              el.textContent = el.getAttribute(`data-$ {
-                  currentLang
-                }
-
-                `);
-              el.style.opacity = '1';
-            }
-
-              , 200);
-          });
-          langBtn.textContent = currentLang === 'en' ? 'EN / 中' : '中 / EN';
-          document.documentElement.lang = currentLang === 'en' ? 'en' : 'zh-CN';
-          localStorage.setItem('site_lang', currentLang);
-        }
-
-        langBtn.addEventListener('click', () => {
-          currentLang = currentLang === 'en' ? 'zh' : 'en';
-          updateLanguage();
-        });
-
-        // Init language
-        if (currentLang === 'zh') {
-          const elements = document.querySelectorAll('[data-en]');
-
-          elements.forEach(el => {
-            el.textContent = el.getAttribute('data-zh');
-          });
-          langBtn.textContent = '中 / EN';
-        }
-
-        // 2. Intersection Observer for Reveals
-        // Fixed: Lower threshold and rootMargin to ensure triggering
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-
-              if (entry.target.classList.contains('stat-card')) {
-                const counter = entry.target.querySelector('.counter');
-
-                if (counter && !counter.hasAttribute('started')) {
-                  counter.setAttribute('started', 'true');
-                  animateCounter(counter);
-                }
-              }
-
-              observer.unobserve(entry.target);
-            }
-          });
-        }
-
-          , {
-            threshold: 0.01, rootMargin: '0px 0px -50px 0px'
-          });
-
-        document.querySelectorAll('.stagger-item, .reveal-text').forEach(el => observer.observe(el));
-
-        // Fallback force visibility after load (Fix for Hero visibility bug)
-        window.addEventListener('load', () => {
-          // Force hero items visible immediately
-          const heroItems = document.querySelectorAll('.hero .reveal-text, .hero .stagger-item');
-          heroItems.forEach(el => el.classList.add('visible'));
-        });
-
-        // 3. Counter Animation
-        function animateCounter(el) {
-          const target = +el.getAttribute('data-target');
-          const duration = 2000;
-          const start = Date.now();
-
-          const timer = setInterval(() => {
-            const timePassed = Date.now() - start;
-            let progress = timePassed / duration;
-            if (progress > 1) progress = 1;
-
-            const ease = 1 - Math.pow(1 - progress, 4);
-
-            el.textContent = Math.floor(ease * target);
-
-            if (progress === 1) clearInterval(timer);
-          }
-
-            , 16);
-        }
-
-        // 4. Parallax Blob & Image Effect
-        // Replaced by CSS Aurora, but keep hobby parallax
-        window.addEventListener('scroll', () => {
-          const scrolled = window.scrollY;
-
-          // Fix parallax scale + translate
-          document.querySelectorAll('.hobby-img').forEach(img => {
-            img.style.transform = `translateY($ {
-                scrolled * 0.1
-              }
-
-              px) scale(1.1)`;
-          });
-        });
-
-        // 8. V3 Hero Text Split Animation
-        function initHeroAnimation() {
-          const line1 = document.getElementById('hero-l1');
-          const line2 = document.getElementById('hero-l2');
-
-          // Helper to split text
-          const splitText = (el) => {
-            if (!el) return;
-            const text = el.textContent;
-            el.innerHTML = '';
-
-            text.split('').forEach((char, i) => {
-              const span = document.createElement('span');
-              span.textContent = char;
-              span.classList.add('char-reveal');
-
-              span.style.animationDelay = `$ {
-              i * 0.03
-            }
-
-            s`; // Stagger
-              if (char === ' ') span.style.width = '0.3em'; // Preserve space
-              el.appendChild(span);
-            });
-          }
-
-            ;
-
-          splitText(line1);
-
-          // For line 2, wait a bit
-          setTimeout(() => {
-            splitText(line2);
-          }
-
-            , 400);
-        }
-
-        // Run on load
-        window.addEventListener('load', initHeroAnimation);
-
-        // Updates for Lang Switcher to re-trigger animation? Maybe too complex.
-        // Ideally just swap text. For V3, simplicity: just swap textContent. 
-        // If strict char anim is needed on switch, we'd recall initHeroAnimation.
-
-        // Hook into existing updateLanguage
-        const originalUpdateLanguage = updateLanguage;
-
-        updateLanguage = function () {
-          const elements = document.querySelectorAll('[data-en]');
-
-          elements.forEach(el => {
-
-            // Reset content
-            const newText = el.getAttribute(`data-$ {
-              currentLang
-            }
-
-            `);
-            el.textContent = newText;
-
-            // If it's the hero lines, re-run split
-            if (el.id === 'hero-l1' || el.id === 'hero-l2') {
-              el.classList.remove('char-reveal'); // cleanup?
-              // Actually initHeroAnimation expects textContent, so we are good.
-              // We might want to re-run animations.
-              // For now, let's just let it be text swap. 
-              // Advanced: clear innerHTML, add spans.
-              // Let's try to keeping it simple first.
-            }
-          });
-          langBtn.textContent = currentLang === 'en' ? 'EN / 中' : '中 / EN';
-          document.documentElement.lang = currentLang === 'en' ? 'en' : 'zh-CN';
-          localStorage.setItem('site_lang', currentLang);
-
-          // Re-trigger visual split if it's hero
-          setTimeout(initHeroAnimation, 50);
-        }
-
-        // 5. 3D Tilt & Spotlight for Projects
-        document.querySelectorAll('.project-card, .tilt-card, .magnetic-link').forEach(card => {
-          card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-
-            // Tilt logic (only for cards, not links)
-            if (!card.classList.contains('magnetic-link')) {
-              const rotateX = ((y - centerY) / centerY) * -3;
-              const rotateY = ((x - centerX) / centerX) * 3;
-              card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
-            } else {
-              // Magnetic link logic
-              const dx = x - centerX;
-              const dy = y - centerY;
-              card.style.transform = `translate(${dx * 0.4}px, ${dy * 0.4}px)`;
-            }
-
-            // Spotlight logic (CSS vars)
-            card.style.setProperty('--mouse-x', `${x}px`);
-            card.style.setProperty('--mouse-y', `${y}px`);
-          });
-
-          card.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
-            card.style.transform = 'translate(0, 0)';
-          });
-        });
-
-        // 6. Magnetic Button
-        const btns = document.querySelectorAll('.magnetic-btn');
-        btns.forEach(btn => {
-          btn.addEventListener('mousemove', (e) => {
-            const rect = btn.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
-          });
-
-          btn.addEventListener('mouseleave', () => {
-            btn.style.transform = 'translate(0, 0)';
-          });
-
-          // Ripple
-          btn.addEventListener('click', function (e) {
-            const circle = document.createElement('div');
-            const rect = this.getBoundingClientRect();
-            const d = Math.max(rect.width, rect.height);
-
-            circle.style.width = circle.style.height = `${d}px`;
-            circle.style.left = `${e.clientX - rect.left - d / 2}px`;
-            circle.style.top = `${e.clientY - rect.top - d / 2}px`;
-            circle.classList.add('ripple');
-
-            const ripple = this.querySelector('.ripple');
-            if (ripple) ripple.remove();
-
-            this.appendChild(circle);
-          });
-        });
-
-        // 7. Navbar Scroll Effect
-        const navPill = document.querySelector('.nav-pill');
-        window.addEventListener('scroll', () => {
-          if (window.scrollY > 50) {
-            navPill.classList.add('scrolled');
-          } else {
-            navPill.classList.remove('scrolled');
-          }
-        });
-
-        // 8. Manifesto Scroll Reveal
-        const manifestoItems = document.querySelectorAll('.reveal-type');
-        const manifestoObserver = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('active');
-            } else {
-              entry.target.classList.remove('active');
-            }
-          });
-        }, { threshold: 0.5, rootMargin: "-50px" });
-
-        manifestoItems.forEach(item => manifestoObserver.observe(item));
-
-        // 9. Studio Time
-        function updateStudioTime() {
-          const timeEl = document.getElementById('studio-time');
-          if (!timeEl) return;
-          const now = new Date();
-          // Format: Design Studio · 09:48 AM GMT+8
-          const options = {
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: true,
-            timeZone: 'Asia/Shanghai'
-          };
-          const timeStr = now.toLocaleTimeString('en-US', options);
-          timeEl.textContent = `Design Studio · ${timeStr} GMT+8`;
-        }
-
-        setInterval(updateStudioTime, 1000);
-        updateStudioTime(); // Initial call
-
-      </script>
+    applyLanguage();
+    updateTime();
+    setInterval(updateTime, 1000 * 30);
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 
 </html>
