@@ -40,6 +40,7 @@
       --radius-lg: 24px;
       --radius-full: 999px;
       --container: 1200px;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     /* ============================
@@ -525,7 +526,6 @@
     .project-card {
       position: relative;
       height: 400px;
-      group: cursor-pointer;
     }
 
     .project-bg {
@@ -858,13 +858,13 @@
 </head>
 
 <body>
-  < !-- Mesh Background -->
+  <!-- Mesh Background -->
     <div class="mesh-bg">
       <div class="mesh-blob blob-1"></div>
       <div class="mesh-blob blob-2"></div>
       <div class="mesh-blob blob-3"></div>
     </div>
-    < !-- Navigation -->
+    <!-- Navigation -->
       <div class="nav-pill-wrapper">
         <nav class="nav-pill"><a href="#" class="nav-logo">LL</a>
           <div class="nav-links"><a href="#capabilities" class="nav-item" data-en="Capabilities"
@@ -876,7 +876,7 @@
         </nav>
       </div>
       <main class="container">
-        < !-- Hero Section (V3) -->
+        <!-- Hero Section (V3) -->
           <section class="hero">
             <div class="aurora-bg"></div>
             <div class="hero-content">
@@ -892,7 +892,7 @@
                   data-zh="查看作品">View Projects</span></button>
             </div>
           </section>
-          < !-- Capabilities Section -->
+          <!-- Capabilities Section -->
             <section id="capabilities" class="section-padding">
               <div class="section-header stagger-item" style="margin-bottom: 60px;">
                 <h4 style="text-transform: uppercase; letter-spacing: 2px; color: var(--amber); margin-bottom: 16px;"
@@ -930,9 +930,9 @@
                 </div>
               </div>
             </section>
-            < !-- Philosophy (V3 Manifesto) -->
+            <!-- Philosophy (V3 Manifesto) -->
               <section id="philosophy" class="section-padding" style="position: relative; overflow: hidden;">
-                < !-- Decorative rotating element -->
+                <!-- Decorative rotating element -->
                   <div class="manifesto-deco">✻</div>
                   <div class="container" style="max-width: 1000px; text-align: center;">
                     <div class="manifesto-wrapper">
@@ -953,7 +953,7 @@
                     </div>
                   </div>
               </section>
-              < !-- Projects (Bento) -->
+              <!-- Projects (Bento) -->
                 <section id="projects" class="section-padding">
                   <div class="section-header stagger-item" style="margin-bottom: 40px;">
                     <h2 style="font-size: 48px;" data-en="Selected Work" data-zh="精选案例">Selected Work</h2>
@@ -999,7 +999,7 @@
                     </div>
                   </div>
                 </section>
-                < !-- Hobbies (Parallax) -->
+                <!-- Hobbies (Parallax) -->
                   <section class="section-padding">
                     <div class="bento-grid">
                       <div class="hobby-section stagger-item bento-col-2">
@@ -1024,7 +1024,7 @@
                       </div>
                     </div>
                   </section>
-                  < !-- Testimonials & Stats -->
+                  <!-- Testimonials & Stats -->
                     <section id="stats" class="section-padding" style="overflow: hidden;">
                       <div class="container" style="margin-bottom: 60px;">
                         <h2 style="font-size: 48px; margin-bottom: 16px;" data-en="What Our Clients Say" data-zh="客户评价">
@@ -1054,24 +1054,24 @@
                       </div>
                       <div class="marquee-wrapper">
                         <div class="marquee-track">
-                          < !-- Item 1 -->
+                          <!-- Item 1 -->
                             <div class="testimonial-card glass-card">
                               <p>"Liu is a visionary designer who bridges the gap between complex tech and intuitive
                                 UX." </p>
                               <div style="margin-top: 16px; font-weight: 600;">— Sarah J. (PM, Google)</div>
                             </div>
-                            < !-- Item 2 -->
+                            <!-- Item 2 -->
                               <div class="testimonial-card glass-card">
                                 <p>"Delivered the project 2 weeks ahead of schedule. The design system is top notch."
                                 </p>
                                 <div style="margin-top: 16px; font-weight: 600;">— Mike R. (CTO, StartUp)</div>
                               </div>
-                              < !-- Item 3 -->
+                              <!-- Item 3 -->
                                 <div class="testimonial-card glass-card">
                                   <p>"Incredible attention to detail. The animations added so much delight." </p>
                                   <div style="margin-top: 16px; font-weight: 600;">— Emily W. (Founder)</div>
                                 </div>
-                                < !-- Repeat for smooth loop -->
+                                <!-- Repeat for smooth loop -->
                                   <div class="testimonial-card glass-card">
                                     <p>"Liu is a visionary designer who bridges the gap between complex tech and
                                       intuitive UX." </p>
