@@ -1,26 +1,53 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lin Yue · 用户体验设计师</title>
+  <title>Liu Lu · UX Designer</title>
+  <meta name="description" content="Liu Lu — UX Designer specializing in AI Products, B2B SaaS & Consumer Internet." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;1,400&display=swap"
+    rel="stylesheet">
   <style>
+    /* ============================
+       1. Design Tokens & Variables
+       ============================ */
     :root {
-      --bg: #070b14;
-      --surface: rgba(15, 23, 42, 0.72);
-      --surface-strong: rgba(15, 23, 42, 0.92);
-      --text: #e2e8f0;
-      --muted: #94a3b8;
-      --primary: #67e8f9;
-      --secondary: #c084fc;
-      --accent: #22d3ee;
-      --line: rgba(148, 163, 184, 0.28);
-      --radius: 20px;
-      --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
-      --gradient: linear-gradient(120deg, #67e8f9 0%, #c084fc 50%, #22d3ee 100%);
+      /* Colors */
+      --ink: #1A1A2E;
+      --ivory: #FAFAF8;
+      --muted: #6B7280;
+      --glass: rgba(255, 255, 255, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.5);
+      --amber: #F59E0B;
+      --amber-glow: rgba(245, 158, 11, 0.3);
+      --purple: #8B5CF6;
+      --sky: #0EA5E9;
+
+      /* Elevations */
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+      --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.08);
+      --inner-glow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+
+      /* Typography */
+      --font-heading: 'DM Sans', sans-serif;
+      --font-body: 'Inter', sans-serif;
+
+      /* Layout */
+      --radius-lg: 24px;
+      --radius-full: 999px;
+      --container: 1200px;
     }
 
-    * {
+    /* ============================
+       2. Reset & Utilities
+       ============================ */
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -31,652 +58,1385 @@
     }
 
     body {
-      font-family: "Inter", "SF Pro Display", "PingFang SC", "Microsoft YaHei", sans-serif;
-      background:
-        radial-gradient(circle at 15% 15%, rgba(34, 211, 238, 0.24), transparent 26%),
-        radial-gradient(circle at 85% 15%, rgba(192, 132, 252, 0.22), transparent 28%),
-        radial-gradient(circle at 50% 90%, rgba(30, 64, 175, 0.38), transparent 32%),
-        var(--bg);
-      color: var(--text);
-      line-height: 1.65;
+      font-family: var(--font-body);
+      background: var(--ivory);
+      color: var(--muted);
+      line-height: 1.6;
       overflow-x: hidden;
-      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .cursor-glow {
-      position: fixed;
-      width: 220px;
-      height: 220px;
-      background: radial-gradient(circle, rgba(103, 232, 249, 0.22), transparent 70%);
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      z-index: 0;
-      transition: left 0.1s linear, top 0.1s linear;
-      mix-blend-mode: screen;
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: var(--font-heading);
+      color: var(--ink);
+      line-height: 1.1;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: 0.3s;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
     }
 
     .container {
-      width: min(1120px, calc(100% - 48px));
+      max-width: var(--container);
       margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    .top-nav {
-      position: sticky;
-      top: 16px;
-      margin: 18px auto 0;
-      z-index: 20;
-      backdrop-filter: blur(12px);
-      background: rgba(2, 6, 23, 0.58);
-      border: 1px solid rgba(148, 163, 184, 0.24);
-      border-radius: 999px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-      box-shadow: 0 10px 35px rgba(2, 6, 23, 0.45);
-    }
-
-    .logo {
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      font-size: 14px;
-      text-transform: uppercase;
-      color: #f8fafc;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .nav-links a {
-      font-size: 13px;
-      color: var(--muted);
-      text-decoration: none;
-      padding: 6px 10px;
-      border-radius: 999px;
-      transition: all 0.3s ease;
-    }
-
-    .nav-links a:hover {
-      color: #f8fafc;
-      background: rgba(148, 163, 184, 0.2);
-    }
-
-    section {
-      margin-top: 84px;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 28px;
-      align-items: stretch;
-    }
-
-    .panel {
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--surface);
-      backdrop-filter: blur(18px);
-      box-shadow: var(--shadow);
-    }
-
-    .hero-main {
-      padding: 40px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-main::before {
-      content: "";
-      position: absolute;
-      inset: -20%;
-      background: conic-gradient(from 90deg, rgba(103, 232, 249, 0.22), rgba(192, 132, 252, 0.1), transparent 42%);
-      animation: slow-spin 16s linear infinite;
-      pointer-events: none;
-    }
-
-    .hero-main > * {
+      padding: 0 24px;
       position: relative;
       z-index: 2;
     }
 
-    .eyebrow {
-      color: var(--primary);
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      font-size: 12px;
-      margin-bottom: 14px;
+    .section-padding {
+      padding: 120px 0;
     }
 
-    h1 {
-      font-size: clamp(32px, 4.6vw, 58px);
-      line-height: 1.08;
-      margin-bottom: 16px;
-      max-width: 14ch;
-    }
-
-    .hero p {
-      color: var(--muted);
-      max-width: 56ch;
-      margin-bottom: 28px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      border: 0;
-      border-radius: 999px;
-      padding: 12px 20px;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.2s ease;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-    }
-
-    .btn-primary {
-      background: var(--gradient);
-      color: #062033;
-      box-shadow: 0 10px 24px rgba(103, 232, 249, 0.35);
-    }
-
-    .btn-secondary {
-      color: #f8fafc;
-      border: 1px solid rgba(148, 163, 184, 0.45);
-      background: rgba(15, 23, 42, 0.42);
-    }
-
-    .hero-side {
-      display: grid;
-      gap: 16px;
-    }
-
-    .metric-card,
-    .availability-card {
-      padding: 24px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .metric-card::after,
-    .availability-card::after {
-      content: "";
-      position: absolute;
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      right: -40px;
-      top: -60px;
-      background: radial-gradient(circle, rgba(192, 132, 252, 0.24), transparent 70%);
-      pointer-events: none;
-    }
-
-    .metric-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 18px;
-    }
-
-    .metric {
-      border: 1px solid rgba(148, 163, 184, 0.24);
-      border-radius: 14px;
-      padding: 14px;
-      background: rgba(15, 23, 42, 0.52);
-    }
-
-    .metric strong {
-      display: block;
-      font-size: 24px;
-      color: #f8fafc;
-    }
-
-    .metric span {
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .availability-card ul {
-      margin-top: 12px;
-      list-style: none;
-      display: grid;
-      gap: 8px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .availability-card li::before {
-      content: "▹";
-      color: var(--primary);
-      margin-right: 8px;
-    }
-
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 18px;
-      margin-bottom: 20px;
-    }
-
-    h2 {
-      font-size: clamp(24px, 3.5vw, 36px);
-      line-height: 1.2;
-    }
-
-    .section-head p {
-      color: var(--muted);
-      max-width: 50ch;
-    }
-
-    .cap-grid,
-    .cases,
-    .process-grid,
-    .testimonial-grid {
-      display: grid;
-      gap: 16px;
-    }
-
-    .cap-grid {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-
-    .cap-card,
-    .case-card,
-    .process-card,
-    .quote-card {
-      padding: 22px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: rgba(15, 23, 42, 0.64);
-      transition: transform 0.3s ease, border-color 0.3s ease;
-    }
-
-    .cap-card:hover,
-    .case-card:hover,
-    .process-card:hover,
-    .quote-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(103, 232, 249, 0.6);
-    }
-
-    .cap-card h3,
-    .case-card h3,
-    .process-card h3 {
-      margin-bottom: 10px;
-      font-size: 18px;
-      color: #f8fafc;
-    }
-
-    .cap-card p,
-    .case-card p,
-    .process-card p,
-    .quote-card p {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .cases {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .case-cover {
-      border-radius: 14px;
-      min-height: 160px;
-      margin-bottom: 14px;
-      border: 1px solid rgba(148, 163, 184, 0.2);
-      background-size: cover;
-      background-position: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .case-cover::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(2, 6, 23, 0.75), rgba(2, 6, 23, 0.1));
-    }
-
-    .case-tag {
-      position: absolute;
-      left: 12px;
-      bottom: 10px;
-      font-size: 12px;
-      padding: 5px 9px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.76);
-      color: var(--primary);
-      border: 1px solid rgba(148, 163, 184, 0.3);
-      z-index: 2;
-    }
-
-    .case-meta {
-      margin-top: 12px;
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .pill {
-      border-radius: 999px;
-      padding: 4px 10px;
-      border: 1px solid rgba(148, 163, 184, 0.3);
-      color: #cbd5e1;
-      font-size: 12px;
-    }
-
-    .process-grid {
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-    }
-
-    .process-card span {
+    .text-gradient {
+      background: linear-gradient(135deg, var(--amber) 0%, #F87171 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       display: inline-block;
-      margin-bottom: 10px;
-      font-size: 12px;
-      color: var(--primary);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
     }
 
-    .testimonial-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+    /* ============================
+       3. Animations & Background
+       ============================ */
+    .mesh-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
     }
 
-    .quote-card {
-      background: var(--surface-strong);
-      position: relative;
-    }
-
-    .quote-card::before {
-      content: "“";
-      font-size: 64px;
-      line-height: 1;
+    .mesh-blob {
       position: absolute;
-      top: 2px;
-      right: 14px;
-      color: rgba(103, 232, 249, 0.24);
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.4;
+      animation: float 20s ease-in-out infinite;
+      will-change: transform;
     }
 
-    .quote-name {
-      margin-top: 16px;
-      font-size: 13px;
-      color: #cbd5e1;
+    .blob-1 {
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, var(--amber), transparent 70%);
+      top: -10%;
+      left: -10%;
     }
 
-    .cta {
-      padding: 38px;
-      margin: 84px 0 52px;
-      background:
-        linear-gradient(130deg, rgba(103, 232, 249, 0.14), rgba(192, 132, 252, 0.16)),
-        rgba(15, 23, 42, 0.88);
-      border-radius: 20px;
-      border: 1px solid rgba(148, 163, 184, 0.3);
-      text-align: center;
+    .blob-2 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--purple), transparent 70%);
+      top: 40%;
+      right: -15%;
+      animation-delay: -5s;
     }
 
-    .cta p {
-      color: var(--muted);
-      margin: 12px auto 18px;
-      max-width: 64ch;
+    .blob-3 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, var(--sky), transparent 70%);
+      bottom: -10%;
+      left: 20%;
+      animation-delay: -10s;
     }
 
-    footer {
-      text-align: center;
-      color: #94a3b8;
-      font-size: 12px;
-      margin-bottom: 32px;
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      33% {
+        transform: translate(30px, -50px) scale(1.1);
+      }
+
+      66% {
+        transform: translate(-20px, 20px) scale(0.95);
+      }
     }
 
-    .reveal {
+    /* New Animation: Text Reveal */
+    .reveal-text {
+      clip-path: inset(0 0 100% 0);
+      transition: clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal-text.visible {
+      clip-path: inset(0 0 0 0);
+    }
+
+    /* Stagger Animation Base */
+    .stagger-item {
       opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .reveal.visible {
+    .stagger-item.visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    @keyframes slow-spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+    /* ============================
+       4. Components
+       ============================ */
+    /* Pill Navigation */
+    .nav-pill-wrapper {
+      position: fixed;
+      top: 32px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      z-index: 100;
+      pointer-events: none;
+      /* Let clicks pass through around the pill */
     }
 
-    @media (max-width: 1080px) {
-      .hero,
-      .cap-grid,
-      .cases,
-      .process-grid,
-      .testimonial-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+    .nav-pill {
+      pointer-events: auto;
+      /* Initial transparent state */
+      background: transparent;
+      backdrop-filter: blur(0px);
+      -webkit-backdrop-filter: blur(0px);
+      border: 1px solid transparent;
+      padding: 12px 24px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: var(--container);
+      box-shadow: none;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .nav-pill.scrolled {
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-logo {
+      width: 40px;
+      height: 40px;
+      background: var(--ink);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 4px;
+      padding: 0 12px;
+    }
+
+    .nav-item {
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-item:hover {
+      background: rgba(0, 0, 0, 0.03);
+    }
+
+    .lang-switch {
+      background: var(--ink);
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-left: 8px;
+      transition: transform 0.2s;
+    }
+
+    .lang-switch:hover {
+      transform: scale(1.05);
+    }
+
+    /* Glass Card */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm), var(--inner-glow);
+      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+      overflow: hidden;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg), var(--inner-glow);
+    }
+
+    /* Bento Grid */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .bento-col-2 {
+      grid-column: span 2;
+    }
+
+    .bento-row-2 {
+      grid-row: span 2;
+    }
+
+    /* ============================
+       5. Sections
+       ============================ */
+    /* Hero (V3 Aurora) */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 80px;
+      overflow: hidden;
+      /* Background logic handled by aurora-bg */
+    }
+
+    .aurora-bg {
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 50% 50%, #FFD29D, transparent 40%),
+        radial-gradient(circle at 80% 20%, #C8E6C9, transparent 30%),
+        radial-gradient(circle at 20% 80%, #E1BEE7, transparent 30%);
+      filter: blur(80px);
+      animation: auroraMove 20s infinite alternate;
+      z-index: -1;
+      opacity: 0.6;
+    }
+
+    @keyframes auroraMove {
+      0% {
+        transform: rotate(0deg) scale(1);
       }
 
-      .process-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+      100% {
+        transform: rotate(10deg) scale(1.1);
       }
     }
 
-    @media (max-width: 720px) {
-      .container {
-        width: min(1120px, calc(100% - 28px));
+    .hero-content {
+      max-width: 1000px;
+      z-index: 2;
+    }
+
+    .hero-title {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+      font-size: clamp(3.5rem, 8vw, 6.5rem);
+    }
+
+    .serif-line {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 400;
+      display: block;
+      color: #555;
+      letter-spacing: -1px;
+      margin-bottom: -10px;
+    }
+
+    .sans-line {
+      display: block;
+      color: var(--ink);
+      /* background-clip removed for visibility */
+    }
+
+    /* Char Reveal Animation */
+    .char-reveal {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(100%);
+      clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+      animation: charSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes charSlideUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+    }
+
+    .hero-subtitle {
+      font-size: 20px;
+      max-width: 500px;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.6s forwards;
+      color: var(--muted);
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
       }
 
-      .top-nav {
-        border-radius: 16px;
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 10px;
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Stats */
+    .stat-card {
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 240px;
+      position: relative;
+    }
+
+    .stat-bg {
+      position: absolute;
+      inset: 0;
+      opacity: 0.05;
+      background-image: radial-gradient(var(--ink) 1px, transparent 1px);
+      background-size: 20px 20px;
+      z-index: -1;
+    }
+
+    .stat-val {
+      font-size: 56px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 16px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Capabilities */
+    .cap-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .cap-card {
+      padding: 40px;
+      min-height: 280px;
+    }
+
+    .cap-icon {
+      width: 64px;
+      height: 64px;
+      background: #fff;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Philosophy */
+    .philo-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .philo-list {
+      border-left: 2px solid rgba(0, 0, 0, 0.05);
+      padding-left: 40px;
+    }
+
+    .philo-item {
+      position: relative;
+      padding-bottom: 60px;
+    }
+
+    .philo-item::before {
+      content: '';
+      position: absolute;
+      left: -49px;
+      top: 0;
+      width: 16px;
+      height: 16px;
+      background: var(--ivory);
+      border: 4px solid var(--amber);
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+
+    .philo-item:hover::before {
+      transform: scale(1.3);
+      background: var(--amber);
+    }
+
+    /* Bento Projects */
+    .project-card {
+      position: relative;
+      height: 400px;
+      group: cursor-pointer;
+    }
+
+    .project-bg {
+      position: absolute;
+      inset: 0;
+      transition: transform 0.6s var(--ease);
+      background-size: cover;
+      background-position: center;
+    }
+
+    .project-card:hover .project-bg {
+      transform: scale(1.05);
+    }
+
+    .project-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 40px;
+      color: #fff;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: 0.4s var(--ease);
+    }
+
+    .project-card:hover .project-overlay {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Spotlight Effect */
+    .project-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.15), transparent 40%);
+      opacity: 0;
+      transition: opacity 0.5s;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .project-card:hover::before {
+      opacity: 1;
+    }
+
+    /* Hobbies (Parallax) */
+    .hobby-section {
+      position: relative;
+      overflow: hidden;
+      height: 600px;
+      border-radius: var(--radius-lg);
+    }
+
+    .hobby-img {
+      position: absolute;
+      inset: -50px;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.1s linear;
+      /* For js parallax */
+    }
+
+    .hobby-content {
+      position: absolute;
+      bottom: 40px;
+      left: 40px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 24px;
+      border-radius: 16px;
+      max-width: 300px;
+    }
+
+    /* Marquee */
+    .marquee-wrapper {
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    }
+
+    .marquee-track {
+      display: inline-flex;
+      gap: 32px;
+      animation: scroll 40s linear infinite;
+    }
+
+    .testimonial-card {
+      width: 350px;
+      padding: 32px;
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      white-space: normal;
+    }
+
+    @keyframes scroll {
+      from {
+        transform: translateX(0);
       }
 
-      .hero,
-      .cap-grid,
-      .cases,
-      .process-grid,
-      .testimonial-grid,
-      .metric-grid {
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* Footer & CTA */
+    .cta-section {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .magnetic-btn {
+      display: inline-flex;
+      height: 80px;
+      padding: 0 48px;
+      background: var(--ink);
+      color: #fff;
+      border-radius: var(--radius-full);
+      align-items: center;
+      font-size: 20px;
+      font-weight: 600;
+      transition: transform 0.1s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(0);
+      animation: ripple 0.6s linear;
+      pointer-events: none;
+    }
+
+    @keyframes ripple {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 48px;
+      }
+
+      .bento-grid {
         grid-template-columns: 1fr;
       }
 
-      .hero-main,
-      .metric-card,
-      .availability-card,
-      .cta {
-        padding: 24px;
+      .bento-col-2 {
+        grid-column: auto;
       }
+
+      .philo-wrapper {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      /* Simplified nav for mobile */
+    }
+
+    /* Manifesto (V3) */
+    .manifesto-wrapper {
+      padding: 100px 0;
+    }
+
+    .manifesto-text {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 1.2;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 24px;
+      /* transition: color 0.5s ease; */
+      /* For scroll reveal */
+      opacity: 0.1;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .manifesto-text.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .highlight-serif {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--ink);
+    }
+
+    .highlight-sans {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      color: var(--muted);
+      /* Contrast play */
+    }
+
+    .manifesto-deco {
+      position: absolute;
+      top: 5%;
+      right: 5%;
+      font-size: 240px;
+      /* Larger */
+      color: var(--amber-glow);
+      opacity: 0.15;
+      animation: rotateSlow 60s linear infinite;
+      /* Slower */
+      z-index: 0;
+      font-family: 'Playfair Display', serif;
+      pointer-events: none;
+    }
+
+    @keyframes rotateSlow {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Footer Grand Finale (V3) */
+    .big-footer {
+      background: var(--ink);
+      color: #fff;
+      padding-top: 160px;
+      padding-bottom: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer-marquee-wrapper {
+      position: absolute;
+      top: 10%;
+      left: 0;
+      width: 100%;
+      opacity: 0.05;
+      pointer-events: none;
+      z-index: 0;
+      white-space: nowrap;
+    }
+
+    .footer-marquee-text {
+      font-size: 200px;
+      font-weight: 800;
+      text-transform: uppercase;
+      display: inline-block;
+      animation: footerScroll 60s linear infinite;
+    }
+
+    @keyframes footerScroll {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    .noise-overlay {
+      position: absolute;
+      inset: 0;
+      background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+      opacity: 0.1;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .footer-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-cta-title {
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: 1;
+      margin-bottom: 48px;
+    }
+
+    .social-links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 24px;
+      margin-top: 80px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 40px;
+    }
+
+    .social-link {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 18px;
+      text-decoration: none;
+      transition: color 0.3s;
+      display: inline-block;
+    }
+
+    .social-link:hover {
+      color: var(--amber);
+    }
+
+    .footer-bottom {
+      margin-top: 100px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      font-size: 14px;
+      opacity: 0.6;
+    }
+
+    .studio-time {
+      font-family: 'DM Sans', sans-serif;
+      letter-spacing: 1px;
     }
   </style>
 </head>
+
 <body>
-  <div class="cursor-glow" aria-hidden="true"></div>
-
-  <div class="container">
-    <header class="top-nav">
-      <div class="logo">Lin Yue · UX Designer</div>
-      <nav class="nav-links">
-        <a href="#capabilities">能力矩阵</a>
-        <a href="#cases">案例精选</a>
-        <a href="#process">设计流程</a>
-        <a href="#contact">合作方式</a>
-      </nav>
-    </header>
-
-    <section class="hero">
-      <article class="panel hero-main reveal">
-        <p class="eyebrow">用户体验设计师 / 交互设计专家</p>
-        <h1>把复杂产品，设计成「好用 + 好看 + 有记忆点」的体验。</h1>
-        <p>你好，我是 Lin Yue，8 年用户体验设计经验，擅长从 0 到 1 搭建设计系统、优化关键流程，并通过细腻动效提升产品情感价值。已主导 16+ 个跨端项目，覆盖 AI 产品、B2B SaaS 与消费互联网。</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#contact">预约设计咨询</a>
-          <a class="btn btn-secondary" href="#cases">查看作品案例</a>
-        </div>
-      </article>
-
-      <aside class="hero-side">
-        <div class="panel metric-card reveal">
-          <h3>影响力指标</h3>
-          <div class="metric-grid">
-            <div class="metric"><strong>+41%</strong><span>关键流程转化率提升</span></div>
-            <div class="metric"><strong>-33%</strong><span>平均任务完成时长</span></div>
-            <div class="metric"><strong>4.8/5</strong><span>用户满意度评分</span></div>
-            <div class="metric"><strong>16+</strong><span>跨平台项目落地</span></div>
-          </div>
-        </div>
-
-        <div class="panel availability-card reveal">
-          <h3>当前可合作方向</h3>
-          <ul>
-            <li>AI 产品体验升级与交互重构</li>
-            <li>设计系统建设（Design Ops）</li>
-            <li>增长漏斗与用户行为优化</li>
-            <li>中英文双语产品体验设计</li>
-          </ul>
-        </div>
-      </aside>
-    </section>
-
-    <section id="capabilities" class="reveal">
-      <div class="section-head">
-        <h2>综合能力矩阵</h2>
-        <p>以用户研究为起点，串联产品策略、交互设计、视觉系统与数据验证，确保体验既可感知也可量化。</p>
+  < !-- Mesh Background -->
+    <div class="mesh-bg">
+      <div class="mesh-blob blob-1"></div>
+      <div class="mesh-blob blob-2"></div>
+      <div class="mesh-blob blob-3"></div>
+    </div>
+    < !-- Navigation -->
+      <div class="nav-pill-wrapper">
+        <nav class="nav-pill"><a href="#" class="nav-logo">LL</a>
+          <div class="nav-links"><a href="#capabilities" class="nav-item" data-en="Capabilities"
+              data-zh="能力">Capabilities</a><a href="#philosophy" class="nav-item" data-en="Philosophy"
+              data-zh="理念">Philosophy</a><a href="#projects" class="nav-item" data-en="Work" data-zh="作品">Work</a><a
+              href="#stats" class="nav-item" data-en="Clients" data-zh="评价">Clients</a><a href="#contact"
+              class="nav-item" data-en="Contact" data-zh="联系">Contact</a></div><button class="lang-switch"
+            id="lang-btn">EN / 中</button>
+        </nav>
       </div>
-      <div class="cap-grid">
-        <article class="cap-card">
-          <h3>用户洞察</h3>
-          <p>通过访谈、可用性测试与行为数据分析，识别用户动机与痛点优先级，建立可执行的机会地图。</p>
-        </article>
-        <article class="cap-card">
-          <h3>交互架构</h3>
-          <p>擅长复杂流程拆解与信息架构规划，构建低认知负担的任务路径，提升用户完成效率。</p>
-        </article>
-        <article class="cap-card">
-          <h3>视觉与动效</h3>
-          <p>建立高辨识度界面语言，通过微交互与反馈动效增强状态感知，提升品牌记忆点。</p>
-        </article>
-        <article class="cap-card">
-          <h3>设计协同</h3>
-          <p>搭建组件库、规范文档与评审机制，提升跨团队协作效率，实现设计到开发高质量交付。</p>
-        </article>
-      </div>
-    </section>
+      <main class="container">
+        < !-- Hero Section (V3) -->
+          <section class="hero">
+            <div class="aurora-bg"></div>
+            <div class="hero-content">
+              <h1 class="hero-title"><span class="serif-line" id="hero-l1" data-en="Designing"
+                  data-zh="设计">Designing</span><span class="sans-line" id="hero-l2" data-en="Intelligent Experiences"
+                  data-zh="智能体验">Intelligent Experiences</span></h1>
+              <p class="hero-subtitle"
+                data-en="Crafting clarity from complexity. Specialized in AI interfaces and B2B SaaS systems."
+                data-zh="在复杂中构建清晰。专注于 AI 界面与 B2B SaaS 系统设计。">Crafting clarity from complexity. Specialized in AI
+                interfaces and B2B SaaS systems. </p><button class="magnetic-btn"
+                onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})"
+                style="opacity: 0; animation: fadeUp 0.8s 0.8s forwards;"><span data-en="View Projects"
+                  data-zh="查看作品">View Projects</span></button>
+            </div>
+          </section>
+          < !-- Capabilities Section -->
+            <section id="capabilities" class="section-padding">
+              <div class="section-header stagger-item" style="margin-bottom: 60px;">
+                <h4 style="text-transform: uppercase; letter-spacing: 2px; color: var(--amber); margin-bottom: 16px;"
+                  data-en="Capabilities" data-zh="核心能力">Capabilities</h4>
+                <h2 style="font-size: 48px;" data-en="Full-stack Design" data-zh="全栈设计能力">Full-stack Design</h2>
+              </div>
+              <div class="bento-grid">
+                <div class="glass-card cap-card stagger-item bento-col-2 tilt-card">
+                  <div class="cap-icon">✨</div>
+                  <h3 style="margin-bottom: 16px;" data-en="Product Strategy" data-zh="产品策略">Product Strategy</h3>
+                  <p data-en="Defining MVPs, user journeys, and roadmap planning for scalable products."
+                    data-zh="定义 MVP，用户旅程，以及可扩展产品的路线图规划。">Defining MVPs,
+                    user journeys,
+                    and roadmap planning for scalable products.</p>
+                </div>
+                <div class="glass-card cap-card stagger-item tilt-card">
+                  <div class="cap-icon">🎨</div>
+                  <h3 style="margin-bottom: 16px;" data-en="UI/Visual" data-zh="视觉设计">UI/Visual</h3>
+                  <p data-en="Pixel-perfect interfaces with robust design systems." data-zh="基于严谨设计系统的像素级完美界面。">
+                    Pixel-perfect interfaces with robust design systems.</p>
+                </div>
+                <div class="glass-card cap-card stagger-item tilt-card">
+                  <div class="cap-icon">⚡</div>
+                  <h3 style="margin-bottom: 16px;" data-en="Prototyping" data-zh="交互原型">Prototyping</h3>
+                  <p data-en="High-fidelity interactive prototypes in Framer & Figma."
+                    data-zh="Framer 与 Figma 高保真交互原型。">High-fidelity interactive prototypes in Framer & Figma.</p>
+                </div>
+                <div class="glass-card cap-card stagger-item bento-col-2 tilt-card">
+                  <div class="cap-icon">🔍</div>
+                  <h3 style="margin-bottom: 16px;" data-en="User Research" data-zh="用户研究">User Research</h3>
+                  <p data-en="Usability testing, interviews, and data-driven iteration cycles."
+                    data-zh="可用性测试、访谈与数据驱动的迭代周期。">Usability testing,
+                    interviews,
+                    and data-driven iteration cycles.</p>
+                </div>
+              </div>
+            </section>
+            < !-- Philosophy (V3 Manifesto) -->
+              <section id="philosophy" class="section-padding" style="position: relative; overflow: hidden;">
+                < !-- Decorative rotating element -->
+                  <div class="manifesto-deco">✻</div>
+                  <div class="container" style="max-width: 1000px; text-align: center;">
+                    <div class="manifesto-wrapper">
+                      <p class="manifesto-text reveal-type" data-bg-color="#1A1A2E" data-fg-color="#1A1A2E"><span
+                          data-en="Design is not just about visuals." data-zh="设计不仅仅是视觉表现。">Design is not just about
+                          visuals.</span></p>
+                      <p class="manifesto-text reveal-type"><span class="highlight-serif"
+                          data-en="It is the silent ambassador" data-zh="它是你品牌的">It is the silent ambassador</span><span
+                          class="highlight-sans" data-en="of your brand." data-zh="无声大使。">of your brand.</span></p>
+                      <p class="manifesto-text reveal-type"><span data-en="We strip away the non-essential"
+                          data-zh="我们剥离非本质的一切，">We strip away the non-essential</span></p>
+                      <p class="manifesto-text reveal-type"><span class="highlight-serif" data-en="to reveal the chaos"
+                          data-zh="以揭示混乱中的">to reveal the chaos</span><span class="highlight-sans"
+                          data-en="within order." data-zh="秩序。">within order.</span></p>
+                      <p class="manifesto-text reveal-type"><span
+                          style="font-size: 0.6em; display: block; margin-top: 40px; color: var(--amber); letter-spacing: 2px; text-transform: uppercase;"
+                          data-en="— The Philosophy" data-zh="— 设计哲学">— The Philosophy</span></p>
+                    </div>
+                  </div>
+              </section>
+              < !-- Projects (Bento) -->
+                <section id="projects" class="section-padding">
+                  <div class="section-header stagger-item" style="margin-bottom: 40px;">
+                    <h2 style="font-size: 48px;" data-en="Selected Work" data-zh="精选案例">Selected Work</h2>
+                  </div>
+                  <div class="bento-grid">
+                    <div class="glass-card project-card bento-col-2 stagger-item">
+                      <div class="project-bg"
+                        style="background-image: linear-gradient(135deg, #1A1A2E 0%, #4C1D95 100%);"></div>
+                      <div class="project-overlay">
+                        <div data-en="FinTech · AI Analytics" data-zh="金融科技 · AI 分析"
+                          style="color: var(--amber); margin-bottom: 8px;">FinTech · AI Analytics</div>
+                        <h3 style="color: #fff; font-size: 32px;" data-en="Nexus Dashboard" data-zh="Nexus 数据看板">Nexus
+                          Dashboard </h3>
+                      </div>
+                    </div>
+                    <div class="glass-card project-card stagger-item">
+                      <div class="project-bg"
+                        style="background-image: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);"></div>
+                      <div class="project-overlay">
+                        <div data-en="SaaS · Design System" data-zh="SaaS · 设计系统"
+                          style="color: #fff; margin-bottom: 8px; opacity: 0.8;">SaaS · Design System</div>
+                        <h3 style="color: #fff;" data-en="Flow UI Kit" data-zh="Flow UI 组件库">Flow UI Kit</h3>
+                      </div>
+                    </div>
+                    <div class="glass-card project-card stagger-item">
+                      <div class="project-bg"
+                        style="background-image: linear-gradient(135deg, #0EA5E9 0%, #2563EB 100%);"></div>
+                      <div class="project-overlay">
+                        <div data-en="Mobile · Consumer" data-zh="移动端 · 消费类"
+                          style="color: #fff; margin-bottom: 8px; opacity: 0.8;">Mobile · Consumer</div>
+                        <h3 style="color: #fff;" data-en="Zen Habit App" data-zh="Zen 习惯养成 App">Zen Habit App</h3>
+                      </div>
+                    </div>
+                    <div class="glass-card project-card bento-col-2 stagger-item">
+                      <div class="project-bg"
+                        style="background-image: linear-gradient(135deg, #10B981 0%, #059669 100%);"></div>
+                      <div class="project-overlay">
+                        <div data-en="Web3 · Platform" data-zh="Web3 · 平台"
+                          style="color: #fff; margin-bottom: 8px; opacity: 0.8;">Web3 · Platform</div>
+                        <h3 style="color: #fff; font-size: 32px;" data-en="Ether Exchange" data-zh="Ether 交易平台">Ether
+                          Exchange</h3>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                < !-- Hobbies (Parallax) -->
+                  <section class="section-padding">
+                    <div class="bento-grid">
+                      <div class="hobby-section stagger-item bento-col-2">
+                        <div class="hobby-img"
+                          style="background-image: url('https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=2690&auto=format&fit=crop');">
+                        </div>
+                        <div class="hobby-content glass-card">
+                          <h3 data-en="Basketball" data-zh="篮球">Basketball</h3>
+                          <p data-en="Teamwork and quick decision making on the court." data-zh="球场上的团队协作与快速决策。">
+                            Teamwork and quick decision making on the court.</p>
+                        </div>
+                      </div>
+                      <div class="hobby-section stagger-item">
+                        <div class="hobby-img"
+                          style="background-image: url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=2670&auto=format&fit=crop');">
+                        </div>
+                        <div class="hobby-content glass-card">
+                          <h3 data-en="Music" data-zh="音乐">Music</h3>
+                          <p data-en="Finding rhythm and harmony in noise." data-zh="在喧嚣中寻找韵律与和声。">Finding rhythm and
+                            harmony in noise.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                  < !-- Testimonials & Stats -->
+                    <section id="stats" class="section-padding" style="overflow: hidden;">
+                      <div class="container" style="margin-bottom: 60px;">
+                        <h2 style="font-size: 48px; margin-bottom: 16px;" data-en="What Our Clients Say" data-zh="客户评价">
+                          What Our Clients Say</h2>
+                        <p class="stagger-item" style="font-size: 20px; opacity: 0.8;"
+                          data-en="Join customers who trust AI to transform their business."
+                          data-zh="加入那些信赖 AI 转型业务的客户行列。">Join customers who trust AI to transform their business.</p>
+                      </div>
+                      <div class="container" style="margin-bottom: 80px;">
+                        <div class="bento-grid">
+                          <div class="glass-card stat-card stagger-item">
+                            <div class="stat-bg"></div>
+                            <div class="stat-val counter" data-target="7">0</div>
+                            <div class="stat-label" data-en="Years Exp" data-zh="从业年限">Years Exp</div>
+                          </div>
+                          <div class="glass-card stat-card stagger-item">
+                            <div class="stat-bg"></div>
+                            <div class="stat-val counter" data-target="45">0</div>
+                            <div class="stat-label" data-en="Projects" data-zh="成功项目">Projects</div>
+                          </div>
+                          <div class="glass-card stat-card stagger-item">
+                            <div class="stat-bg"></div>
+                            <div class="stat-val counter" data-target="98">0</div>
+                            <div class="stat-label" data-en="NPS Score" data-zh="客户推荐率">% NPS Score</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="marquee-wrapper">
+                        <div class="marquee-track">
+                          < !-- Item 1 -->
+                            <div class="testimonial-card glass-card">
+                              <p>"Liu is a visionary designer who bridges the gap between complex tech and intuitive
+                                UX." </p>
+                              <div style="margin-top: 16px; font-weight: 600;">— Sarah J. (PM, Google)</div>
+                            </div>
+                            < !-- Item 2 -->
+                              <div class="testimonial-card glass-card">
+                                <p>"Delivered the project 2 weeks ahead of schedule. The design system is top notch."
+                                </p>
+                                <div style="margin-top: 16px; font-weight: 600;">— Mike R. (CTO, StartUp)</div>
+                              </div>
+                              < !-- Item 3 -->
+                                <div class="testimonial-card glass-card">
+                                  <p>"Incredible attention to detail. The animations added so much delight." </p>
+                                  <div style="margin-top: 16px; font-weight: 600;">— Emily W. (Founder)</div>
+                                </div>
+                                < !-- Repeat for smooth loop -->
+                                  <div class="testimonial-card glass-card">
+                                    <p>"Liu is a visionary designer who bridges the gap between complex tech and
+                                      intuitive UX." </p>
+                                    <div style="margin-top: 16px; font-weight: 600;">— Sarah J. (PM, Google)</div>
+                                  </div>
+                                  <div class="testimonial-card glass-card">
+                                    <p>"Delivered the project 2 weeks ahead of schedule. The design system is top
+                                      notch." </p>
+                                    <div style="margin-top: 16px; font-weight: 600;">— Mike R. (CTO, StartUp)</div>
+                                  </div>
+                        </div>
+                      </div>
+                    </section>
+                    <!-- Contact & Footer (The Grand Finale V3) -->
+                    <footer id="contact" class="big-footer">
+                      <div class="noise-overlay"></div>
 
-    <section id="cases" class="reveal">
-      <div class="section-head">
-        <h2>案例精选</h2>
-        <p>以下案例信息为演示版构建，展示一名高级用户体验设计师可覆盖的业务深度与方法广度。</p>
-      </div>
-      <div class="cases">
-        <article class="case-card">
-          <div class="case-cover" style="background-image: linear-gradient(130deg, #0891b2, #1d4ed8, #7c3aed);">
-            <span class="case-tag">AI 协作平台</span>
-          </div>
-          <h3>FlowMind Copilot</h3>
-          <p>重构智能工作流创建流程，设计分步引导 + 智能建议面板，降低首次使用门槛，激活率提升 39%。</p>
-          <div class="case-meta">
-            <span class="pill">信息架构</span><span class="pill">可用性测试</span><span class="pill">高保真原型</span>
-          </div>
-        </article>
+                      <!-- Background Marquee -->
+                      <div class="footer-marquee-wrapper">
+                        <div class="footer-marquee-text">
+                          SAY HELLO · CONTACT · SAY HELLO · CONTACT · SAY HELLO · CONTACT · SAY HELLO · CONTACT ·
+                        </div>
+                        <div class="footer-marquee-text">
+                          SAY HELLO · CONTACT · SAY HELLO · CONTACT · SAY HELLO · CONTACT · SAY HELLO · CONTACT ·
+                        </div>
+                      </div>
 
-        <article class="case-card">
-          <div class="case-cover" style="background-image: linear-gradient(130deg, #0f766e, #14b8a6, #67e8f9);">
-            <span class="case-tag">医疗健康 App</span>
-          </div>
-          <h3>CarePulse Mobile</h3>
-          <p>为慢病管理场景建立「任务-反馈-激励」闭环，优化日常打卡与报告查看体验，7 日留存提升 27%。</p>
-          <div class="case-meta">
-            <span class="pill">服务设计</span><span class="pill">动效设计</span><span class="pill">Design Token</span>
-          </div>
-        </article>
+                      <div class="container footer-content">
+                        <div class="cta-section" style="text-align: left;">
+                          <h2 class="footer-cta-title" data-en="Let's build something future-proof."
+                            data-zh="让我们构建面向未来的产品。">
+                            Let's build something future-proof.
+                          </h2>
+                          <button class="magnetic-btn" id="contact-btn"
+                            style="height: 100px; padding: 0 60px; font-size: 24px;">
+                            <span data-en="Start a Project" data-zh="开启合作">Start a Project</span>
+                          </button>
+                        </div>
 
-        <article class="case-card">
-          <div class="case-cover" style="background-image: linear-gradient(130deg, #7c3aed, #db2777, #f97316);">
-            <span class="case-tag">企业后台 SaaS</span>
-          </div>
-          <h3>Orbit Admin Suite</h3>
-          <p>搭建跨产品统一设计系统与组件库，缩短新页面设计开发周期 45%，并提升可访问性一致性。</p>
-          <div class="case-meta">
-            <span class="pill">Design System</span><span class="pill">协同流程</span><span class="pill">无障碍优化</span>
-          </div>
-        </article>
-      </div>
-    </section>
+                        <div class="social-links-grid">
+                          <a href="#" class="social-link magnetic-link" data-en="Twitter" data-zh="推特">Twitter</a>
+                          <a href="#" class="social-link magnetic-link" data-en="LinkedIn" data-zh="领英">LinkedIn</a>
+                          <a href="#" class="social-link magnetic-link" data-en="Dribbble" data-zh="追波">Dribbble</a>
+                          <a href="#" class="social-link magnetic-link" data-en="Email" data-zh="邮件">Email</a>
+                        </div>
 
-    <section id="process" class="reveal">
-      <div class="section-head">
-        <h2>我的设计流程</h2>
-        <p>注重“研究驱动 + 快速验证 + 持续优化”，让体验设计真正支撑业务目标。</p>
-      </div>
-      <div class="process-grid">
-        <article class="process-card"><span>01</span><h3>定义问题</h3><p>明确业务目标、用户群体与成功指标，形成统一的问题陈述。</p></article>
-        <article class="process-card"><span>02</span><h3>研究洞察</h3><p>结合定性访谈与定量分析，识别关键摩擦点与高价值机会。</p></article>
-        <article class="process-card"><span>03</span><h3>方案发散</h3><p>通过用户旅程、线框图与交互原型探索多路径方案并筛选优解。</p></article>
-        <article class="process-card"><span>04</span><h3>验证迭代</h3><p>开展可用性测试与 A/B 验证，持续迭代关键路径直至达成目标。</p></article>
-        <article class="process-card"><span>05</span><h3>落地增长</h3><p>与研发和产品协作交付，并建立体验指标看板，追踪长期表现。</p></article>
-      </div>
-    </section>
+                        <div class="footer-bottom">
+                          <div>
+                            <div>&copy; 2024 Liu Lu. Based in Shanghai.</div>
+                            <div style="margin-top: 8px;" data-en="Available for new opportunities."
+                              data-zh="即刻启程，探索新机遇。">
+                              Available for new opportunities.
+                            </div>
+                          </div>
+                          <div class="studio-time" id="studio-time">
+                            Design Studio · 09:48 AM GMT+8
+                          </div>
+                        </div>
+                      </div>
+                    </footer>
+      </main>
+      <script>
+        /* ============================
+           Interactive Logic
+           ============================ */
 
-    <section class="reveal">
-      <div class="section-head">
-        <h2>合作反馈</h2>
-        <p>来自产品、研发与业务团队的典型反馈（示例文案）。</p>
-      </div>
-      <div class="testimonial-grid">
-        <article class="quote-card">
-          <p>“Lin 在复杂业务中仍能抓住用户核心任务，输出的方案不仅美观，更显著提升了业务转化。”</p>
-          <div class="quote-name">— 产品总监 / AI 工具平台</div>
-        </article>
-        <article class="quote-card">
-          <p>“她搭建的组件体系与交互规范让我们前后端协作效率明显提高，设计资产复用率大幅提升。”</p>
-          <div class="quote-name">— 前端负责人 / 企业 SaaS 团队</div>
-        </article>
-      </div>
-    </section>
+        // 1. Language Switcher
+        const langBtn = document.getElementById('lang-btn');
+        let currentLang = localStorage.getItem('site_lang') || 'en';
 
-    <section id="contact" class="cta reveal">
-      <h2>准备好一起打造高价值体验了吗？</h2>
-      <p>支持项目制合作、短期设计冲刺和长期顾问模式。如果你正在推进 AI 产品、复杂后台或高增长场景，欢迎联系我共同打磨更好的用户体验。</p>
-      <a class="btn btn-primary" href="mailto:linyue.ux@example.com">linyue.ux@example.com</a>
-    </section>
+        function updateLanguage() {
+          const elements = document.querySelectorAll('[data-en]');
 
-    <footer>© 2026 Lin Yue · UX Designer Portfolio</footer>
-  </div>
+          elements.forEach(el => {
+            // Simple fade out/in effect
+            el.style.opacity = '0';
 
-  <script>
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
+            setTimeout(() => {
+              el.textContent = el.getAttribute(`data-$ {
+                  currentLang
+                }
+
+                `);
+              el.style.opacity = '1';
+            }
+
+              , 200);
+          });
+          langBtn.textContent = currentLang === 'en' ? 'EN / 中' : '中 / EN';
+          document.documentElement.lang = currentLang === 'en' ? 'en' : 'zh-CN';
+          localStorage.setItem('site_lang', currentLang);
         }
-      });
-    }, { threshold: 0.12 });
 
-    reveals.forEach((item) => observer.observe(item));
+        langBtn.addEventListener('click', () => {
+          currentLang = currentLang === 'en' ? 'zh' : 'en';
+          updateLanguage();
+        });
 
-    const cursorGlow = document.querySelector('.cursor-glow');
-    window.addEventListener('pointermove', (event) => {
-      cursorGlow.style.left = `${event.clientX}px`;
-      cursorGlow.style.top = `${event.clientY}px`;
-    });
-  </script>
+        // Init language
+        if (currentLang === 'zh') {
+          const elements = document.querySelectorAll('[data-en]');
+
+          elements.forEach(el => {
+            el.textContent = el.getAttribute('data-zh');
+          });
+          langBtn.textContent = '中 / EN';
+        }
+
+        // 2. Intersection Observer for Reveals
+        // Fixed: Lower threshold and rootMargin to ensure triggering
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+
+              if (entry.target.classList.contains('stat-card')) {
+                const counter = entry.target.querySelector('.counter');
+
+                if (counter && !counter.hasAttribute('started')) {
+                  counter.setAttribute('started', 'true');
+                  animateCounter(counter);
+                }
+              }
+
+              observer.unobserve(entry.target);
+            }
+          });
+        }
+
+          , {
+            threshold: 0.01, rootMargin: '0px 0px -50px 0px'
+          });
+
+        document.querySelectorAll('.stagger-item, .reveal-text').forEach(el => observer.observe(el));
+
+        // Fallback force visibility after load (Fix for Hero visibility bug)
+        window.addEventListener('load', () => {
+          // Force hero items visible immediately
+          const heroItems = document.querySelectorAll('.hero .reveal-text, .hero .stagger-item');
+          heroItems.forEach(el => el.classList.add('visible'));
+        });
+
+        // 3. Counter Animation
+        function animateCounter(el) {
+          const target = +el.getAttribute('data-target');
+          const duration = 2000;
+          const start = Date.now();
+
+          const timer = setInterval(() => {
+            const timePassed = Date.now() - start;
+            let progress = timePassed / duration;
+            if (progress > 1) progress = 1;
+
+            const ease = 1 - Math.pow(1 - progress, 4);
+
+            el.textContent = Math.floor(ease * target);
+
+            if (progress === 1) clearInterval(timer);
+          }
+
+            , 16);
+        }
+
+        // 4. Parallax Blob & Image Effect
+        // Replaced by CSS Aurora, but keep hobby parallax
+        window.addEventListener('scroll', () => {
+          const scrolled = window.scrollY;
+
+          // Fix parallax scale + translate
+          document.querySelectorAll('.hobby-img').forEach(img => {
+            img.style.transform = `translateY($ {
+                scrolled * 0.1
+              }
+
+              px) scale(1.1)`;
+          });
+        });
+
+        // 8. V3 Hero Text Split Animation
+        function initHeroAnimation() {
+          const line1 = document.getElementById('hero-l1');
+          const line2 = document.getElementById('hero-l2');
+
+          // Helper to split text
+          const splitText = (el) => {
+            if (!el) return;
+            const text = el.textContent;
+            el.innerHTML = '';
+
+            text.split('').forEach((char, i) => {
+              const span = document.createElement('span');
+              span.textContent = char;
+              span.classList.add('char-reveal');
+
+              span.style.animationDelay = `$ {
+              i * 0.03
+            }
+
+            s`; // Stagger
+              if (char === ' ') span.style.width = '0.3em'; // Preserve space
+              el.appendChild(span);
+            });
+          }
+
+            ;
+
+          splitText(line1);
+
+          // For line 2, wait a bit
+          setTimeout(() => {
+            splitText(line2);
+          }
+
+            , 400);
+        }
+
+        // Run on load
+        window.addEventListener('load', initHeroAnimation);
+
+        // Updates for Lang Switcher to re-trigger animation? Maybe too complex.
+        // Ideally just swap text. For V3, simplicity: just swap textContent. 
+        // If strict char anim is needed on switch, we'd recall initHeroAnimation.
+
+        // Hook into existing updateLanguage
+        const originalUpdateLanguage = updateLanguage;
+
+        updateLanguage = function () {
+          const elements = document.querySelectorAll('[data-en]');
+
+          elements.forEach(el => {
+
+            // Reset content
+            const newText = el.getAttribute(`data-$ {
+              currentLang
+            }
+
+            `);
+            el.textContent = newText;
+
+            // If it's the hero lines, re-run split
+            if (el.id === 'hero-l1' || el.id === 'hero-l2') {
+              el.classList.remove('char-reveal'); // cleanup?
+              // Actually initHeroAnimation expects textContent, so we are good.
+              // We might want to re-run animations.
+              // For now, let's just let it be text swap. 
+              // Advanced: clear innerHTML, add spans.
+              // Let's try to keeping it simple first.
+            }
+          });
+          langBtn.textContent = currentLang === 'en' ? 'EN / 中' : '中 / EN';
+          document.documentElement.lang = currentLang === 'en' ? 'en' : 'zh-CN';
+          localStorage.setItem('site_lang', currentLang);
+
+          // Re-trigger visual split if it's hero
+          setTimeout(initHeroAnimation, 50);
+        }
+
+        // 5. 3D Tilt & Spotlight for Projects
+        document.querySelectorAll('.project-card, .tilt-card, .magnetic-link').forEach(card => {
+          card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            // Tilt logic (only for cards, not links)
+            if (!card.classList.contains('magnetic-link')) {
+              const rotateX = ((y - centerY) / centerY) * -3;
+              const rotateY = ((x - centerX) / centerX) * 3;
+              card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+            } else {
+              // Magnetic link logic
+              const dx = x - centerX;
+              const dy = y - centerY;
+              card.style.transform = `translate(${dx * 0.4}px, ${dy * 0.4}px)`;
+            }
+
+            // Spotlight logic (CSS vars)
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+          });
+
+          card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+            card.style.transform = 'translate(0, 0)';
+          });
+        });
+
+        // 6. Magnetic Button
+        const btns = document.querySelectorAll('.magnetic-btn');
+        btns.forEach(btn => {
+          btn.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+          });
+
+          btn.addEventListener('mouseleave', () => {
+            btn.style.transform = 'translate(0, 0)';
+          });
+
+          // Ripple
+          btn.addEventListener('click', function (e) {
+            const circle = document.createElement('div');
+            const rect = this.getBoundingClientRect();
+            const d = Math.max(rect.width, rect.height);
+
+            circle.style.width = circle.style.height = `${d}px`;
+            circle.style.left = `${e.clientX - rect.left - d / 2}px`;
+            circle.style.top = `${e.clientY - rect.top - d / 2}px`;
+            circle.classList.add('ripple');
+
+            const ripple = this.querySelector('.ripple');
+            if (ripple) ripple.remove();
+
+            this.appendChild(circle);
+          });
+        });
+
+        // 7. Navbar Scroll Effect
+        const navPill = document.querySelector('.nav-pill');
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 50) {
+            navPill.classList.add('scrolled');
+          } else {
+            navPill.classList.remove('scrolled');
+          }
+        });
+
+        // 8. Manifesto Scroll Reveal
+        const manifestoItems = document.querySelectorAll('.reveal-type');
+        const manifestoObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('active');
+            } else {
+              entry.target.classList.remove('active');
+            }
+          });
+        }, { threshold: 0.5, rootMargin: "-50px" });
+
+        manifestoItems.forEach(item => manifestoObserver.observe(item));
+
+        // 9. Studio Time
+        function updateStudioTime() {
+          const timeEl = document.getElementById('studio-time');
+          if (!timeEl) return;
+          const now = new Date();
+          // Format: Design Studio · 09:48 AM GMT+8
+          const options = {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: true,
+            timeZone: 'Asia/Shanghai'
+          };
+          const timeStr = now.toLocaleTimeString('en-US', options);
+          timeEl.textContent = `Design Studio · ${timeStr} GMT+8`;
+        }
+
+        setInterval(updateStudioTime, 1000);
+        updateStudioTime(); // Initial call
+
+      </script>
 </body>
+
 </html>
