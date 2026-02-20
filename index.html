@@ -8,38 +8,37 @@
   <meta name="description" content="Liu Lu — UX Designer specializing in AI Products, B2B SaaS & Consumer Internet." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;1,400&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
   <style>
     /* ============================
        1. Design Tokens & Variables
        ============================ */
     :root {
       /* Colors */
-      --ink: #1A1A2E;
-      --ivory: #FAFAF8;
-      --muted: #6B7280;
-      --glass: rgba(255, 255, 255, 0.7);
-      --glass-border: rgba(255, 255, 255, 0.5);
-      --amber: #F59E0B;
-      --amber-glow: rgba(245, 158, 11, 0.3);
-      --purple: #8B5CF6;
-      --sky: #0EA5E9;
+      --ink: #12151b;
+      --ivory: #eff1f4;
+      --muted: #666d79;
+      --glass: rgba(255, 255, 255, 0.82);
+      --glass-border: rgba(18, 21, 27, 0.11);
+      --amber: #3b4350;
+      --amber-glow: rgba(78, 88, 106, 0.2);
+      --purple: #d7dbe2;
+      --sky: #e4e8ee;
 
       /* Elevations */
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-      --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.08);
+      --shadow-sm: 0 4px 16px rgba(22, 27, 35, 0.05);
+      --shadow-lg: 0 24px 72px rgba(22, 27, 35, 0.1);
       --inner-glow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
 
       /* Typography */
-      --font-heading: 'DM Sans', sans-serif;
-      --font-body: 'Inter', sans-serif;
+      --font-heading: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+      --font-body: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
 
       /* Layout */
       --radius-lg: 24px;
       --radius-full: 999px;
       --container: 1200px;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     /* ============================
@@ -59,7 +58,7 @@
 
     body {
       font-family: var(--font-body);
-      background: var(--ivory);
+      background: radial-gradient(circle at 20% 10%, #f6f7f9 0%, var(--ivory) 48%, #eceff3 100%);
       color: var(--muted);
       line-height: 1.6;
       overflow-x: hidden;
@@ -124,7 +123,7 @@
       position: absolute;
       border-radius: 50%;
       filter: blur(90px);
-      opacity: 0.4;
+      opacity: 0.26;
       animation: float 20s ease-in-out infinite;
       will-change: transform;
     }
@@ -132,7 +131,7 @@
     .blob-1 {
       width: 700px;
       height: 700px;
-      background: radial-gradient(circle, var(--amber), transparent 70%);
+      background: radial-gradient(circle, #dfe3e9, transparent 70%);
       top: -10%;
       left: -10%;
     }
@@ -140,7 +139,7 @@
     .blob-2 {
       width: 600px;
       height: 600px;
-      background: radial-gradient(circle, var(--purple), transparent 70%);
+      background: radial-gradient(circle, #d3d9e1, transparent 70%);
       top: 40%;
       right: -15%;
       animation-delay: -5s;
@@ -149,7 +148,7 @@
     .blob-3 {
       width: 500px;
       height: 500px;
-      background: radial-gradient(circle, var(--sky), transparent 70%);
+      background: radial-gradient(circle, #e8ebf0, transparent 70%);
       bottom: -10%;
       left: 20%;
       animation-delay: -10s;
@@ -228,11 +227,11 @@
     }
 
     .nav-pill.scrolled {
-      background: var(--glass);
+      background: rgba(255, 255, 255, 0.76);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
-      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(18, 21, 27, 0.09);
+      box-shadow: 0 12px 30px -12px rgba(18, 21, 27, 0.12);
     }
 
     .nav-logo {
@@ -289,9 +288,9 @@
 
     /* Glass Card */
     .glass-card {
-      background: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.68);
       backdrop-filter: blur(24px);
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(18, 21, 27, 0.08);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-sm), var(--inner-glow);
       transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
@@ -330,7 +329,21 @@
       justify-content: center;
       padding-top: 80px;
       overflow: hidden;
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
       /* Background logic handled by aurora-bg */
+    }
+
+    .hero-particles {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.82;
+      mix-blend-mode: normal;
+      mask-image: radial-gradient(circle at 62% 58%, black 34%, rgba(0, 0, 0, 0.85) 72%, transparent 96%);
     }
 
     .aurora-bg {
@@ -339,10 +352,10 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle at 50% 50%, #FFD29D, transparent 40%),
-        radial-gradient(circle at 80% 20%, #C8E6C9, transparent 30%),
-        radial-gradient(circle at 20% 80%, #E1BEE7, transparent 30%);
-      filter: blur(80px);
+      background: radial-gradient(circle at 50% 50%, #e5e8ed, transparent 42%),
+        radial-gradient(circle at 80% 20%, #dde2e9, transparent 30%),
+        radial-gradient(circle at 20% 80%, #d6dbe3, transparent 30%);
+      filter: blur(70px);
       animation: auroraMove 20s infinite alternate;
       z-index: -1;
       opacity: 0.6;
@@ -359,34 +372,37 @@
     }
 
     .hero-content {
-      max-width: 1000px;
+      width: min(var(--container), 100%);
+      margin: 0 auto;
+      padding: 0 24px;
+      max-width: 1280px;
       z-index: 2;
     }
 
     .hero-title {
-      font-family: 'DM Sans', sans-serif;
+      font-family: var(--font-heading);
       font-weight: 700;
       color: var(--ink);
-      line-height: 1;
-      letter-spacing: -2px;
+      line-height: 1.04;
+      letter-spacing: -1px;
       margin-bottom: 24px;
-      font-size: clamp(3.5rem, 8vw, 6.5rem);
+      font-size: clamp(2.9rem, 5.9vw, 5.4rem);
     }
 
     .serif-line {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-weight: 400;
+      font-family: var(--font-heading);
+      font-style: normal;
+      font-weight: 700;
       display: block;
-      color: #555;
+      color: #4f5661;
       letter-spacing: -1px;
-      margin-bottom: -10px;
+      margin-bottom: 0;
     }
 
     .sans-line {
       display: block;
       color: var(--ink);
-      /* background-clip removed for visibility */
+      white-space: nowrap;
     }
 
     /* Char Reveal Animation */
@@ -394,7 +410,8 @@
       display: inline-block;
       opacity: 0;
       transform: translateY(100%);
-      clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+      clip-path: none;
+      padding-bottom: 0.08em;
       animation: charSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
@@ -402,7 +419,6 @@
       to {
         opacity: 1;
         transform: translateY(0);
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
       }
     }
 
@@ -412,7 +428,7 @@
       margin-bottom: 40px;
       opacity: 0;
       animation: fadeUp 0.8s 0.6s forwards;
-      color: var(--muted);
+      color: #5e6673;
     }
 
     @keyframes fadeUp {
@@ -460,6 +476,125 @@
       letter-spacing: 1px;
     }
 
+    .stats-top-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .stats-quote-card {
+      padding: 28px 30px;
+      border-radius: 26px;
+      border: 1px solid rgba(18, 21, 27, 0.08);
+      background: rgba(255, 255, 255, 0.66);
+      box-shadow: var(--shadow-sm);
+      text-align: center;
+    }
+
+    .stats-quote-text {
+      font-size: clamp(1.45rem, 2.3vw, 2.2rem);
+      line-height: 1.32;
+      color: #6f7683;
+      letter-spacing: -0.01em;
+    }
+
+    .stats-quote-text strong {
+      color: #101723;
+      font-weight: 800;
+    }
+
+    .stats-quote-mark {
+      font-size: 44px;
+      line-height: 1;
+      margin-top: 10px;
+      color: #101723;
+      font-weight: 900;
+    }
+
+    .stats-visual-card {
+      border-radius: 26px;
+      overflow: hidden;
+      border: 1px solid rgba(18, 21, 27, 0.08);
+      background: rgba(255, 255, 255, 0.7);
+      box-shadow: var(--shadow-sm);
+      min-height: 100%;
+    }
+
+    .stats-visual-card img {
+      width: 100%;
+      height: 100%;
+      min-height: 240px;
+      max-height: 300px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .stats-metrics {
+      margin-top: 18px;
+      border-top: 1px solid rgba(18, 21, 27, 0.14);
+      border-bottom: 1px solid rgba(18, 21, 27, 0.14);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .stat-metric {
+      padding: 20px 18px;
+      text-align: center;
+      position: relative;
+    }
+
+    .stat-metric+.stat-metric {
+      border-left: 1px solid rgba(18, 21, 27, 0.14);
+    }
+
+    .metric-value {
+      font-size: clamp(34px, 3.8vw, 48px);
+      line-height: 1;
+      color: #0f1520;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 4px;
+      justify-content: center;
+    }
+
+    .metric-suffix {
+      font-size: 0.7em;
+      color: #6f7683;
+      font-weight: 700;
+    }
+
+    .metric-label {
+      font-size: 15px;
+      color: #5f6774;
+      letter-spacing: 0.01em;
+    }
+
+    #stats.section-padding {
+      padding: 54px 0 84px;
+    }
+
+    .stats-header {
+      margin-bottom: 26px;
+      text-align: left;
+    }
+
+    .stats-title {
+      font-size: clamp(34px, 4.2vw, 52px);
+      margin-bottom: 10px;
+      color: #101723;
+    }
+
+    .stats-subtitle {
+      font-size: 18px;
+      color: #66707d;
+      max-width: 760px;
+      line-height: 1.5;
+    }
+
     /* Capabilities */
     .cap-grid {
       display: grid;
@@ -468,21 +603,77 @@
     }
 
     .cap-card {
-      padding: 40px;
+      padding: 30px;
       min-height: 280px;
     }
 
     .cap-icon {
-      width: 64px;
-      height: 64px;
-      background: #fff;
-      border-radius: 16px;
+      width: 58px;
+      height: 58px;
+      background: linear-gradient(180deg, #161a22 0%, #49505f 100%);
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
-      margin-bottom: 32px;
-      box-shadow: var(--shadow-sm);
+      color: #f6f8fb;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 24px rgba(18, 21, 27, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .cap-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .cap-card h3 {
+      margin-bottom: 12px;
+      font-size: clamp(28px, 2.4vw, 36px);
+    }
+
+    .cap-card p {
+      font-size: 17px;
+      line-height: 1.65;
+      color: #5f6774;
+    }
+
+    .cap-card--with-media {
+      display: grid;
+      grid-template-columns: minmax(260px, 48%) minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .cap-media {
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(18, 21, 27, 0.08);
+      background: #e8ebf0;
+      min-height: 250px;
+    }
+
+    .cap-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .cap-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding-top: 2px;
+    }
+
+    .cap-card--with-media .cap-icon {
+      margin-top: 0;
+      margin-bottom: 16px;
     }
 
     /* Philosophy */
@@ -525,7 +716,6 @@
     .project-card {
       position: relative;
       height: 400px;
-      group: cursor-pointer;
     }
 
     .project-bg {
@@ -617,12 +807,14 @@
     }
 
     .testimonial-card {
-      width: 350px;
-      padding: 32px;
-      background: #fff;
+      width: 320px;
+      padding: 22px;
+      background: rgba(255, 255, 255, 0.78);
       border-radius: 16px;
-      border: 1px solid rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(18, 21, 27, 0.08);
       white-space: normal;
+      font-size: 15px;
+      line-height: 1.55;
     }
 
     @keyframes scroll {
@@ -645,12 +837,14 @@
       display: inline-flex;
       height: 80px;
       padding: 0 48px;
-      background: var(--ink);
+      background: #11141a;
       color: #fff;
+      border: none;
       border-radius: var(--radius-full);
       align-items: center;
       font-size: 20px;
       font-weight: 600;
+      font-family: var(--font-heading);
       transition: transform 0.1s;
       cursor: pointer;
       position: relative;
@@ -675,8 +869,16 @@
 
     /* Responsive */
     @media (max-width: 768px) {
+      .hero {
+        min-height: 92vh;
+      }
+
       .hero-title {
         font-size: 48px;
+      }
+
+      .sans-line {
+        white-space: normal;
       }
 
       .bento-grid {
@@ -695,7 +897,43 @@
         display: none;
       }
 
-      /* Simplified nav for mobile */
+      .stats-top-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-header {
+        margin-bottom: 18px;
+      }
+
+      .stats-subtitle {
+        font-size: 16px;
+      }
+
+      .cap-card--with-media {
+        grid-template-columns: 1fr;
+      }
+
+      .cap-media {
+        min-height: 180px;
+      }
+
+      .stats-quote-card {
+        padding: 22px 16px;
+      }
+
+      .stats-visual-card img {
+        min-height: 180px;
+        max-height: 220px;
+      }
+
+      .stats-metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-metric+.stat-metric {
+        border-left: none;
+        border-top: 1px solid rgba(18, 21, 27, 0.14);
+      }
     }
 
     /* Manifesto (V3) */
@@ -708,7 +946,7 @@
       line-height: 1.2;
       font-family: var(--font-heading);
       font-weight: 700;
-      color: var(--ink);
+      color: #757c89;
       margin-bottom: 24px;
       /* transition: color 0.5s ease; */
       /* For scroll reveal */
@@ -723,16 +961,16 @@
     }
 
     .highlight-serif {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-weight: 400;
-      color: var(--ink);
+      font-family: var(--font-heading);
+      font-style: normal;
+      font-weight: 700;
+      color: #0b1220;
     }
 
     .highlight-sans {
-      font-family: 'DM Sans', sans-serif;
+      font-family: var(--font-heading);
       font-weight: 700;
-      color: var(--muted);
+      color: #757c89;
       /* Contrast play */
     }
 
@@ -742,12 +980,12 @@
       right: 5%;
       font-size: 240px;
       /* Larger */
-      color: var(--amber-glow);
-      opacity: 0.15;
+      color: rgba(117, 124, 137, 0.18);
+      opacity: 0.1;
       animation: rotateSlow 60s linear infinite;
       /* Slower */
       z-index: 0;
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-heading);
       pointer-events: none;
     }
 
@@ -769,6 +1007,8 @@
       padding-bottom: 60px;
       position: relative;
       overflow: hidden;
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
     }
 
     .footer-marquee-wrapper {
@@ -818,6 +1058,7 @@
       font-size: clamp(3rem, 7vw, 6rem);
       line-height: 1;
       margin-bottom: 48px;
+      color: #fff;
     }
 
     .social-links-grid {
@@ -858,13 +1099,11 @@
 </head>
 
 <body>
-  < !-- Mesh Background -->
     <div class="mesh-bg">
       <div class="mesh-blob blob-1"></div>
       <div class="mesh-blob blob-2"></div>
       <div class="mesh-blob blob-3"></div>
     </div>
-    < !-- Navigation -->
       <div class="nav-pill-wrapper">
         <nav class="nav-pill"><a href="#" class="nav-logo">LL</a>
           <div class="nav-links"><a href="#capabilities" class="nav-item" data-en="Capabilities"
@@ -876,9 +1115,9 @@
         </nav>
       </div>
       <main class="container">
-        < !-- Hero Section (V3) -->
           <section class="hero">
             <div class="aurora-bg"></div>
+            <canvas class="hero-particles" id="hero-particles" aria-hidden="true"></canvas>
             <div class="hero-content">
               <h1 class="hero-title"><span class="serif-line" id="hero-l1" data-en="Designing"
                   data-zh="设计">Designing</span><span class="sans-line" id="hero-l2" data-en="Intelligent Experiences"
@@ -892,7 +1131,6 @@
                   data-zh="查看作品">View Projects</span></button>
             </div>
           </section>
-          < !-- Capabilities Section -->
             <section id="capabilities" class="section-padding">
               <div class="section-header stagger-item" style="margin-bottom: 60px;">
                 <h4 style="text-transform: uppercase; letter-spacing: 2px; color: var(--amber); margin-bottom: 16px;"
@@ -900,39 +1138,74 @@
                 <h2 style="font-size: 48px;" data-en="Full-stack Design" data-zh="全栈设计能力">Full-stack Design</h2>
               </div>
               <div class="bento-grid">
-                <div class="glass-card cap-card stagger-item bento-col-2 tilt-card">
-                  <div class="cap-icon">✨</div>
-                  <h3 style="margin-bottom: 16px;" data-en="Product Strategy" data-zh="产品策略">Product Strategy</h3>
-                  <p data-en="Defining MVPs, user journeys, and roadmap planning for scalable products."
-                    data-zh="定义 MVP，用户旅程，以及可扩展产品的路线图规划。">Defining MVPs,
-                    user journeys,
-                    and roadmap planning for scalable products.</p>
+                <div class="glass-card cap-card cap-card--with-media stagger-item bento-col-2 tilt-card">
+                  <div class="cap-media">
+                    <img src="https://images.unsplash.com/photo-1535378917042-10a22c95931a?q=80&w=1800&auto=format&fit=crop"
+                      alt="Product strategy visual">
+                  </div>
+                  <div class="cap-content">
+                    <div class="cap-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24">
+                        <path d="M12 3v18"></path>
+                        <path d="M3 12h18"></path>
+                        <path d="M6.6 6.6l10.8 10.8"></path>
+                        <path d="M17.4 6.6L6.6 17.4"></path>
+                      </svg>
+                    </div>
+                    <h3 data-en="Product Strategy" data-zh="产品策略">Product Strategy</h3>
+                    <p data-en="Defining MVPs, user journeys, and roadmap planning for scalable products with clear milestones and team alignment."
+                      data-zh="定义 MVP、用户旅程，以及可扩展产品的路线图规划，并建立清晰里程碑与团队协同。">Defining MVPs,
+                      user journeys,
+                      and roadmap planning for scalable products with clear milestones and team alignment.</p>
+                  </div>
                 </div>
                 <div class="glass-card cap-card stagger-item tilt-card">
-                  <div class="cap-icon">🎨</div>
-                  <h3 style="margin-bottom: 16px;" data-en="UI/Visual" data-zh="视觉设计">UI/Visual</h3>
-                  <p data-en="Pixel-perfect interfaces with robust design systems." data-zh="基于严谨设计系统的像素级完美界面。">
-                    Pixel-perfect interfaces with robust design systems.</p>
+                  <div class="cap-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <circle cx="8" cy="8" r="2"></circle>
+                      <circle cx="16" cy="8" r="2"></circle>
+                      <circle cx="8" cy="16" r="2"></circle>
+                      <path d="M16 16h.01"></path>
+                      <path d="M20 20H4V4h16z"></path>
+                    </svg>
+                  </div>
+                  <h3 data-en="UI/Visual" data-zh="视觉设计">UI/Visual</h3>
+                  <p data-en="Pixel-perfect interfaces with robust design systems, consistent component rules, and strong visual hierarchy."
+                    data-zh="基于严谨设计系统打造像素级界面，并确保组件一致性与清晰视觉层级。">
+                    Pixel-perfect interfaces with robust design systems, consistent component rules, and strong visual hierarchy.</p>
                 </div>
                 <div class="glass-card cap-card stagger-item tilt-card">
-                  <div class="cap-icon">⚡</div>
-                  <h3 style="margin-bottom: 16px;" data-en="Prototyping" data-zh="交互原型">Prototyping</h3>
-                  <p data-en="High-fidelity interactive prototypes in Framer & Figma."
-                    data-zh="Framer 与 Figma 高保真交互原型。">High-fidelity interactive prototypes in Framer & Figma.</p>
+                  <div class="cap-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M13 2L4 14h7l-1 8 10-14h-7z"></path>
+                    </svg>
+                  </div>
+                  <h3 data-en="Prototyping" data-zh="交互原型">Prototyping</h3>
+                  <p data-en="High-fidelity interactive prototypes in Framer & Figma to validate flows, edge cases, and product decisions early."
+                    data-zh="在 Framer 与 Figma 中构建高保真交互原型，提前验证关键流程、边界场景与产品决策。">High-fidelity interactive prototypes in Framer & Figma to validate flows, edge cases, and product decisions early.</p>
                 </div>
-                <div class="glass-card cap-card stagger-item bento-col-2 tilt-card">
-                  <div class="cap-icon">🔍</div>
-                  <h3 style="margin-bottom: 16px;" data-en="User Research" data-zh="用户研究">User Research</h3>
-                  <p data-en="Usability testing, interviews, and data-driven iteration cycles."
-                    data-zh="可用性测试、访谈与数据驱动的迭代周期。">Usability testing,
-                    interviews,
-                    and data-driven iteration cycles.</p>
+                <div class="glass-card cap-card cap-card--with-media stagger-item bento-col-2 tilt-card">
+                  <div class="cap-media">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1800&auto=format&fit=crop"
+                      alt="User research workshop">
+                  </div>
+                  <div class="cap-content">
+                    <div class="cap-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <path d="M21 21l-4.3-4.3"></path>
+                      </svg>
+                    </div>
+                    <h3 data-en="User Research" data-zh="用户研究">User Research</h3>
+                    <p data-en="Usability testing, interviews, and data-driven iteration cycles to uncover real needs and prioritize the right improvements."
+                      data-zh="通过可用性测试、访谈与数据驱动迭代，识别真实需求并优先推进高价值改进。">Usability testing,
+                      interviews,
+                      and data-driven iteration cycles to uncover real needs and prioritize the right improvements.</p>
+                  </div>
                 </div>
               </div>
             </section>
-            < !-- Philosophy (V3 Manifesto) -->
               <section id="philosophy" class="section-padding" style="position: relative; overflow: hidden;">
-                < !-- Decorative rotating element -->
                   <div class="manifesto-deco">✻</div>
                   <div class="container" style="max-width: 1000px; text-align: center;">
                     <div class="manifesto-wrapper">
@@ -953,7 +1226,6 @@
                     </div>
                   </div>
               </section>
-              < !-- Projects (Bento) -->
                 <section id="projects" class="section-padding">
                   <div class="section-header stagger-item" style="margin-bottom: 40px;">
                     <h2 style="font-size: 48px;" data-en="Selected Work" data-zh="精选案例">Selected Work</h2>
@@ -999,79 +1271,47 @@
                     </div>
                   </div>
                 </section>
-                < !-- Hobbies (Parallax) -->
-                  <section class="section-padding">
-                    <div class="bento-grid">
-                      <div class="hobby-section stagger-item bento-col-2">
-                        <div class="hobby-img"
-                          style="background-image: url('https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=2690&auto=format&fit=crop');">
-                        </div>
-                        <div class="hobby-content glass-card">
-                          <h3 data-en="Basketball" data-zh="篮球">Basketball</h3>
-                          <p data-en="Teamwork and quick decision making on the court." data-zh="球场上的团队协作与快速决策。">
-                            Teamwork and quick decision making on the court.</p>
-                        </div>
-                      </div>
-                      <div class="hobby-section stagger-item">
-                        <div class="hobby-img"
-                          style="background-image: url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=2670&auto=format&fit=crop');">
-                        </div>
-                        <div class="hobby-content glass-card">
-                          <h3 data-en="Music" data-zh="音乐">Music</h3>
-                          <p data-en="Finding rhythm and harmony in noise." data-zh="在喧嚣中寻找韵律与和声。">Finding rhythm and
-                            harmony in noise.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-                  < !-- Testimonials & Stats -->
                     <section id="stats" class="section-padding" style="overflow: hidden;">
-                      <div class="container" style="margin-bottom: 60px;">
-                        <h2 style="font-size: 48px; margin-bottom: 16px;" data-en="What Our Clients Say" data-zh="客户评价">
-                          What Our Clients Say</h2>
-                        <p class="stagger-item" style="font-size: 20px; opacity: 0.8;"
-                          data-en="Join customers who trust AI to transform their business."
-                          data-zh="加入那些信赖 AI 转型业务的客户行列。">Join customers who trust AI to transform their business.</p>
-                      </div>
-                      <div class="container" style="margin-bottom: 80px;">
-                        <div class="bento-grid">
-                          <div class="glass-card stat-card stagger-item">
-                            <div class="stat-bg"></div>
-                            <div class="stat-val counter" data-target="7">0</div>
-                            <div class="stat-label" data-en="Years Exp" data-zh="从业年限">Years Exp</div>
+                      <div class="container">
+                        <div class="stats-header stagger-item">
+                          <h2 class="stats-title" data-en="What Our Clients Say" data-zh="客户评价">What Our Clients Say</h2>
+                          <p class="stats-subtitle"
+                            data-en="Join customers who trust AI to transform their business and scale with confidence."
+                            data-zh="加入那些信赖 AI 推动业务转型并实现稳定增长的客户行列。">
+                            Join customers who trust AI to transform their business and scale with confidence.
+                          </p>
+                        </div>
+                        <div class="stats-top-grid">
+                          <div class="stats-quote-card stagger-item">
+                            <p class="stats-quote-text"
+                              data-en="Their AI-driven approach helped us reach the right audience and grow faster with smarter insights."
+                              data-zh="他们的 AI 驱动方法帮助我们找到正确受众，并通过更智能的洞察实现更快增长。">
+                              Their AI-driven approach helped us reach the right audience and grow faster with smarter insights.
+                            </p>
+                            <div class="stats-quote-mark">”</div>
                           </div>
-                          <div class="glass-card stat-card stagger-item">
-                            <div class="stat-bg"></div>
-                            <div class="stat-val counter" data-target="45">0</div>
-                            <div class="stat-label" data-en="Projects" data-zh="成功项目">Projects</div>
-                          </div>
-                          <div class="glass-card stat-card stagger-item">
-                            <div class="stat-bg"></div>
-                            <div class="stat-val counter" data-target="98">0</div>
-                            <div class="stat-label" data-en="NPS Score" data-zh="客户推荐率">% NPS Score</div>
+                          <div class="stats-visual-card stagger-item">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1800&auto=format&fit=crop"
+                              alt="Client portrait">
                           </div>
                         </div>
                       </div>
                       <div class="marquee-wrapper">
                         <div class="marquee-track">
-                          < !-- Item 1 -->
                             <div class="testimonial-card glass-card">
                               <p>"Liu is a visionary designer who bridges the gap between complex tech and intuitive
                                 UX." </p>
                               <div style="margin-top: 16px; font-weight: 600;">— Sarah J. (PM, Google)</div>
                             </div>
-                            < !-- Item 2 -->
                               <div class="testimonial-card glass-card">
                                 <p>"Delivered the project 2 weeks ahead of schedule. The design system is top notch."
                                 </p>
                                 <div style="margin-top: 16px; font-weight: 600;">— Mike R. (CTO, StartUp)</div>
                               </div>
-                              < !-- Item 3 -->
                                 <div class="testimonial-card glass-card">
                                   <p>"Incredible attention to detail. The animations added so much delight." </p>
                                   <div style="margin-top: 16px; font-weight: 600;">— Emily W. (Founder)</div>
                                 </div>
-                                < !-- Repeat for smooth loop -->
                                   <div class="testimonial-card glass-card">
                                     <p>"Liu is a visionary designer who bridges the gap between complex tech and
                                       intuitive UX." </p>
@@ -1084,12 +1324,29 @@
                                   </div>
                         </div>
                       </div>
+                      <div class="container">
+                        <div class="stats-metrics">
+                          <div class="stat-metric stagger-item">
+                            <div class="metric-value"><span class="counter" data-target="7">0</span><span
+                                class="metric-suffix">+</span></div>
+                            <div class="metric-label" data-en="Years of Experience" data-zh="从业年限">Years of Experience</div>
+                          </div>
+                          <div class="stat-metric stagger-item">
+                            <div class="metric-value"><span class="counter" data-target="45">0</span><span
+                                class="metric-suffix">+</span></div>
+                            <div class="metric-label" data-en="Projects Completed" data-zh="成功项目">Projects Completed</div>
+                          </div>
+                          <div class="stat-metric stagger-item">
+                            <div class="metric-value"><span class="counter" data-target="98">0</span><span
+                                class="metric-suffix">%</span></div>
+                            <div class="metric-label" data-en="Client Satisfaction" data-zh="客户满意度">Client Satisfaction</div>
+                          </div>
+                        </div>
+                      </div>
                     </section>
-                    <!-- Contact & Footer (The Grand Finale V3) -->
                     <footer id="contact" class="big-footer">
                       <div class="noise-overlay"></div>
 
-                      <!-- Background Marquee -->
                       <div class="footer-marquee-wrapper">
                         <div class="footer-marquee-text">
                           SAY HELLO · CONTACT · SAY HELLO · CONTACT · SAY HELLO · CONTACT · SAY HELLO · CONTACT ·
@@ -1134,35 +1391,37 @@
                     </footer>
       </main>
       <script>
-        /* ============================
-           Interactive Logic
-           ============================ */
-
-        // 1. Language Switcher
         const langBtn = document.getElementById('lang-btn');
         let currentLang = localStorage.getItem('site_lang') || 'en';
 
+        function splitHeroLine(el, baseDelay) {
+          if (!el) return;
+          const text = el.textContent || '';
+          el.innerHTML = '';
+          text.split('').forEach((char, i) => {
+            const span = document.createElement('span');
+            span.textContent = char;
+            span.classList.add('char-reveal');
+            span.style.animationDelay = `${baseDelay + i * 0.03}s`;
+            if (char === ' ') span.style.width = '0.3em';
+            el.appendChild(span);
+          });
+        }
+
+        function initHeroAnimation() {
+          splitHeroLine(document.getElementById('hero-l1'), 0);
+          splitHeroLine(document.getElementById('hero-l2'), 0.25);
+        }
+
         function updateLanguage() {
-          const elements = document.querySelectorAll('[data-en]');
-
-          elements.forEach(el => {
-            // Simple fade out/in effect
-            el.style.opacity = '0';
-
-            setTimeout(() => {
-              el.textContent = el.getAttribute(`data-$ {
-                  currentLang
-                }
-
-                `);
-              el.style.opacity = '1';
-            }
-
-              , 200);
+          document.querySelectorAll('[data-en]').forEach(el => {
+            const text = el.getAttribute(`data-${currentLang}`);
+            if (text !== null) el.textContent = text;
           });
           langBtn.textContent = currentLang === 'en' ? 'EN / 中' : '中 / EN';
           document.documentElement.lang = currentLang === 'en' ? 'en' : 'zh-CN';
           localStorage.setItem('site_lang', currentLang);
+          initHeroAnimation();
         }
 
         langBtn.addEventListener('click', () => {
@@ -1170,166 +1429,210 @@
           updateLanguage();
         });
 
-        // Init language
-        if (currentLang === 'zh') {
-          const elements = document.querySelectorAll('[data-en]');
+        if (currentLang === 'zh') updateLanguage();
+        else initHeroAnimation();
 
-          elements.forEach(el => {
-            el.textContent = el.getAttribute('data-zh');
-          });
-          langBtn.textContent = '中 / EN';
-        }
+        function initHeroParticles() {
+          const canvas = document.getElementById('hero-particles');
+          if (!canvas) return;
+          const ctx = canvas.getContext('2d');
+          if (!ctx) return;
 
-        // 2. Intersection Observer for Reveals
-        // Fixed: Lower threshold and rootMargin to ensure triggering
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
+          const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          const hero = canvas.closest('.hero');
+          const mouse = { x: null, y: null, active: false };
+          let sphereParticles = [];
+          let rafId = null;
+          let width = 0;
+          let height = 0;
+          let dpr = 1;
+          let sphereCenterX = 0;
+          let sphereCenterY = 0;
+          let startTime = 0;
 
-              if (entry.target.classList.contains('stat-card')) {
-                const counter = entry.target.querySelector('.counter');
-
-                if (counter && !counter.hasAttribute('started')) {
-                  counter.setAttribute('started', 'true');
-                  animateCounter(counter);
-                }
-              }
-
-              observer.unobserve(entry.target);
-            }
-          });
-        }
-
-          , {
-            threshold: 0.01, rootMargin: '0px 0px -50px 0px'
-          });
-
-        document.querySelectorAll('.stagger-item, .reveal-text').forEach(el => observer.observe(el));
-
-        // Fallback force visibility after load (Fix for Hero visibility bug)
-        window.addEventListener('load', () => {
-          // Force hero items visible immediately
-          const heroItems = document.querySelectorAll('.hero .reveal-text, .hero .stagger-item');
-          heroItems.forEach(el => el.classList.add('visible'));
-        });
-
-        // 3. Counter Animation
-        function animateCounter(el) {
-          const target = +el.getAttribute('data-target');
-          const duration = 2000;
-          const start = Date.now();
-
-          const timer = setInterval(() => {
-            const timePassed = Date.now() - start;
-            let progress = timePassed / duration;
-            if (progress > 1) progress = 1;
-
-            const ease = 1 - Math.pow(1 - progress, 4);
-
-            el.textContent = Math.floor(ease * target);
-
-            if (progress === 1) clearInterval(timer);
-          }
-
-            , 16);
-        }
-
-        // 4. Parallax Blob & Image Effect
-        // Replaced by CSS Aurora, but keep hobby parallax
-        window.addEventListener('scroll', () => {
-          const scrolled = window.scrollY;
-
-          // Fix parallax scale + translate
-          document.querySelectorAll('.hobby-img').forEach(img => {
-            img.style.transform = `translateY($ {
-                scrolled * 0.1
-              }
-
-              px) scale(1.1)`;
-          });
-        });
-
-        // 8. V3 Hero Text Split Animation
-        function initHeroAnimation() {
-          const line1 = document.getElementById('hero-l1');
-          const line2 = document.getElementById('hero-l2');
-
-          // Helper to split text
-          const splitText = (el) => {
-            if (!el) return;
-            const text = el.textContent;
-            el.innerHTML = '';
-
-            text.split('').forEach((char, i) => {
-              const span = document.createElement('span');
-              span.textContent = char;
-              span.classList.add('char-reveal');
-
-              span.style.animationDelay = `$ {
-              i * 0.03
-            }
-
-            s`; // Stagger
-              if (char === ' ') span.style.width = '0.3em'; // Preserve space
-              el.appendChild(span);
+          function createSphereParticles(count) {
+            sphereParticles = Array.from({ length: count }, (_, i) => {
+              const t = i / Math.max(1, count - 1);
+              const phi = Math.acos(1 - 2 * t);
+              const theta = Math.PI * (1 + Math.sqrt(5)) * i;
+              const sx = Math.sin(phi) * Math.cos(theta);
+              const sy = Math.cos(phi);
+              const sz = Math.sin(phi) * Math.sin(theta);
+              return {
+                sx,
+                sy,
+                sz,
+                cx: (Math.random() - 0.5) * 2.2,
+                cy: (Math.random() - 0.5) * 2.2,
+                cz: (Math.random() - 0.5) * 2.2,
+                seed: Math.random() * Math.PI * 2,
+                size: 0.8 + Math.random() * 1.6
+              };
             });
           }
 
-            ;
-
-          splitText(line1);
-
-          // For line 2, wait a bit
-          setTimeout(() => {
-            splitText(line2);
+          function buildScene() {
+            const area = width * height;
+            const sphereCount = prefersReducedMotion
+              ? 240
+              : Math.max(520, Math.min(1500, Math.floor(area / 1800)));
+            createSphereParticles(sphereCount);
           }
 
-            , 400);
-        }
+          function resize() {
+            dpr = Math.min(window.devicePixelRatio || 1, 2);
+            width = canvas.clientWidth;
+            height = canvas.clientHeight;
+            canvas.width = Math.floor(width * dpr);
+            canvas.height = Math.floor(height * dpr);
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            sphereCenterX = width * 0.67;
+            sphereCenterY = height * 0.56;
+            buildScene();
+          }
 
-        // Run on load
-        window.addEventListener('load', initHeroAnimation);
+          function drawBackgroundGlow() {
+            const g1 = ctx.createRadialGradient(
+              sphereCenterX,
+              sphereCenterY + height * 0.12,
+              0,
+              sphereCenterX,
+              sphereCenterY + height * 0.12,
+              width * 0.42
+            );
+            g1.addColorStop(0, 'rgba(18, 26, 56, 0.09)');
+            g1.addColorStop(0.55, 'rgba(18, 26, 56, 0.05)');
+            g1.addColorStop(1, 'rgba(18, 26, 56, 0)');
+            ctx.fillStyle = g1;
+            ctx.fillRect(0, 0, width, height);
+          }
 
-        // Updates for Lang Switcher to re-trigger animation? Maybe too complex.
-        // Ideally just swap text. For V3, simplicity: just swap textContent. 
-        // If strict char anim is needed on switch, we'd recall initHeroAnimation.
+          function drawSphereParticles(time) {
+            const t = (time - startTime) * 0.001;
+            const mouseX = mouse.active && mouse.x !== null ? (mouse.x - sphereCenterX) / width : 0;
+            const mouseY = mouse.active && mouse.y !== null ? (mouse.y - sphereCenterY) / height : 0;
+            const rotY = t * 0.42 + mouseX * 1.2;
+            const rotX = Math.sin(t * 0.45) * 0.26 + mouseY * 0.85;
+            const gather = 0.82 + 0.18 * Math.sin(t * 0.8);
+            const radius = Math.min(width, height) * 0.3225;
+            const points = [];
 
-        // Hook into existing updateLanguage
-        const originalUpdateLanguage = updateLanguage;
+            const sinY = Math.sin(rotY);
+            const cosY = Math.cos(rotY);
+            const sinX = Math.sin(rotX);
+            const cosX = Math.cos(rotX);
 
-        updateLanguage = function () {
-          const elements = document.querySelectorAll('[data-en]');
+            for (let i = 0; i < sphereParticles.length; i += 1) {
+              const p = sphereParticles[i];
+              const breathing = 1 + Math.sin(t * 1.2 + p.seed) * 0.055;
+              const bx = p.sx * gather + p.cx * (1 - gather) * 0.35;
+              const by = p.sy * gather + p.cy * (1 - gather) * 0.35;
+              const bz = p.sz * gather + p.cz * (1 - gather) * 0.35;
 
-          elements.forEach(el => {
+              const x1 = bx * cosY - bz * sinY;
+              const z1 = bx * sinY + bz * cosY;
+              const y1 = by * cosX - z1 * sinX;
+              const z2 = by * sinX + z1 * cosX;
 
-            // Reset content
-            const newText = el.getAttribute(`data-$ {
-              currentLang
+              const px = x1 * radius * breathing;
+              const py = y1 * radius * breathing;
+              const pz = z2 * radius * breathing;
+              const perspective = 520 / (520 - pz);
+              points.push({
+                x: sphereCenterX + px * perspective,
+                y: sphereCenterY + py * perspective,
+                depth: pz,
+                size: p.size * (0.75 + perspective * 0.36)
+              });
             }
 
-            `);
-            el.textContent = newText;
+            points.sort((a, b) => a.depth - b.depth);
 
-            // If it's the hero lines, re-run split
-            if (el.id === 'hero-l1' || el.id === 'hero-l2') {
-              el.classList.remove('char-reveal'); // cleanup?
-              // Actually initHeroAnimation expects textContent, so we are good.
-              // We might want to re-run animations.
-              // For now, let's just let it be text swap. 
-              // Advanced: clear innerHTML, add spans.
-              // Let's try to keeping it simple first.
+            for (let i = 0; i < points.length; i += 1) {
+              const p = points[i];
+              const normalizedDepth = (p.depth / radius + 1) / 2;
+              const alpha = 0.12 + normalizedDepth * 0.62;
+              ctx.beginPath();
+              ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+              ctx.fillStyle = `rgba(30, 37, 72, ${alpha})`;
+              ctx.fill();
             }
+          }
+
+          function renderFrame(time) {
+            ctx.clearRect(0, 0, width, height);
+            drawBackgroundGlow();
+            drawSphereParticles(time);
+          }
+
+          function tick(time) {
+            renderFrame(time);
+            rafId = requestAnimationFrame(tick);
+          }
+
+          const onPointerMove = (event) => {
+            const rect = canvas.getBoundingClientRect();
+            mouse.x = event.clientX - rect.left;
+            mouse.y = event.clientY - rect.top;
+            mouse.active = true;
+          };
+
+          const onPointerLeave = () => {
+            mouse.x = null;
+            mouse.y = null;
+            mouse.active = false;
+          };
+
+          resize();
+          startTime = performance.now();
+          if (prefersReducedMotion) {
+            renderFrame(startTime);
+          } else {
+            rafId = requestAnimationFrame(tick);
+          }
+
+          window.addEventListener('resize', resize, { passive: true });
+          if (hero) {
+            hero.addEventListener('pointermove', onPointerMove);
+            hero.addEventListener('pointerleave', onPointerLeave);
+          }
+
+          window.addEventListener('beforeunload', () => {
+            if (rafId) cancelAnimationFrame(rafId);
           });
-          langBtn.textContent = currentLang === 'en' ? 'EN / 中' : '中 / EN';
-          document.documentElement.lang = currentLang === 'en' ? 'en' : 'zh-CN';
-          localStorage.setItem('site_lang', currentLang);
-
-          // Re-trigger visual split if it's hero
-          setTimeout(initHeroAnimation, 50);
         }
 
-        // 5. 3D Tilt & Spotlight for Projects
+        initHeroParticles();
+
+        function animateCounter(el) {
+          const target = Number(el.getAttribute('data-target')) || 0;
+          const duration = 2000;
+          const start = performance.now();
+          const tick = (now) => {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 4);
+            el.textContent = Math.floor(eased * target);
+            if (progress < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        }
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('visible');
+            const counter = entry.target.querySelector('.counter');
+            if (counter && !counter.dataset.started) {
+              counter.dataset.started = 'true';
+              animateCounter(counter);
+            }
+            observer.unobserve(entry.target);
+          });
+        }, { threshold: 0.01, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.stagger-item, .reveal-text, .stat-card, .stat-metric')
+          .forEach(el => revealObserver.observe(el));
+
         document.querySelectorAll('.project-card, .tilt-card, .magnetic-link').forEach(card => {
           card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
@@ -1338,32 +1641,28 @@
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
 
-            // Tilt logic (only for cards, not links)
-            if (!card.classList.contains('magnetic-link')) {
-              const rotateX = ((y - centerY) / centerY) * -3;
-              const rotateY = ((x - centerX) / centerX) * 3;
-              card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
-            } else {
-              // Magnetic link logic
+            if (card.classList.contains('magnetic-link')) {
               const dx = x - centerX;
               const dy = y - centerY;
               card.style.transform = `translate(${dx * 0.4}px, ${dy * 0.4}px)`;
+            } else {
+              const rotateX = ((y - centerY) / centerY) * -3;
+              const rotateY = ((x - centerX) / centerX) * 3;
+              card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
             }
 
-            // Spotlight logic (CSS vars)
             card.style.setProperty('--mouse-x', `${x}px`);
             card.style.setProperty('--mouse-y', `${y}px`);
           });
 
           card.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
-            card.style.transform = 'translate(0, 0)';
+            card.style.transform = card.classList.contains('magnetic-link')
+              ? 'translate(0, 0)'
+              : 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
           });
         });
 
-        // 6. Magnetic Button
-        const btns = document.querySelectorAll('.magnetic-btn');
-        btns.forEach(btn => {
+        document.querySelectorAll('.magnetic-btn').forEach(btn => {
           btn.addEventListener('mousemove', (e) => {
             const rect = btn.getBoundingClientRect();
             const x = e.clientX - rect.left - rect.width / 2;
@@ -1375,67 +1674,49 @@
             btn.style.transform = 'translate(0, 0)';
           });
 
-          // Ripple
           btn.addEventListener('click', function (e) {
             const circle = document.createElement('div');
             const rect = this.getBoundingClientRect();
             const d = Math.max(rect.width, rect.height);
-
-            circle.style.width = circle.style.height = `${d}px`;
+            circle.style.width = `${d}px`;
+            circle.style.height = `${d}px`;
             circle.style.left = `${e.clientX - rect.left - d / 2}px`;
             circle.style.top = `${e.clientY - rect.top - d / 2}px`;
             circle.classList.add('ripple');
-
             const ripple = this.querySelector('.ripple');
             if (ripple) ripple.remove();
-
             this.appendChild(circle);
           });
         });
 
-        // 7. Navbar Scroll Effect
         const navPill = document.querySelector('.nav-pill');
         window.addEventListener('scroll', () => {
-          if (window.scrollY > 50) {
-            navPill.classList.add('scrolled');
-          } else {
-            navPill.classList.remove('scrolled');
-          }
-        });
+          if (!navPill) return;
+          navPill.classList.toggle('scrolled', window.scrollY > 50);
+        }, { passive: true });
 
-        // 8. Manifesto Scroll Reveal
-        const manifestoItems = document.querySelectorAll('.reveal-type');
         const manifestoObserver = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('active');
-            } else {
-              entry.target.classList.remove('active');
-            }
+            entry.target.classList.toggle('active', entry.isIntersecting);
           });
-        }, { threshold: 0.5, rootMargin: "-50px" });
+        }, { threshold: 0.5, rootMargin: '-50px' });
 
-        manifestoItems.forEach(item => manifestoObserver.observe(item));
+        document.querySelectorAll('.reveal-type').forEach(item => manifestoObserver.observe(item));
 
-        // 9. Studio Time
         function updateStudioTime() {
           const timeEl = document.getElementById('studio-time');
           if (!timeEl) return;
-          const now = new Date();
-          // Format: Design Studio · 09:48 AM GMT+8
-          const options = {
+          const timeStr = new Date().toLocaleTimeString('en-US', {
             hour: '2-digit',
             minute: '2-digit',
             hour12: true,
             timeZone: 'Asia/Shanghai'
-          };
-          const timeStr = now.toLocaleTimeString('en-US', options);
+          });
           timeEl.textContent = `Design Studio · ${timeStr} GMT+8`;
         }
 
         setInterval(updateStudioTime, 1000);
-        updateStudioTime(); // Initial call
-
+        updateStudioTime();
       </script>
 </body>
 
