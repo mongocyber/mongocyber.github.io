@@ -605,9 +605,8 @@
     }
 
     #capabilities .bento-grid {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 18px;
-      grid-auto-flow: dense;
     }
 
     .cap-grid {
@@ -733,6 +732,18 @@
     .cap-card--with-media .cap-icon {
       margin-top: 0;
       margin-bottom: 14px;
+    }
+
+    .cap-card--media-right {
+      grid-template-columns: minmax(0, 1fr) minmax(160px, 40%);
+    }
+
+    .cap-card--media-right .cap-media {
+      order: 2;
+    }
+
+    .cap-card--media-right .cap-content {
+      order: 1;
     }
 
     .cap-card--stacked-media {
@@ -1262,735 +1273,779 @@
 </head>
 
 <body>
-    <div class="mesh-bg">
-      <div class="mesh-blob blob-1"></div>
-      <div class="mesh-blob blob-2"></div>
-      <div class="mesh-blob blob-3"></div>
-    </div>
-      <div class="nav-pill-wrapper">
-        <nav class="nav-pill"><a href="#" class="nav-logo">LL</a>
-          <div class="nav-links"><a href="#capabilities" class="nav-item" data-en="Capabilities"
-              data-zh="能力">Capabilities</a><a href="#philosophy" class="nav-item" data-en="Philosophy"
-              data-zh="理念">Philosophy</a><a href="#projects" class="nav-item" data-en="Work" data-zh="作品">Work</a><a
-              href="#stats" class="nav-item" data-en="Clients" data-zh="评价">Clients</a><a href="#contact"
-              class="nav-item" data-en="Contact" data-zh="联系">Contact</a></div><button class="lang-switch"
-            id="lang-btn">EN / 中</button>
-        </nav>
+  <div class="mesh-bg">
+    <div class="mesh-blob blob-1"></div>
+    <div class="mesh-blob blob-2"></div>
+    <div class="mesh-blob blob-3"></div>
+  </div>
+  <div class="nav-pill-wrapper">
+    <nav class="nav-pill"><a href="#" class="nav-logo">LL</a>
+      <div class="nav-links"><a href="#capabilities" class="nav-item" data-en="Capabilities"
+          data-zh="能力">Capabilities</a><a href="#philosophy" class="nav-item" data-en="Philosophy"
+          data-zh="理念">Philosophy</a><a href="#projects" class="nav-item" data-en="Work" data-zh="作品">Work</a><a
+          href="#stats" class="nav-item" data-en="Clients" data-zh="评价">Clients</a><a href="#contact" class="nav-item"
+          data-en="Contact" data-zh="联系">Contact</a></div><button class="lang-switch" id="lang-btn">EN / 中</button>
+    </nav>
+  </div>
+  <main class="container">
+    <section class="hero">
+      <div class="aurora-bg"></div>
+      <canvas class="hero-particles" id="hero-particles" aria-hidden="true"></canvas>
+      <div class="hero-content">
+        <h1 class="hero-title"><span class="serif-line" id="hero-l1" data-en="Designing"
+            data-zh="设计">Designing</span><span class="sans-line" id="hero-l2" data-en="Intelligent Experiences"
+            data-zh="智能体验">Intelligent Experiences</span></h1>
+        <p class="hero-subtitle"
+          data-en="Crafting clarity from complexity. Specialized in AI interfaces and B2B SaaS systems."
+          data-zh="在复杂中构建清晰。专注于 AI 界面与 B2B SaaS 系统设计。">Crafting clarity from complexity. Specialized in AI
+          interfaces and B2B SaaS systems. </p><button class="magnetic-btn"
+          onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})"
+          style="opacity: 0; animation: fadeUp 0.8s 0.8s forwards;"><span data-en="View Projects" data-zh="查看作品">View
+            Projects</span></button>
       </div>
-      <main class="container">
-          <section class="hero">
-            <div class="aurora-bg"></div>
-            <canvas class="hero-particles" id="hero-particles" aria-hidden="true"></canvas>
-            <div class="hero-content">
-              <h1 class="hero-title"><span class="serif-line" id="hero-l1" data-en="Designing"
-                  data-zh="设计">Designing</span><span class="sans-line" id="hero-l2" data-en="Intelligent Experiences"
-                  data-zh="智能体验">Intelligent Experiences</span></h1>
-              <p class="hero-subtitle"
-                data-en="Crafting clarity from complexity. Specialized in AI interfaces and B2B SaaS systems."
-                data-zh="在复杂中构建清晰。专注于 AI 界面与 B2B SaaS 系统设计。">Crafting clarity from complexity. Specialized in AI
-                interfaces and B2B SaaS systems. </p><button class="magnetic-btn"
-                onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})"
-                style="opacity: 0; animation: fadeUp 0.8s 0.8s forwards;"><span data-en="View Projects"
-                  data-zh="查看作品">View Projects</span></button>
+    </section>
+    <section id="capabilities" class="section-padding">
+      <div class="section-header stagger-item" style="margin-bottom: 60px;">
+        <h4 style="text-transform: uppercase; letter-spacing: 2px; color: var(--amber); margin-bottom: 16px;"
+          data-en="Capabilities" data-zh="核心能力">Capabilities</h4>
+        <h2 style="font-size: 48px;" data-en="Full-stack Design" data-zh="全栈设计能力">Full-stack Design</h2>
+      </div>
+      <div class="bento-grid">
+        <!-- === AI Capabilities (Top Row) === -->
+        <a class="glass-card cap-card cap-card--with-media bento-col-2 cap-link-card stagger-item tilt-card"
+          href="capabilities/ai-product-design/index.html" aria-label="View AI Product Design details">
+          <div class="cap-media"
+            style="background: linear-gradient(135deg, #f5f7fa 0%, #eef1f6 100%); display:flex; align-items:center; justify-content:center; position: relative; overflow: hidden;">
+            <!-- Premium Abstract Apple-style Art for AI Product Design -->
+            <div
+              style="position: absolute; width: 140px; height: 140px; background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 70%); filter: blur(20px); left: -20px; top: -20px;">
             </div>
-          </section>
-            <section id="capabilities" class="section-padding">
-              <div class="section-header stagger-item" style="margin-bottom: 60px;">
-                <h4 style="text-transform: uppercase; letter-spacing: 2px; color: var(--amber); margin-bottom: 16px;"
-                  data-en="Capabilities" data-zh="核心能力">Capabilities</h4>
-                <h2 style="font-size: 48px;" data-en="Full-stack Design" data-zh="全栈设计能力">Full-stack Design</h2>
-              </div>
-              <div class="bento-grid">
-                <div class="glass-card cap-card cap-card--with-media cap-card--wide stagger-item bento-col-2 tilt-card">
-                  <div class="cap-media">
-                    <img src="https://images.unsplash.com/photo-1535378917042-10a22c95931a?q=80&w=1800&auto=format&fit=crop"
-                      alt="Product strategy visual">
-                  </div>
-                  <div class="cap-content">
-                    <div class="cap-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24">
-                        <path d="M12 3v18"></path>
-                        <path d="M3 12h18"></path>
-                        <path d="M6.6 6.6l10.8 10.8"></path>
-                        <path d="M17.4 6.6L6.6 17.4"></path>
-                      </svg>
-                    </div>
-                    <h3 data-en="Product Strategy" data-zh="产品策略">Product Strategy</h3>
-                    <p data-en="Defining MVPs, user journeys, and roadmap planning for scalable products with clear milestones and team alignment."
-                      data-zh="定义 MVP、用户旅程，以及可扩展产品的路线图规划，并建立清晰里程碑与团队协同。">Defining MVPs,
-                      user journeys,
-                      and roadmap planning for scalable products with clear milestones and team alignment.</p>
-                  </div>
-                </div>
-                <div class="glass-card cap-card cap-card--compact stagger-item tilt-card">
-                  <div class="cap-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24">
-                      <circle cx="8" cy="8" r="2"></circle>
-                      <circle cx="16" cy="8" r="2"></circle>
-                      <circle cx="8" cy="16" r="2"></circle>
-                      <path d="M16 16h.01"></path>
-                      <path d="M20 20H4V4h16z"></path>
-                    </svg>
-                  </div>
-                  <h3 data-en="UI/Visual" data-zh="视觉设计">UI/Visual</h3>
-                  <p data-en="Pixel-perfect interfaces with robust design systems, consistent component rules, and strong visual hierarchy."
-                    data-zh="基于严谨设计系统打造像素级界面，并确保组件一致性与清晰视觉层级。">
-                    Pixel-perfect interfaces with robust design systems, consistent component rules, and strong visual hierarchy.</p>
-                </div>
-                <div class="glass-card cap-card cap-card--compact stagger-item tilt-card">
-                  <div class="cap-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24">
-                      <path d="M13 2L4 14h7l-1 8 10-14h-7z"></path>
-                    </svg>
-                  </div>
-                  <h3 data-en="Prototyping" data-zh="交互原型">Prototyping</h3>
-                  <p data-en="High-fidelity interactive prototypes in Framer & Figma to validate flows, edge cases, and product decisions early."
-                    data-zh="在 Framer 与 Figma 中构建高保真交互原型，提前验证关键流程、边界场景与产品决策。">High-fidelity interactive prototypes in Framer & Figma to validate flows, edge cases, and product decisions early.</p>
-                </div>
-                <div class="glass-card cap-card cap-card--with-media cap-card--wide stagger-item bento-col-2 tilt-card">
-                  <div class="cap-media">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1800&auto=format&fit=crop"
-                      alt="User research workshop">
-                  </div>
-                  <div class="cap-content">
-                    <div class="cap-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24">
-                        <circle cx="11" cy="11" r="7"></circle>
-                        <path d="M21 21l-4.3-4.3"></path>
-                      </svg>
-                    </div>
-                    <h3 data-en="User Research" data-zh="用户研究">User Research</h3>
-                    <p data-en="Usability testing, interviews, and data-driven iteration cycles to uncover real needs and prioritize the right improvements."
-                      data-zh="通过可用性测试、访谈与数据驱动迭代，识别真实需求并优先推进高价值改进。">Usability testing,
-                      interviews,
-                      and data-driven iteration cycles to uncover real needs and prioritize the right improvements.</p>
-                  </div>
-                </div>
-                <a class="glass-card cap-card cap-card--with-media cap-card--feature cap-link-card stagger-item bento-col-2 tilt-card"
-                  href="capabilities/ai-product-design/index.html" aria-label="View AI Product Design details">
-                  <div class="cap-media">
-                    <img src="images/capabilities/ai-product-design.svg" alt="AI product design systems illustration">
-                  </div>
-                  <div class="cap-content">
-                    <div class="cap-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24">
-                        <rect x="3" y="5" width="8" height="6" rx="2"></rect>
-                        <rect x="13" y="5" width="8" height="6" rx="2"></rect>
-                        <rect x="8" y="13" width="8" height="6" rx="2"></rect>
-                        <path d="M11 8h2"></path>
-                        <path d="M9.5 11v2"></path>
-                        <path d="M14.5 11v2"></path>
-                        <path d="M12 2v2"></path>
-                        <path d="M12 20v2"></path>
-                      </svg>
-                    </div>
-                    <h3 data-en="AI Product Design" data-zh="AI 产品设计">AI Product Design</h3>
-                    <p data-en="Translating model capabilities, product goals, and evaluation loops into AI-native workflows that are usable, measurable, and launch-ready."
-                      data-zh="将模型能力、业务目标与评估闭环转化为可落地的 AI 原生工作流，兼顾可用性、可衡量性与上线效率。">Translating model capabilities, product goals, and evaluation loops into AI-native workflows that are usable, measurable, and launch-ready.</p>
-                    <span class="cap-link-hint">
-                      <span data-en="View details" data-zh="查看详情">View details</span>
-                      <span class="cap-link-arrow" aria-hidden="true">↗</span>
-                    </span>
-                  </div>
-                </a>
-                <a class="glass-card cap-card cap-card--stacked-media cap-card--tall cap-link-card stagger-item tilt-card"
-                  href="capabilities/human-ai-interaction/index.html" aria-label="View Human-AI Interaction details">
-                  <div class="cap-media">
-                    <img src="images/capabilities/human-ai-interaction.svg" alt="Human AI interaction feedback illustration">
-                  </div>
-                  <div class="cap-content">
-                    <div class="cap-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24">
-                        <path d="M4 9.5a4.5 4.5 0 0 1 7.7-3.2"></path>
-                        <path d="M20 14.5a4.5 4.5 0 0 1-7.7 3.2"></path>
-                        <path d="M8 13l-2.5 2.5"></path>
-                        <path d="M16 11l2.5-2.5"></path>
-                        <path d="M8 6h4"></path>
-                        <path d="M12 18h4"></path>
-                        <circle cx="8" cy="12" r="2.5"></circle>
-                        <circle cx="16" cy="12" r="2.5"></circle>
-                      </svg>
-                    </div>
-                    <h3 data-en="Human-AI Interaction" data-zh="人机协同交互">Human-AI Interaction</h3>
-                    <p data-en="Designing transparent feedback, confidence cues, and control patterns so people can guide, trust, and correct AI throughout the workflow."
-                      data-zh="设计透明反馈、置信提示与控制机制，让用户能在整个流程中理解、引导并修正 AI 的输出。">Designing transparent feedback, confidence cues, and control patterns so people can guide, trust, and correct AI throughout the workflow.</p>
-                    <span class="cap-link-hint">
-                      <span data-en="View details" data-zh="查看详情">View details</span>
-                      <span class="cap-link-arrow" aria-hidden="true">↗</span>
-                    </span>
-                  </div>
-                </a>
-                <a class="glass-card cap-card cap-card--stacked-media cap-card--tall cap-link-card stagger-item tilt-card"
-                  href="capabilities/agent-experience-design/index.html" aria-label="View Agent Experience Design details">
-                  <div class="cap-media">
-                    <img src="images/capabilities/agent-experience-design.svg" alt="Agent experience design workflow illustration">
-                  </div>
-                  <div class="cap-content">
-                    <div class="cap-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24">
-                        <circle cx="6" cy="6" r="2"></circle>
-                        <circle cx="18" cy="6" r="2"></circle>
-                        <circle cx="6" cy="18" r="2"></circle>
-                        <circle cx="18" cy="18" r="2"></circle>
-                        <path d="M8 6h8"></path>
-                        <path d="M6 8v8"></path>
-                        <path d="M18 8v3"></path>
-                        <path d="M8 18h4"></path>
-                        <path d="M14 18h4"></path>
-                        <path d="M14 11l2.5 2.5L21 9"></path>
-                      </svg>
-                    </div>
-                    <h3 data-en="Agent Experience Design" data-zh="智能体体验设计">Agent Experience Design</h3>
-                    <p data-en="Structuring agent journeys with visible plans, status feedback, checkpoints, and handoff controls across multi-step autonomous tasks."
-                      data-zh="为多步骤智能体任务构建计划可视化、状态反馈、检查点与接管机制，提升复杂流程的可见性与信任感。">Structuring agent journeys with visible plans, status feedback, checkpoints, and handoff controls across multi-step autonomous tasks.</p>
-                    <span class="cap-link-hint">
-                      <span data-en="View details" data-zh="查看详情">View details</span>
-                      <span class="cap-link-arrow" aria-hidden="true">↗</span>
-                    </span>
-                  </div>
-                </a>
-                <a class="glass-card cap-card cap-card--with-media cap-card--feature cap-link-card stagger-item bento-col-2 tilt-card"
-                  href="capabilities/multimodal-interaction/index.html" aria-label="View Multimodal Interaction details">
-                  <div class="cap-media">
-                    <img src="images/capabilities/multimodal-interaction.svg" alt="Multimodal interaction experience illustration">
-                  </div>
-                  <div class="cap-content">
-                    <div class="cap-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24">
-                        <path d="M12 3a3 3 0 0 1 3 3v4a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3z"></path>
-                        <path d="M7 10a5 5 0 0 0 10 0"></path>
-                        <path d="M12 15v5"></path>
-                        <path d="M8 20h8"></path>
-                        <path d="M18 6h2"></path>
-                        <path d="M18 10h3"></path>
-                        <path d="M4 8h3"></path>
-                        <path d="M4 12h2"></path>
-                      </svg>
-                    </div>
-                    <h3 data-en="Multimodal Interaction" data-zh="多模态交互">Multimodal Interaction</h3>
-                    <p data-en="Orchestrating text, voice, image, and interface signals into seamless flows that preserve context and reduce friction across modalities."
-                      data-zh="统筹文本、语音、图像与界面信号，在多模态流程中保持上下文连续，并显著降低交互摩擦。">Orchestrating text, voice, image, and interface signals into seamless flows that preserve context and reduce friction across modalities.</p>
-                    <span class="cap-link-hint">
-                      <span data-en="View details" data-zh="查看详情">View details</span>
-                      <span class="cap-link-arrow" aria-hidden="true">↗</span>
-                    </span>
-                  </div>
-                </a>
-              </div>
-            </section>
-              <section id="philosophy" class="section-padding" style="position: relative; overflow: hidden;">
-                  <div class="manifesto-deco">✻</div>
-                  <div class="container" style="max-width: 1000px; text-align: center;">
-                    <div class="manifesto-wrapper">
-                      <p class="manifesto-text reveal-type" data-bg-color="#1A1A2E" data-fg-color="#1A1A2E"><span
-                          data-en="Design is not just about visuals." data-zh="设计不仅仅是视觉表现。">Design is not just about
-                          visuals.</span></p>
-                      <p class="manifesto-text reveal-type"><span class="highlight-serif"
-                          data-en="It is the silent ambassador" data-zh="它是你品牌的">It is the silent ambassador</span><span
-                          class="highlight-sans" data-en="of your brand." data-zh="无声大使。">of your brand.</span></p>
-                      <p class="manifesto-text reveal-type"><span data-en="We strip away the non-essential"
-                          data-zh="我们剥离非本质的一切，">We strip away the non-essential</span></p>
-                      <p class="manifesto-text reveal-type"><span class="highlight-serif" data-en="to reveal the chaos"
-                          data-zh="以揭示混乱中的">to reveal the chaos</span><span class="highlight-sans"
-                          data-en="within order." data-zh="秩序。">within order.</span></p>
-                      <p class="manifesto-text reveal-type"><span
-                          style="font-size: 0.6em; display: block; margin-top: 40px; color: var(--amber); letter-spacing: 2px; text-transform: uppercase;"
-                          data-en="— The Philosophy" data-zh="— 设计哲学">— The Philosophy</span></p>
-                    </div>
-                  </div>
-              </section>
-                <section id="projects" class="section-padding">
-                  <div class="section-header stagger-item" style="margin-bottom: 40px;">
-                    <h2 style="font-size: 48px;" data-en="Selected Work" data-zh="精选案例">Selected Work</h2>
-                  </div>
-                  <div class="bento-grid">
-                    <div class="glass-card project-card bento-col-2 stagger-item">
-                      <div class="project-bg"
-                        style="background-image: linear-gradient(135deg, #1A1A2E 0%, #4C1D95 100%);"></div>
-                      <div class="project-overlay">
-                        <div data-en="FinTech · AI Analytics" data-zh="金融科技 · AI 分析"
-                          style="color: var(--amber); margin-bottom: 8px;">FinTech · AI Analytics</div>
-                        <h3 style="color: #fff; font-size: 32px;" data-en="Nexus Dashboard" data-zh="Nexus 数据看板">Nexus
-                          Dashboard </h3>
-                      </div>
-                    </div>
-                    <div class="glass-card project-card stagger-item">
-                      <div class="project-bg"
-                        style="background-image: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);"></div>
-                      <div class="project-overlay">
-                        <div data-en="SaaS · Design System" data-zh="SaaS · 设计系统"
-                          style="color: #fff; margin-bottom: 8px; opacity: 0.8;">SaaS · Design System</div>
-                        <h3 style="color: #fff;" data-en="Flow UI Kit" data-zh="Flow UI 组件库">Flow UI Kit</h3>
-                      </div>
-                    </div>
-                    <div class="glass-card project-card stagger-item">
-                      <div class="project-bg"
-                        style="background-image: linear-gradient(135deg, #0EA5E9 0%, #2563EB 100%);"></div>
-                      <div class="project-overlay">
-                        <div data-en="Mobile · Consumer" data-zh="移动端 · 消费类"
-                          style="color: #fff; margin-bottom: 8px; opacity: 0.8;">Mobile · Consumer</div>
-                        <h3 style="color: #fff;" data-en="Zen Habit App" data-zh="Zen 习惯养成 App">Zen Habit App</h3>
-                      </div>
-                    </div>
-                    <div class="glass-card project-card bento-col-2 stagger-item">
-                      <div class="project-bg"
-                        style="background-image: linear-gradient(135deg, #10B981 0%, #059669 100%);"></div>
-                      <div class="project-overlay">
-                        <div data-en="Web3 · Platform" data-zh="Web3 · 平台"
-                          style="color: #fff; margin-bottom: 8px; opacity: 0.8;">Web3 · Platform</div>
-                        <h3 style="color: #fff; font-size: 32px;" data-en="Ether Exchange" data-zh="Ether 交易平台">Ether
-                          Exchange</h3>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-                    <section id="stats" class="section-padding" style="overflow: hidden;">
-                      <div class="container">
-                        <div class="stats-header stagger-item">
-                          <h2 class="stats-title" data-en="What Our Clients Say" data-zh="客户评价">What Our Clients Say</h2>
-                          <p class="stats-subtitle"
-                            data-en="Join customers who trust AI to transform their business and scale with confidence."
-                            data-zh="加入那些信赖 AI 推动业务转型并实现稳定增长的客户行列。">
-                            Join customers who trust AI to transform their business and scale with confidence.
-                          </p>
-                        </div>
-                        <div class="stats-top-grid">
-                          <div class="stats-quote-card stagger-item">
-                            <p class="stats-quote-text"
-                              data-en="Their AI-driven approach helped us reach the right audience and grow faster with smarter insights."
-                              data-zh="他们的 AI 驱动方法帮助我们找到正确受众，并通过更智能的洞察实现更快增长。">
-                              Their AI-driven approach helped us reach the right audience and grow faster with smarter insights.
-                            </p>
-                            <div class="stats-quote-mark">”</div>
-                          </div>
-                          <div class="stats-visual-card stagger-item">
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1800&auto=format&fit=crop"
-                              alt="Client portrait">
-                          </div>
-                        </div>
-                      </div>
-                      <div class="marquee-wrapper">
-                        <div class="marquee-track">
-                            <div class="testimonial-card glass-card">
-                              <p>"Liu is a visionary designer who bridges the gap between complex tech and intuitive
-                                UX." </p>
-                              <div style="margin-top: 16px; font-weight: 600;">— Sarah J. (PM, Google)</div>
-                            </div>
-                              <div class="testimonial-card glass-card">
-                                <p>"Delivered the project 2 weeks ahead of schedule. The design system is top notch."
-                                </p>
-                                <div style="margin-top: 16px; font-weight: 600;">— Mike R. (CTO, StartUp)</div>
-                              </div>
-                                <div class="testimonial-card glass-card">
-                                  <p>"Incredible attention to detail. The animations added so much delight." </p>
-                                  <div style="margin-top: 16px; font-weight: 600;">— Emily W. (Founder)</div>
-                                </div>
-                                  <div class="testimonial-card glass-card">
-                                    <p>"Liu is a visionary designer who bridges the gap between complex tech and
-                                      intuitive UX." </p>
-                                    <div style="margin-top: 16px; font-weight: 600;">— Sarah J. (PM, Google)</div>
-                                  </div>
-                                  <div class="testimonial-card glass-card">
-                                    <p>"Delivered the project 2 weeks ahead of schedule. The design system is top
-                                      notch." </p>
-                                    <div style="margin-top: 16px; font-weight: 600;">— Mike R. (CTO, StartUp)</div>
-                                  </div>
-                        </div>
-                      </div>
-                      <div class="container">
-                        <div class="stats-metrics">
-                          <div class="stat-metric stagger-item">
-                            <div class="metric-value"><span class="counter" data-target="7">0</span><span
-                                class="metric-suffix">+</span></div>
-                            <div class="metric-label" data-en="Years of Experience" data-zh="从业年限">Years of Experience</div>
-                          </div>
-                          <div class="stat-metric stagger-item">
-                            <div class="metric-value"><span class="counter" data-target="45">0</span><span
-                                class="metric-suffix">+</span></div>
-                            <div class="metric-label" data-en="Projects Completed" data-zh="成功项目">Projects Completed</div>
-                          </div>
-                          <div class="stat-metric stagger-item">
-                            <div class="metric-value"><span class="counter" data-target="98">0</span><span
-                                class="metric-suffix">%</span></div>
-                            <div class="metric-label" data-en="Client Satisfaction" data-zh="客户满意度">Client Satisfaction</div>
-                          </div>
-                        </div>
-                      </div>
-                    </section>
-                    <footer id="contact" class="big-footer">
-                      <div class="noise-overlay"></div>
+            <svg viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg"
+              style="width:100%;height:100%;opacity:0.9; filter: drop-shadow(0 8px 16px rgba(18,21,27,0.06));">
+              <rect x="20" y="20" width="50" height="32" rx="8" fill="#d1d7e0" opacity="0.6" />
+              <rect x="80" y="20" width="50" height="32" rx="8" fill="#c5cdd8" opacity="0.5" />
+              <rect x="140" y="20" width="40" height="32" rx="8" fill="#bcc5d3" opacity="0.4" />
+              <rect x="20" y="64" width="70" height="36" rx="8" fill="#c8d0dc" opacity="0.55" />
+              <rect x="100" y="64" width="80" height="36" rx="8" fill="#d5dbe5" opacity="0.5" />
+              <circle cx="45" cy="36" r="6" fill="#8b95a5" />
+              <circle cx="105" cy="36" r="4" fill="#9aa4b4" />
+              <circle cx="55" cy="82" r="5" fill="#8b95a5" />
+              <line x1="51" y1="36" x2="80" y2="36" stroke="#a0a8b5" stroke-width="1.5" stroke-dasharray="4 3" />
+              <line x1="45" y1="52" x2="55" y2="64" stroke="#a0a8b5" stroke-width="1.2" opacity="0.5" />
+            </svg>
+          </div>
+          <div class="cap-content">
+            <div class="cap-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="5" width="8" height="6" rx="2"></rect>
+                <rect x="13" y="5" width="8" height="6" rx="2"></rect>
+                <rect x="8" y="13" width="8" height="6" rx="2"></rect>
+                <path d="M11 8h2"></path>
+                <path d="M9.5 11v2"></path>
+                <path d="M14.5 11v2"></path>
+              </svg>
+            </div>
+            <h3 data-en="AI Product Design" data-zh="AI 产品设计">AI Product Design</h3>
+            <p data-en="Translating model capabilities, product goals, and evaluation loops into AI-native workflows that are usable, measurable, and launch-ready."
+              data-zh="将模型能力、业务目标与评估闭环转化为可落地的 AI 原生工作流，兼顾可用性、可衡量性与上线效率。">Translating model capabilities, product goals,
+              and evaluation loops into AI-native workflows that are usable, measurable, and launch-ready.</p>
+            <span class="cap-link-hint"><span data-en="View details" data-zh="查看详情">View details</span><span
+                class="cap-link-arrow" aria-hidden="true">↗</span></span>
+          </div>
+        </a>
+        <a class="glass-card cap-card cap-card--with-media cap-card--media-right bento-col-2 cap-link-card stagger-item tilt-card"
+          href="capabilities/human-ai-interaction/index.html" aria-label="View Human-AI Interaction details">
+          <div class="cap-media"
+            style="background: linear-gradient(135deg, #f5f7fa 0%, #eef1f6 100%); display:flex; align-items:center; justify-content:center; position: relative; overflow: hidden;">
+            <div
+              style="position: absolute; width: 120px; height: 120px; background: radial-gradient(circle, rgba(200,210,230,0.4) 0%, rgba(255,255,255,0) 70%); filter: blur(15px); right: -10px; bottom: -10px;">
+            </div>
+            <svg viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg"
+              style="width:100%;height:100%;opacity:0.9; filter: drop-shadow(0 8px 16px rgba(18,21,27,0.06));">
+              <circle cx="40" cy="50" r="24" fill="#d8dde6" opacity="0.5" />
+              <circle cx="80" cy="50" r="24" fill="#c5cdd9" opacity="0.5" />
+              <ellipse cx="60" cy="50" rx="12" ry="18" fill="#b8c2d0" opacity="0.35" />
+              <circle cx="40" cy="44" r="3" fill="#8b95a5" />
+              <circle cx="80" cy="44" r="3" fill="#8b95a5" />
+              <path d="M37 56 Q40 62 43 56" stroke="#8b95a5" stroke-width="1.5" fill="none" />
+              <path d="M77 56 Q80 62 83 56" stroke="#8b95a5" stroke-width="1.5" fill="none" />
+              <line x1="52" y1="40" x2="68" y2="40" stroke="#a0a8b5" stroke-width="1.2" stroke-dasharray="3 2" />
+              <line x1="52" y1="60" x2="68" y2="60" stroke="#a0a8b5" stroke-width="1.2" stroke-dasharray="3 2" />
+            </svg>
+          </div>
+          <div class="cap-content">
+            <div class="cap-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <circle cx="8" cy="12" r="2.5"></circle>
+                <circle cx="16" cy="12" r="2.5"></circle>
+                <path d="M8 6h4"></path>
+                <path d="M12 18h4"></path>
+              </svg>
+            </div>
+            <h3 data-en="Human-AI Interaction" data-zh="人机协同交互">Human-AI Interaction</h3>
+            <p data-en="Designing transparent feedback, confidence cues, and control patterns so people can guide, trust, and correct AI throughout the workflow."
+              data-zh="设计透明反馈、置信提示与控制机制，让用户能在整个流程中理解、引导并修正 AI 的输出。">Designing transparent feedback, confidence cues, and
+              control patterns so people can guide, trust, and correct AI throughout the workflow.</p>
+            <span class="cap-link-hint"><span data-en="View details" data-zh="查看详情">View details</span><span
+                class="cap-link-arrow" aria-hidden="true">↗</span></span>
+          </div>
+        </a>
+        <a class="glass-card cap-card cap-card--with-media cap-card--media-right bento-col-2 cap-link-card stagger-item tilt-card"
+          href="capabilities/agent-experience-design/index.html" aria-label="View Agent Experience Design details">
+          <div class="cap-media"
+            style="background: linear-gradient(135deg, #f5f7fa 0%, #eef1f6 100%); display:flex; align-items:center; justify-content:center; position: relative; overflow: hidden;">
+            <div
+              style="position: absolute; width: 160px; height: 160px; background: radial-gradient(circle, rgba(230,235,245,0.6) 0%, rgba(255,255,255,0) 70%); filter: blur(25px); left: 20%; top: 10%;">
+            </div>
+            <svg viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg"
+              style="width:100%;height:100%;opacity:0.9; filter: drop-shadow(0 8px 16px rgba(18,21,27,0.06));">
+              <rect x="35" y="10" width="50" height="14" rx="7" fill="#c8d0dc" opacity="0.6" />
+              <rect x="35" y="32" width="50" height="14" rx="7" fill="#bcc5d3" opacity="0.55" />
+              <rect x="35" y="54" width="50" height="14" rx="7" fill="#d1d7e0" opacity="0.5" />
+              <rect x="35" y="76" width="50" height="14" rx="7" fill="#dde1e8" opacity="0.45" />
+              <line x1="60" y1="24" x2="60" y2="32" stroke="#a0a8b5" stroke-width="1.5" />
+              <line x1="60" y1="46" x2="60" y2="54" stroke="#a0a8b5" stroke-width="1.5" />
+              <line x1="60" y1="68" x2="60" y2="76" stroke="#a0a8b5" stroke-width="1.5" />
+              <circle cx="42" cy="17" r="3" fill="#7ccc7c" opacity="0.7" />
+              <circle cx="42" cy="39" r="3" fill="#7ccc7c" opacity="0.7" />
+              <circle cx="42" cy="61" r="3" fill="#e8c455" opacity="0.7" />
+              <circle cx="42" cy="83" r="3" fill="#a0a8b5" opacity="0.5" />
+            </svg>
+          </div>
+          <div class="cap-content">
+            <div class="cap-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <circle cx="6" cy="6" r="2"></circle>
+                <circle cx="18" cy="6" r="2"></circle>
+                <circle cx="6" cy="18" r="2"></circle>
+                <circle cx="18" cy="18" r="2"></circle>
+                <path d="M8 6h8"></path>
+                <path d="M6 8v8"></path>
+              </svg>
+            </div>
+            <h3 data-en="Agent Experience Design" data-zh="智能体体验设计">Agent Experience Design</h3>
+            <p data-en="Structuring agent journeys with visible plans, status feedback, checkpoints, and handoff controls across multi-step autonomous tasks."
+              data-zh="为多步骤智能体任务构建计划可视化、状态反馈、检查点与接管机制，提升复杂流程的可见性与信任感。">Structuring agent journeys with visible plans,
+              status feedback, checkpoints, and handoff controls across multi-step autonomous tasks.</p>
+            <span class="cap-link-hint"><span data-en="View details" data-zh="查看详情">View details</span><span
+                class="cap-link-arrow" aria-hidden="true">↗</span></span>
+          </div>
+        </a>
+        <a class="glass-card cap-card cap-card--with-media bento-col-2 cap-link-card stagger-item tilt-card"
+          href="capabilities/multimodal-interaction/index.html" aria-label="View Multimodal Interaction details">
+          <div class="cap-media"
+            style="background: linear-gradient(135deg, #f5f7fa 0%, #eef1f6 100%); display:flex; align-items:center; justify-content:center; position: relative; overflow: hidden;">
+            <div
+              style="position: absolute; width: 130px; height: 130px; background: radial-gradient(circle, rgba(240,242,248,0.8) 0%, rgba(255,255,255,0) 70%); filter: blur(15px); right: 10%; top: 20%;">
+            </div>
+            <svg viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg"
+              style="width:100%;height:100%;opacity:0.9; filter: drop-shadow(0 8px 16px rgba(18,21,27,0.06));">
+              <circle cx="100" cy="60" r="18" fill="#c8d0dc" opacity="0.5" />
+              <circle cx="100" cy="60" r="8" fill="#a0a8b5" opacity="0.4" />
+              <!-- Mic -->
+              <rect x="38" y="22" width="14" height="22" rx="7" fill="#bcc5d3" opacity="0.55" />
+              <line x1="45" y1="44" x2="45" y2="52" stroke="#a0a8b5" stroke-width="1.5" />
+              <line x1="39" y1="52" x2="51" y2="52" stroke="#a0a8b5" stroke-width="1.5" />
+              <!-- Text -->
+              <rect x="142" y="24" width="30" height="4" rx="2" fill="#bcc5d3" opacity="0.5" />
+              <rect x="142" y="32" width="22" height="4" rx="2" fill="#c8d0dc" opacity="0.45" />
+              <rect x="142" y="40" width="26" height="4" rx="2" fill="#d1d7e0" opacity="0.4" />
+              <!-- Lens -->
+              <circle cx="45" cy="88" r="12" fill="none" stroke="#bcc5d3" stroke-width="2.5" opacity="0.55" />
+              <circle cx="45" cy="88" r="5" fill="#c8d0dc" opacity="0.4" />
+              <!-- Touch -->
+              <circle cx="155" cy="88" r="8" fill="#d1d7e0" opacity="0.4" />
+              <circle cx="155" cy="88" r="4" fill="#bcc5d3" opacity="0.55" />
+              <circle cx="155" cy="88" r="12" fill="none" stroke="#d8dde6" stroke-width="1" opacity="0.4" />
+              <!-- Connecting lines -->
+              <line x1="52" y1="36" x2="82" y2="55" stroke="#b0b8c5" stroke-width="1" stroke-dasharray="4 3"
+                opacity="0.5" />
+              <line x1="142" y1="36" x2="118" y2="55" stroke="#b0b8c5" stroke-width="1" stroke-dasharray="4 3"
+                opacity="0.5" />
+              <line x1="52" y1="82" x2="86" y2="65" stroke="#b0b8c5" stroke-width="1" stroke-dasharray="4 3"
+                opacity="0.5" />
+              <line x1="148" y1="82" x2="114" y2="65" stroke="#b0b8c5" stroke-width="1" stroke-dasharray="4 3"
+                opacity="0.5" />
+            </svg>
+          </div>
+          <div class="cap-content">
+            <div class="cap-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 3a3 3 0 0 1 3 3v4a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3z"></path>
+                <path d="M7 10a5 5 0 0 0 10 0"></path>
+                <path d="M12 15v5"></path>
+                <path d="M8 20h8"></path>
+              </svg>
+            </div>
+            <h3 data-en="Multimodal Interaction" data-zh="多模态交互">Multimodal Interaction</h3>
+            <p data-en="Orchestrating text, voice, image, and interface signals into seamless flows that preserve context and reduce friction across modalities."
+              data-zh="统筹文本、语音、图像与界面信号，在多模态流程中保持上下文连续，并显著降低交互摩擦。">Orchestrating text, voice, image, and interface
+              signals into seamless flows that preserve context and reduce friction across modalities.</p>
+            <span class="cap-link-hint"><span data-en="View details" data-zh="查看详情">View details</span><span
+                class="cap-link-arrow" aria-hidden="true">↗</span></span>
+          </div>
+        </a>
+        <!-- === Traditional Design Capabilities (Bottom Row) === -->
+        <div class="glass-card cap-card cap-card--compact stagger-item tilt-card">
+          <div class="cap-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 3v18"></path>
+              <path d="M3 12h18"></path>
+              <path d="M6.6 6.6l10.8 10.8"></path>
+              <path d="M17.4 6.6L6.6 17.4"></path>
+            </svg>
+          </div>
+          <h3 data-en="Product Strategy" data-zh="产品策略">Product Strategy</h3>
+          <p data-en="Defining MVPs, user journeys, and roadmap planning for scalable products with clear milestones and team alignment."
+            data-zh="定义 MVP、用户旅程，以及可扩展产品的路线图规划，并建立清晰里程碑与团队协同。">Defining MVPs, user journeys, and roadmap planning for
+            scalable products with clear milestones and team alignment.</p>
+        </div>
+        <div class="glass-card cap-card cap-card--compact stagger-item tilt-card">
+          <div class="cap-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <circle cx="8" cy="8" r="2"></circle>
+              <circle cx="16" cy="8" r="2"></circle>
+              <circle cx="8" cy="16" r="2"></circle>
+              <path d="M16 16h.01"></path>
+              <path d="M20 20H4V4h16z"></path>
+            </svg>
+          </div>
+          <h3 data-en="UI/Visual" data-zh="视觉设计">UI/Visual</h3>
+          <p data-en="Pixel-perfect interfaces with robust design systems, consistent component rules, and strong visual hierarchy."
+            data-zh="基于严谨设计系统打造像素级界面，并确保组件一致性与清晰视觉层级。">Pixel-perfect interfaces with robust design systems, consistent
+            component rules, and strong visual hierarchy.</p>
+        </div>
+        <div class="glass-card cap-card cap-card--compact stagger-item tilt-card">
+          <div class="cap-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M13 2L4 14h7l-1 8 10-14h-7z"></path>
+            </svg>
+          </div>
+          <h3 data-en="Prototyping" data-zh="交互原型">Prototyping</h3>
+          <p data-en="High-fidelity interactive prototypes in Framer & Figma to validate flows, edge cases, and product decisions early."
+            data-zh="在 Framer 与 Figma 中构建高保真交互原型，提前验证关键流程、边界场景与产品决策。">High-fidelity interactive prototypes in Framer &
+            Figma to validate flows, edge cases, and product decisions early.</p>
+        </div>
+        <div class="glass-card cap-card cap-card--compact stagger-item tilt-card">
+          <div class="cap-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="7"></circle>
+              <path d="M21 21l-4.3-4.3"></path>
+            </svg>
+          </div>
+          <h3 data-en="User Research" data-zh="用户研究">User Research</h3>
+          <p data-en="Usability testing, interviews, and data-driven iteration cycles to uncover real needs and prioritize the right improvements."
+            data-zh="通过可用性测试、访谈与数据驱动迭代，识别真实需求并优先推进高价值改进。">Usability testing, interviews, and data-driven iteration
+            cycles to uncover real needs and prioritize the right improvements.</p>
+        </div>
+      </div>
+    </section>
+    <section id="philosophy" class="section-padding" style="position: relative; overflow: hidden;">
+      <div class="manifesto-deco">✻</div>
+      <div class="container" style="max-width: 1000px; text-align: center;">
+        <div class="manifesto-wrapper">
+          <p class="manifesto-text reveal-type" data-bg-color="#1A1A2E" data-fg-color="#1A1A2E"><span
+              data-en="Design is not just about visuals." data-zh="设计不仅仅是视觉表现。">Design is not just about
+              visuals.</span></p>
+          <p class="manifesto-text reveal-type"><span class="highlight-serif" data-en="It is the silent ambassador"
+              data-zh="它是你品牌的">It is the silent ambassador</span><span class="highlight-sans" data-en="of your brand."
+              data-zh="无声大使。">of your brand.</span></p>
+          <p class="manifesto-text reveal-type"><span data-en="We strip away the non-essential" data-zh="我们剥离非本质的一切，">We
+              strip away the non-essential</span></p>
+          <p class="manifesto-text reveal-type"><span class="highlight-serif" data-en="to reveal the chaos"
+              data-zh="以揭示混乱中的">to reveal the chaos</span><span class="highlight-sans" data-en="within order."
+              data-zh="秩序。">within order.</span></p>
+          <p class="manifesto-text reveal-type"><span
+              style="font-size: 0.6em; display: block; margin-top: 40px; color: var(--amber); letter-spacing: 2px; text-transform: uppercase;"
+              data-en="— The Philosophy" data-zh="— 设计哲学">— The Philosophy</span></p>
+        </div>
+      </div>
+    </section>
+    <section id="projects" class="section-padding">
+      <div class="section-header stagger-item" style="margin-bottom: 40px;">
+        <h2 style="font-size: 48px;" data-en="Selected Work" data-zh="精选案例">Selected Work</h2>
+      </div>
+      <div class="bento-grid">
+        <div class="glass-card project-card bento-col-2 stagger-item">
+          <div class="project-bg" style="background-image: linear-gradient(135deg, #1A1A2E 0%, #4C1D95 100%);"></div>
+          <div class="project-overlay">
+            <div data-en="FinTech · AI Analytics" data-zh="金融科技 · AI 分析"
+              style="color: var(--amber); margin-bottom: 8px;">FinTech · AI Analytics</div>
+            <h3 style="color: #fff; font-size: 32px;" data-en="Nexus Dashboard" data-zh="Nexus 数据看板">Nexus
+              Dashboard </h3>
+          </div>
+        </div>
+        <div class="glass-card project-card stagger-item">
+          <div class="project-bg" style="background-image: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);"></div>
+          <div class="project-overlay">
+            <div data-en="SaaS · Design System" data-zh="SaaS · 设计系统"
+              style="color: #fff; margin-bottom: 8px; opacity: 0.8;">SaaS · Design System</div>
+            <h3 style="color: #fff;" data-en="Flow UI Kit" data-zh="Flow UI 组件库">Flow UI Kit</h3>
+          </div>
+        </div>
+        <div class="glass-card project-card stagger-item">
+          <div class="project-bg" style="background-image: linear-gradient(135deg, #0EA5E9 0%, #2563EB 100%);"></div>
+          <div class="project-overlay">
+            <div data-en="Mobile · Consumer" data-zh="移动端 · 消费类" style="color: #fff; margin-bottom: 8px; opacity: 0.8;">
+              Mobile · Consumer</div>
+            <h3 style="color: #fff;" data-en="Zen Habit App" data-zh="Zen 习惯养成 App">Zen Habit App</h3>
+          </div>
+        </div>
+        <div class="glass-card project-card bento-col-2 stagger-item">
+          <div class="project-bg" style="background-image: linear-gradient(135deg, #10B981 0%, #059669 100%);"></div>
+          <div class="project-overlay">
+            <div data-en="Web3 · Platform" data-zh="Web3 · 平台" style="color: #fff; margin-bottom: 8px; opacity: 0.8;">
+              Web3 · Platform</div>
+            <h3 style="color: #fff; font-size: 32px;" data-en="Ether Exchange" data-zh="Ether 交易平台">Ether
+              Exchange</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="stats" class="section-padding" style="overflow: hidden;">
+      <div class="container">
+        <div class="stats-header stagger-item">
+          <h2 class="stats-title" data-en="What Our Clients Say" data-zh="客户评价">What Our Clients Say</h2>
+          <p class="stats-subtitle"
+            data-en="Join customers who trust AI to transform their business and scale with confidence."
+            data-zh="加入那些信赖 AI 推动业务转型并实现稳定增长的客户行列。">
+            Join customers who trust AI to transform their business and scale with confidence.
+          </p>
+        </div>
+        <div class="stats-top-grid">
+          <div class="stats-quote-card stagger-item">
+            <p class="stats-quote-text"
+              data-en="Their AI-driven approach helped us reach the right audience and grow faster with smarter insights."
+              data-zh="他们的 AI 驱动方法帮助我们找到正确受众，并通过更智能的洞察实现更快增长。">
+              Their AI-driven approach helped us reach the right audience and grow faster with smarter insights.
+            </p>
+            <div class="stats-quote-mark">”</div>
+          </div>
+          <div class="stats-visual-card stagger-item">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1800&auto=format&fit=crop"
+              alt="Client portrait">
+          </div>
+        </div>
+      </div>
+      <div class="marquee-wrapper">
+        <div class="marquee-track">
+          <div class="testimonial-card glass-card">
+            <p>"Liu is a visionary designer who bridges the gap between complex tech and intuitive
+              UX." </p>
+            <div style="margin-top: 16px; font-weight: 600;">— Sarah J. (PM, Google)</div>
+          </div>
+          <div class="testimonial-card glass-card">
+            <p>"Delivered the project 2 weeks ahead of schedule. The design system is top notch."
+            </p>
+            <div style="margin-top: 16px; font-weight: 600;">— Mike R. (CTO, StartUp)</div>
+          </div>
+          <div class="testimonial-card glass-card">
+            <p>"Incredible attention to detail. The animations added so much delight." </p>
+            <div style="margin-top: 16px; font-weight: 600;">— Emily W. (Founder)</div>
+          </div>
+          <div class="testimonial-card glass-card">
+            <p>"Liu is a visionary designer who bridges the gap between complex tech and
+              intuitive UX." </p>
+            <div style="margin-top: 16px; font-weight: 600;">— Sarah J. (PM, Google)</div>
+          </div>
+          <div class="testimonial-card glass-card">
+            <p>"Delivered the project 2 weeks ahead of schedule. The design system is top
+              notch." </p>
+            <div style="margin-top: 16px; font-weight: 600;">— Mike R. (CTO, StartUp)</div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="stats-metrics">
+          <div class="stat-metric stagger-item">
+            <div class="metric-value"><span class="counter" data-target="7">0</span><span class="metric-suffix">+</span>
+            </div>
+            <div class="metric-label" data-en="Years of Experience" data-zh="从业年限">Years of Experience</div>
+          </div>
+          <div class="stat-metric stagger-item">
+            <div class="metric-value"><span class="counter" data-target="45">0</span><span
+                class="metric-suffix">+</span></div>
+            <div class="metric-label" data-en="Projects Completed" data-zh="成功项目">Projects Completed</div>
+          </div>
+          <div class="stat-metric stagger-item">
+            <div class="metric-value"><span class="counter" data-target="98">0</span><span
+                class="metric-suffix">%</span></div>
+            <div class="metric-label" data-en="Client Satisfaction" data-zh="客户满意度">Client Satisfaction</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer id="contact" class="big-footer">
+      <div class="noise-overlay"></div>
 
-                      <div class="footer-marquee-wrapper">
-                        <div class="footer-marquee-text">
-                          SAY HELLO · CONTACT · SAY HELLO · CONTACT · SAY HELLO · CONTACT · SAY HELLO · CONTACT ·
-                        </div>
-                        <div class="footer-marquee-text">
-                          SAY HELLO · CONTACT · SAY HELLO · CONTACT · SAY HELLO · CONTACT · SAY HELLO · CONTACT ·
-                        </div>
-                      </div>
+      <div class="footer-marquee-wrapper">
+        <div class="footer-marquee-text">
+          SAY HELLO · CONTACT · SAY HELLO · CONTACT · SAY HELLO · CONTACT · SAY HELLO · CONTACT ·
+        </div>
+        <div class="footer-marquee-text">
+          SAY HELLO · CONTACT · SAY HELLO · CONTACT · SAY HELLO · CONTACT · SAY HELLO · CONTACT ·
+        </div>
+      </div>
 
-                      <div class="container footer-content">
-                        <div class="cta-section" style="text-align: left;">
-                          <h2 class="footer-cta-title" data-en="Let's build something future-proof."
-                            data-zh="让我们构建面向未来的产品。">
-                            Let's build something future-proof.
-                          </h2>
-                          <button class="magnetic-btn" id="contact-btn"
-                            style="height: 100px; padding: 0 60px; font-size: 24px;">
-                            <span data-en="Start a Project" data-zh="开启合作">Start a Project</span>
-                          </button>
-                        </div>
+      <div class="container footer-content">
+        <div class="cta-section" style="text-align: left;">
+          <h2 class="footer-cta-title" data-en="Let's build something future-proof." data-zh="让我们构建面向未来的产品。">
+            Let's build something future-proof.
+          </h2>
+          <button class="magnetic-btn" id="contact-btn" style="height: 100px; padding: 0 60px; font-size: 24px;">
+            <span data-en="Start a Project" data-zh="开启合作">Start a Project</span>
+          </button>
+        </div>
 
-                        <div class="social-links-grid">
-                          <a href="#" class="social-link magnetic-link" data-en="Twitter" data-zh="推特">Twitter</a>
-                          <a href="#" class="social-link magnetic-link" data-en="LinkedIn" data-zh="领英">LinkedIn</a>
-                          <a href="#" class="social-link magnetic-link" data-en="Dribbble" data-zh="追波">Dribbble</a>
-                          <a href="#" class="social-link magnetic-link" data-en="Email" data-zh="邮件">Email</a>
-                        </div>
+        <div class="social-links-grid">
+          <a href="#" class="social-link magnetic-link" data-en="Twitter" data-zh="推特">Twitter</a>
+          <a href="#" class="social-link magnetic-link" data-en="LinkedIn" data-zh="领英">LinkedIn</a>
+          <a href="#" class="social-link magnetic-link" data-en="Dribbble" data-zh="追波">Dribbble</a>
+          <a href="#" class="social-link magnetic-link" data-en="Email" data-zh="邮件">Email</a>
+        </div>
 
-                        <div class="footer-bottom">
-                          <div>
-                            <div>&copy; 2024 Liu Lu. Based in Shanghai.</div>
-                            <div style="margin-top: 8px;" data-en="Available for new opportunities."
-                              data-zh="即刻启程，探索新机遇。">
-                              Available for new opportunities.
-                            </div>
-                          </div>
-                          <div class="studio-time" id="studio-time">
-                            Design Studio · 09:48 AM GMT+8
-                          </div>
-                        </div>
-                      </div>
-                    </footer>
-      </main>
-      <script>
-        const langBtn = document.getElementById('lang-btn');
-        let currentLang = localStorage.getItem('site_lang') || 'en';
+        <div class="footer-bottom">
+          <div>
+            <div>&copy; 2024 Liu Lu. Based in Shanghai.</div>
+            <div style="margin-top: 8px;" data-en="Available for new opportunities." data-zh="即刻启程，探索新机遇。">
+              Available for new opportunities.
+            </div>
+          </div>
+          <div class="studio-time" id="studio-time">
+            Design Studio · 09:48 AM GMT+8
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+  <script>
+    const langBtn = document.getElementById('lang-btn');
+    let currentLang = localStorage.getItem('site_lang') || 'en';
 
-        function splitHeroLine(el, baseDelay) {
-          if (!el) return;
-          const text = el.textContent || '';
-          el.innerHTML = '';
-          text.split('').forEach((char, i) => {
-            const span = document.createElement('span');
-            span.textContent = char;
-            span.classList.add('char-reveal');
-            span.style.animationDelay = `${baseDelay + i * 0.03}s`;
-            if (char === ' ') span.style.width = '0.3em';
-            el.appendChild(span);
-          });
-        }
+    function splitHeroLine(el, baseDelay) {
+      if (!el) return;
+      const text = el.textContent || '';
+      el.innerHTML = '';
+      text.split('').forEach((char, i) => {
+        const span = document.createElement('span');
+        span.textContent = char;
+        span.classList.add('char-reveal');
+        span.style.animationDelay = `${baseDelay + i * 0.03}s`;
+        if (char === ' ') span.style.width = '0.3em';
+        el.appendChild(span);
+      });
+    }
 
-        function initHeroAnimation() {
-          splitHeroLine(document.getElementById('hero-l1'), 0);
-          splitHeroLine(document.getElementById('hero-l2'), 0.25);
-        }
+    function initHeroAnimation() {
+      splitHeroLine(document.getElementById('hero-l1'), 0);
+      splitHeroLine(document.getElementById('hero-l2'), 0.25);
+    }
 
-        function updateLanguage() {
-          document.querySelectorAll('[data-en]').forEach(el => {
-            const text = el.getAttribute(`data-${currentLang}`);
-            if (text !== null) el.textContent = text;
-          });
-          langBtn.textContent = currentLang === 'en' ? 'EN / 中' : '中 / EN';
-          document.documentElement.lang = currentLang === 'en' ? 'en' : 'zh-CN';
-          localStorage.setItem('site_lang', currentLang);
-          initHeroAnimation();
-        }
+    function updateLanguage() {
+      document.querySelectorAll('[data-en]').forEach(el => {
+        const text = el.getAttribute(`data-${currentLang}`);
+        if (text !== null) el.textContent = text;
+      });
+      langBtn.textContent = currentLang === 'en' ? 'EN / 中' : '中 / EN';
+      document.documentElement.lang = currentLang === 'en' ? 'en' : 'zh-CN';
+      localStorage.setItem('site_lang', currentLang);
+      initHeroAnimation();
+    }
 
-        langBtn.addEventListener('click', () => {
-          currentLang = currentLang === 'en' ? 'zh' : 'en';
-          updateLanguage();
-        });
+    langBtn.addEventListener('click', () => {
+      currentLang = currentLang === 'en' ? 'zh' : 'en';
+      updateLanguage();
+    });
 
-        if (currentLang === 'zh') updateLanguage();
-        else initHeroAnimation();
+    if (currentLang === 'zh') updateLanguage();
+    else initHeroAnimation();
 
-        function initHeroParticles() {
-          const canvas = document.getElementById('hero-particles');
-          if (!canvas) return;
-          const ctx = canvas.getContext('2d');
-          if (!ctx) return;
+    function initHeroParticles() {
+      const canvas = document.getElementById('hero-particles');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
 
-          const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-          const hero = canvas.closest('.hero');
-          const mouse = { x: null, y: null, active: false };
-          let sphereParticles = [];
-          let rafId = null;
-          let width = 0;
-          let height = 0;
-          let dpr = 1;
-          let sphereCenterX = 0;
-          let sphereCenterY = 0;
-          let startTime = 0;
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const hero = canvas.closest('.hero');
+      const mouse = { x: null, y: null, active: false };
+      let sphereParticles = [];
+      let rafId = null;
+      let width = 0;
+      let height = 0;
+      let dpr = 1;
+      let sphereCenterX = 0;
+      let sphereCenterY = 0;
+      let startTime = 0;
 
-          function createSphereParticles(count) {
-            sphereParticles = Array.from({ length: count }, (_, i) => {
-              const t = i / Math.max(1, count - 1);
-              const phi = Math.acos(1 - 2 * t);
-              const theta = Math.PI * (1 + Math.sqrt(5)) * i;
-              const sx = Math.sin(phi) * Math.cos(theta);
-              const sy = Math.cos(phi);
-              const sz = Math.sin(phi) * Math.sin(theta);
-              return {
-                sx,
-                sy,
-                sz,
-                cx: (Math.random() - 0.5) * 2.2,
-                cy: (Math.random() - 0.5) * 2.2,
-                cz: (Math.random() - 0.5) * 2.2,
-                seed: Math.random() * Math.PI * 2,
-                size: 0.8 + Math.random() * 1.6
-              };
-            });
-          }
-
-          function buildScene() {
-            const area = width * height;
-            const sphereCount = prefersReducedMotion
-              ? 240
-              : Math.max(520, Math.min(1500, Math.floor(area / 1800)));
-            createSphereParticles(sphereCount);
-          }
-
-          function resize() {
-            dpr = Math.min(window.devicePixelRatio || 1, 2);
-            width = canvas.clientWidth;
-            height = canvas.clientHeight;
-            canvas.width = Math.floor(width * dpr);
-            canvas.height = Math.floor(height * dpr);
-            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-            sphereCenterX = width * 0.67;
-            sphereCenterY = height * 0.56;
-            buildScene();
-          }
-
-          function drawBackgroundGlow() {
-            const g1 = ctx.createRadialGradient(
-              sphereCenterX,
-              sphereCenterY + height * 0.12,
-              0,
-              sphereCenterX,
-              sphereCenterY + height * 0.12,
-              width * 0.42
-            );
-            g1.addColorStop(0, 'rgba(18, 26, 56, 0.09)');
-            g1.addColorStop(0.55, 'rgba(18, 26, 56, 0.05)');
-            g1.addColorStop(1, 'rgba(18, 26, 56, 0)');
-            ctx.fillStyle = g1;
-            ctx.fillRect(0, 0, width, height);
-          }
-
-          function drawSphereParticles(time) {
-            const t = (time - startTime) * 0.001;
-            const mouseX = mouse.active && mouse.x !== null ? (mouse.x - sphereCenterX) / width : 0;
-            const mouseY = mouse.active && mouse.y !== null ? (mouse.y - sphereCenterY) / height : 0;
-            const rotY = t * 0.42 + mouseX * 1.2;
-            const rotX = Math.sin(t * 0.45) * 0.26 + mouseY * 0.85;
-            const gather = 0.82 + 0.18 * Math.sin(t * 0.8);
-            const radius = Math.min(width, height) * 0.3225;
-            const points = [];
-
-            const sinY = Math.sin(rotY);
-            const cosY = Math.cos(rotY);
-            const sinX = Math.sin(rotX);
-            const cosX = Math.cos(rotX);
-
-            for (let i = 0; i < sphereParticles.length; i += 1) {
-              const p = sphereParticles[i];
-              const breathing = 1 + Math.sin(t * 1.2 + p.seed) * 0.055;
-              const bx = p.sx * gather + p.cx * (1 - gather) * 0.35;
-              const by = p.sy * gather + p.cy * (1 - gather) * 0.35;
-              const bz = p.sz * gather + p.cz * (1 - gather) * 0.35;
-
-              const x1 = bx * cosY - bz * sinY;
-              const z1 = bx * sinY + bz * cosY;
-              const y1 = by * cosX - z1 * sinX;
-              const z2 = by * sinX + z1 * cosX;
-
-              const px = x1 * radius * breathing;
-              const py = y1 * radius * breathing;
-              const pz = z2 * radius * breathing;
-              const perspective = 520 / (520 - pz);
-              points.push({
-                x: sphereCenterX + px * perspective,
-                y: sphereCenterY + py * perspective,
-                depth: pz,
-                size: p.size * (0.75 + perspective * 0.36)
-              });
-            }
-
-            points.sort((a, b) => a.depth - b.depth);
-
-            for (let i = 0; i < points.length; i += 1) {
-              const p = points[i];
-              const normalizedDepth = (p.depth / radius + 1) / 2;
-              const alpha = 0.12 + normalizedDepth * 0.62;
-              ctx.beginPath();
-              ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-              ctx.fillStyle = `rgba(30, 37, 72, ${alpha})`;
-              ctx.fill();
-            }
-          }
-
-          function renderFrame(time) {
-            ctx.clearRect(0, 0, width, height);
-            drawBackgroundGlow();
-            drawSphereParticles(time);
-          }
-
-          function tick(time) {
-            renderFrame(time);
-            rafId = requestAnimationFrame(tick);
-          }
-
-          const onPointerMove = (event) => {
-            const rect = canvas.getBoundingClientRect();
-            mouse.x = event.clientX - rect.left;
-            mouse.y = event.clientY - rect.top;
-            mouse.active = true;
+      function createSphereParticles(count) {
+        sphereParticles = Array.from({ length: count }, (_, i) => {
+          const t = i / Math.max(1, count - 1);
+          const phi = Math.acos(1 - 2 * t);
+          const theta = Math.PI * (1 + Math.sqrt(5)) * i;
+          const sx = Math.sin(phi) * Math.cos(theta);
+          const sy = Math.cos(phi);
+          const sz = Math.sin(phi) * Math.sin(theta);
+          return {
+            sx,
+            sy,
+            sz,
+            cx: (Math.random() - 0.5) * 2.2,
+            cy: (Math.random() - 0.5) * 2.2,
+            cz: (Math.random() - 0.5) * 2.2,
+            seed: Math.random() * Math.PI * 2,
+            size: 0.8 + Math.random() * 1.6
           };
-
-          const onPointerLeave = () => {
-            mouse.x = null;
-            mouse.y = null;
-            mouse.active = false;
-          };
-
-          resize();
-          startTime = performance.now();
-          if (prefersReducedMotion) {
-            renderFrame(startTime);
-          } else {
-            rafId = requestAnimationFrame(tick);
-          }
-
-          window.addEventListener('resize', resize, { passive: true });
-          if (hero) {
-            hero.addEventListener('pointermove', onPointerMove);
-            hero.addEventListener('pointerleave', onPointerLeave);
-          }
-
-          window.addEventListener('beforeunload', () => {
-            if (rafId) cancelAnimationFrame(rafId);
-          });
-        }
-
-        initHeroParticles();
-
-        function animateCounter(el) {
-          const target = Number(el.getAttribute('data-target')) || 0;
-          const duration = 2000;
-          const start = performance.now();
-          const tick = (now) => {
-            const progress = Math.min((now - start) / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 4);
-            el.textContent = Math.floor(eased * target);
-            if (progress < 1) requestAnimationFrame(tick);
-          };
-          requestAnimationFrame(tick);
-        }
-
-        const revealObserver = new IntersectionObserver((entries, observer) => {
-          entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            entry.target.classList.add('visible');
-            const counter = entry.target.querySelector('.counter');
-            if (counter && !counter.dataset.started) {
-              counter.dataset.started = 'true';
-              animateCounter(counter);
-            }
-            observer.unobserve(entry.target);
-          });
-        }, { threshold: 0.01, rootMargin: '0px 0px -50px 0px' });
-
-        document.querySelectorAll('.stagger-item, .reveal-text, .stat-card, .stat-metric')
-          .forEach(el => revealObserver.observe(el));
-
-        document.querySelectorAll('.project-card, .tilt-card, .magnetic-link').forEach(card => {
-          card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-
-            if (card.classList.contains('magnetic-link')) {
-              const dx = x - centerX;
-              const dy = y - centerY;
-              card.style.transform = `translate(${dx * 0.4}px, ${dy * 0.4}px)`;
-            } else {
-              const rotateX = ((y - centerY) / centerY) * -3;
-              const rotateY = ((x - centerX) / centerX) * 3;
-              card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
-            }
-
-            card.style.setProperty('--mouse-x', `${x}px`);
-            card.style.setProperty('--mouse-y', `${y}px`);
-          });
-
-          card.addEventListener('mouseleave', () => {
-            card.style.transform = card.classList.contains('magnetic-link')
-              ? 'translate(0, 0)'
-              : 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
-          });
         });
+      }
 
-        document.querySelectorAll('.magnetic-btn').forEach(btn => {
-          btn.addEventListener('mousemove', (e) => {
-            const rect = btn.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+      function buildScene() {
+        const area = width * height;
+        const sphereCount = prefersReducedMotion
+          ? 240
+          : Math.max(520, Math.min(1500, Math.floor(area / 1800)));
+        createSphereParticles(sphereCount);
+      }
+
+      function resize() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = canvas.clientWidth;
+        height = canvas.clientHeight;
+        canvas.width = Math.floor(width * dpr);
+        canvas.height = Math.floor(height * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        sphereCenterX = width * 0.67;
+        sphereCenterY = height * 0.56;
+        buildScene();
+      }
+
+      function drawBackgroundGlow() {
+        const g1 = ctx.createRadialGradient(
+          sphereCenterX,
+          sphereCenterY + height * 0.12,
+          0,
+          sphereCenterX,
+          sphereCenterY + height * 0.12,
+          width * 0.42
+        );
+        g1.addColorStop(0, 'rgba(18, 26, 56, 0.09)');
+        g1.addColorStop(0.55, 'rgba(18, 26, 56, 0.05)');
+        g1.addColorStop(1, 'rgba(18, 26, 56, 0)');
+        ctx.fillStyle = g1;
+        ctx.fillRect(0, 0, width, height);
+      }
+
+      function drawSphereParticles(time) {
+        const t = (time - startTime) * 0.001;
+        const mouseX = mouse.active && mouse.x !== null ? (mouse.x - sphereCenterX) / width : 0;
+        const mouseY = mouse.active && mouse.y !== null ? (mouse.y - sphereCenterY) / height : 0;
+        const rotY = t * 0.42 + mouseX * 1.2;
+        const rotX = Math.sin(t * 0.45) * 0.26 + mouseY * 0.85;
+        const gather = 0.82 + 0.18 * Math.sin(t * 0.8);
+        const radius = Math.min(width, height) * 0.3225;
+        const points = [];
+
+        const sinY = Math.sin(rotY);
+        const cosY = Math.cos(rotY);
+        const sinX = Math.sin(rotX);
+        const cosX = Math.cos(rotX);
+
+        for (let i = 0; i < sphereParticles.length; i += 1) {
+          const p = sphereParticles[i];
+          const breathing = 1 + Math.sin(t * 1.2 + p.seed) * 0.055;
+          const bx = p.sx * gather + p.cx * (1 - gather) * 0.35;
+          const by = p.sy * gather + p.cy * (1 - gather) * 0.35;
+          const bz = p.sz * gather + p.cz * (1 - gather) * 0.35;
+
+          const x1 = bx * cosY - bz * sinY;
+          const z1 = bx * sinY + bz * cosY;
+          const y1 = by * cosX - z1 * sinX;
+          const z2 = by * sinX + z1 * cosX;
+
+          const px = x1 * radius * breathing;
+          const py = y1 * radius * breathing;
+          const pz = z2 * radius * breathing;
+          const perspective = 520 / (520 - pz);
+          points.push({
+            x: sphereCenterX + px * perspective,
+            y: sphereCenterY + py * perspective,
+            depth: pz,
+            size: p.size * (0.75 + perspective * 0.36)
           });
-
-          btn.addEventListener('mouseleave', () => {
-            btn.style.transform = 'translate(0, 0)';
-          });
-
-          btn.addEventListener('click', function (e) {
-            const circle = document.createElement('div');
-            const rect = this.getBoundingClientRect();
-            const d = Math.max(rect.width, rect.height);
-            circle.style.width = `${d}px`;
-            circle.style.height = `${d}px`;
-            circle.style.left = `${e.clientX - rect.left - d / 2}px`;
-            circle.style.top = `${e.clientY - rect.top - d / 2}px`;
-            circle.classList.add('ripple');
-            const ripple = this.querySelector('.ripple');
-            if (ripple) ripple.remove();
-            this.appendChild(circle);
-          });
-        });
-
-        const navPill = document.querySelector('.nav-pill');
-        window.addEventListener('scroll', () => {
-          if (!navPill) return;
-          navPill.classList.toggle('scrolled', window.scrollY > 50);
-        }, { passive: true });
-
-        const manifestoObserver = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            entry.target.classList.toggle('active', entry.isIntersecting);
-          });
-        }, { threshold: 0.5, rootMargin: '-50px' });
-
-        document.querySelectorAll('.reveal-type').forEach(item => manifestoObserver.observe(item));
-
-        function updateStudioTime() {
-          const timeEl = document.getElementById('studio-time');
-          if (!timeEl) return;
-          const timeStr = new Date().toLocaleTimeString('en-US', {
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: true,
-            timeZone: 'Asia/Shanghai'
-          });
-          timeEl.textContent = `Design Studio · ${timeStr} GMT+8`;
         }
 
-        setInterval(updateStudioTime, 1000);
-        updateStudioTime();
-      </script>
+        points.sort((a, b) => a.depth - b.depth);
+
+        for (let i = 0; i < points.length; i += 1) {
+          const p = points[i];
+          const normalizedDepth = (p.depth / radius + 1) / 2;
+          const alpha = 0.12 + normalizedDepth * 0.62;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(30, 37, 72, ${alpha})`;
+          ctx.fill();
+        }
+      }
+
+      function renderFrame(time) {
+        ctx.clearRect(0, 0, width, height);
+        drawBackgroundGlow();
+        drawSphereParticles(time);
+      }
+
+      function tick(time) {
+        renderFrame(time);
+        rafId = requestAnimationFrame(tick);
+      }
+
+      const onPointerMove = (event) => {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = event.clientX - rect.left;
+        mouse.y = event.clientY - rect.top;
+        mouse.active = true;
+      };
+
+      const onPointerLeave = () => {
+        mouse.x = null;
+        mouse.y = null;
+        mouse.active = false;
+      };
+
+      resize();
+      startTime = performance.now();
+      if (prefersReducedMotion) {
+        renderFrame(startTime);
+      } else {
+        rafId = requestAnimationFrame(tick);
+      }
+
+      window.addEventListener('resize', resize, { passive: true });
+      if (hero) {
+        hero.addEventListener('pointermove', onPointerMove);
+        hero.addEventListener('pointerleave', onPointerLeave);
+      }
+
+      window.addEventListener('beforeunload', () => {
+        if (rafId) cancelAnimationFrame(rafId);
+      });
+    }
+
+    initHeroParticles();
+
+    function animateCounter(el) {
+      const target = Number(el.getAttribute('data-target')) || 0;
+      const duration = 2000;
+      const start = performance.now();
+      const tick = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 4);
+        el.textContent = Math.floor(eased * target);
+        if (progress < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        const counter = entry.target.querySelector('.counter');
+        if (counter && !counter.dataset.started) {
+          counter.dataset.started = 'true';
+          animateCounter(counter);
+        }
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.01, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.stagger-item, .reveal-text, .stat-card, .stat-metric')
+      .forEach(el => revealObserver.observe(el));
+
+    document.querySelectorAll('.project-card, .tilt-card, .magnetic-link').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        if (card.classList.contains('magnetic-link')) {
+          const dx = x - centerX;
+          const dy = y - centerY;
+          card.style.transform = `translate(${dx * 0.4}px, ${dy * 0.4}px)`;
+        } else {
+          const rotateX = ((y - centerY) / centerY) * -3;
+          const rotateY = ((x - centerX) / centerX) * 3;
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+        }
+
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = card.classList.contains('magnetic-link')
+          ? 'translate(0, 0)'
+          : 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+      });
+    });
+
+    document.querySelectorAll('.magnetic-btn').forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+      });
+
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'translate(0, 0)';
+      });
+
+      btn.addEventListener('click', function (e) {
+        const circle = document.createElement('div');
+        const rect = this.getBoundingClientRect();
+        const d = Math.max(rect.width, rect.height);
+        circle.style.width = `${d}px`;
+        circle.style.height = `${d}px`;
+        circle.style.left = `${e.clientX - rect.left - d / 2}px`;
+        circle.style.top = `${e.clientY - rect.top - d / 2}px`;
+        circle.classList.add('ripple');
+        const ripple = this.querySelector('.ripple');
+        if (ripple) ripple.remove();
+        this.appendChild(circle);
+      });
+    });
+
+    const navPill = document.querySelector('.nav-pill');
+    window.addEventListener('scroll', () => {
+      if (!navPill) return;
+      navPill.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+
+    const manifestoObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        entry.target.classList.toggle('active', entry.isIntersecting);
+      });
+    }, { threshold: 0.5, rootMargin: '-50px' });
+
+    document.querySelectorAll('.reveal-type').forEach(item => manifestoObserver.observe(item));
+
+    function updateStudioTime() {
+      const timeEl = document.getElementById('studio-time');
+      if (!timeEl) return;
+      const timeStr = new Date().toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+        timeZone: 'Asia/Shanghai'
+      });
+      timeEl.textContent = `Design Studio · ${timeStr} GMT+8`;
+    }
+
+    setInterval(updateStudioTime, 1000);
+    updateStudioTime();
+  </script>
 </body>
 
 </html>
