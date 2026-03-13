@@ -39,6 +39,26 @@
       --radius-full: 999px;
       --container: 1200px;
       --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+      color-scheme: light;
+    }
+
+    :root[data-theme='dark'] {
+      --ink: #f0f4ff;
+      --ivory: #11151d;
+      --muted: #aeb6c6;
+      --glass: rgba(14, 19, 30, 0.7);
+      --glass-border: rgba(233, 239, 252, 0.1);
+      --amber: #cfd7e6;
+      --amber-glow: rgba(148, 174, 219, 0.24);
+      --purple: #1c2330;
+      --sky: #202838;
+
+      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.35);
+      --shadow-lg: 0 24px 72px rgba(0, 0, 0, 0.45);
+      --inner-glow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+      color-scheme: dark;
     }
 
     /* ============================
@@ -63,6 +83,10 @@
       line-height: 1.6;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+    }
+
+    :root[data-theme='dark'] body {
+      background: radial-gradient(circle at 20% 10%, #1b2230 0%, #11151d 46%, #0b0f16 100%);
     }
 
     h1,
@@ -284,6 +308,65 @@
 
     .lang-switch:hover {
       transform: scale(1.05);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .theme-select {
+      background: var(--glass);
+      color: var(--ink);
+      border: 1px solid var(--glass-border);
+      padding: 8px 12px;
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+    }
+
+    :root[data-theme='dark'] .nav-pill.scrolled {
+      background: rgba(10, 15, 24, 0.7);
+      border: 1px solid rgba(227, 236, 252, 0.14);
+      box-shadow: 0 12px 30px -12px rgba(0, 0, 0, 0.4);
+    }
+
+    :root[data-theme='dark'] .nav-item:hover {
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    :root[data-theme='dark'] .glass-card,
+    :root[data-theme='dark'] .stats-quote-card,
+    :root[data-theme='dark'] .stats-visual-card,
+    :root[data-theme='dark'] .stat-card,
+    :root[data-theme='dark'] .cap-card,
+    :root[data-theme='dark'] .project-card {
+      background: rgba(14, 19, 30, 0.72);
+      border-color: rgba(226, 235, 252, 0.12);
+    }
+
+    :root[data-theme='dark'] .hero-subtitle,
+    :root[data-theme='dark'] .stats-subtitle,
+    :root[data-theme='dark'] .metric-label,
+    :root[data-theme='dark'] .stats-quote-text,
+    :root[data-theme='dark'] .manifesto-text,
+    :root[data-theme='dark'] .social-link {
+      color: #b4bece;
+    }
+
+    :root[data-theme='dark'] .stats-title,
+    :root[data-theme='dark'] .stats-quote-text strong,
+    :root[data-theme='dark'] .metric-value,
+    :root[data-theme='dark'] .stats-quote-mark,
+    :root[data-theme='dark'] .serif-line {
+      color: #e8edf8;
+    }
+
+    :root[data-theme='dark'] .footer {
+      background: #0b0f16;
     }
 
     /* Glass Card */
@@ -1043,6 +1126,10 @@
         display: none;
       }
 
+      .theme-select {
+        max-width: 132px;
+      }
+
       .stats-top-grid {
         grid-template-columns: 1fr;
       }
@@ -1284,7 +1371,15 @@
           data-zh="能力">Capabilities</a><a href="#philosophy" class="nav-item" data-en="Philosophy"
           data-zh="理念">Philosophy</a><a href="#projects" class="nav-item" data-en="Work" data-zh="作品">Work</a><a
           href="#stats" class="nav-item" data-en="Clients" data-zh="评价">Clients</a><a href="#contact" class="nav-item"
-          data-en="Contact" data-zh="联系">Contact</a></div><button class="lang-switch" id="lang-btn">EN / 中</button>
+          data-en="Contact" data-zh="联系">Contact</a></div>
+      <div class="nav-actions">
+        <select class="theme-select" id="theme-select" aria-label="Theme Mode">
+          <option value="auto" data-en="Auto" data-zh="跟随系统">Auto</option>
+          <option value="light" data-en="Light" data-zh="白天模式">Light</option>
+          <option value="dark" data-en="Dark" data-zh="夜晚模式">Dark</option>
+        </select>
+        <button class="lang-switch" id="lang-btn">EN / 中</button>
+      </div>
     </nav>
   </div>
   <main class="container">
@@ -1720,7 +1815,17 @@
   </main>
   <script>
     const langBtn = document.getElementById('lang-btn');
+    const themeSelect = document.getElementById('theme-select');
+    const systemDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
     let currentLang = localStorage.getItem('site_lang') || 'en';
+    let currentTheme = localStorage.getItem('site_theme') || 'auto';
+
+    function applyTheme(themeMode) {
+      const isDark = themeMode === 'dark' || (themeMode === 'auto' && systemDarkScheme.matches);
+      document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+      if (themeSelect) themeSelect.value = themeMode;
+      localStorage.setItem('site_theme', themeMode);
+    }
 
     function splitHeroLine(el, baseDelay) {
       if (!el) return;
@@ -1751,6 +1856,19 @@
       localStorage.setItem('site_lang', currentLang);
       initHeroAnimation();
     }
+
+    if (themeSelect) {
+      themeSelect.addEventListener('change', (event) => {
+        currentTheme = event.target.value;
+        applyTheme(currentTheme);
+      });
+    }
+
+    systemDarkScheme.addEventListener('change', () => {
+      if (currentTheme === 'auto') applyTheme('auto');
+    });
+
+    applyTheme(currentTheme);
 
     langBtn.addEventListener('click', () => {
       currentLang = currentLang === 'en' ? 'zh' : 'en';
