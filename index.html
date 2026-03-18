@@ -408,6 +408,215 @@
       background: #0b0f16;
     }
 
+    /* ===================================================
+       Dark Mode — Extended Color Fixes
+       (covers all elements missing dark overrides)
+       =================================================== */
+
+    /* Mesh blobs: replace washed-out light blobs with blue-tinted glows */
+    :root[data-theme='dark'] .blob-1 {
+      background: radial-gradient(circle, rgba(50, 80, 160, 0.5), transparent 70%);
+    }
+    :root[data-theme='dark'] .blob-2 {
+      background: radial-gradient(circle, rgba(35, 60, 120, 0.4), transparent 70%);
+    }
+    :root[data-theme='dark'] .blob-3 {
+      background: radial-gradient(circle, rgba(25, 48, 100, 0.4), transparent 70%);
+    }
+
+    /* Hero aurora — switch to blue-navy tones */
+    :root[data-theme='dark'] .aurora-bg {
+      background: radial-gradient(circle at 50% 50%, rgba(40, 70, 150, 0.28), transparent 42%),
+        radial-gradient(circle at 80% 20%, rgba(25, 55, 110, 0.22), transparent 30%),
+        radial-gradient(circle at 20% 80%, rgba(18, 42, 90, 0.22), transparent 30%);
+      opacity: 0.65;
+    }
+
+    /* Hero text */
+    :root[data-theme='dark'] .sans-line {
+      color: #dce8f8;
+    }
+
+    /* Nav */
+    :root[data-theme='dark'] .nav-item {
+      color: #b8c6dc;
+    }
+    :root[data-theme='dark'] .nav-logo {
+      background: rgba(170, 195, 255, 0.1);
+      border: 1.5px solid rgba(170, 195, 255, 0.14);
+    }
+
+    /* Capability cards — body text was nearly invisible */
+    :root[data-theme='dark'] .cap-card p {
+      color: #8aa0bc;
+    }
+    :root[data-theme='dark'] .cap-link-hint {
+      color: #6585a5;
+    }
+    :root[data-theme='dark'] .cap-link-arrow {
+      background: rgba(180, 210, 255, 0.06);
+      border-color: rgba(180, 210, 255, 0.12);
+      color: #8aa0bc;
+    }
+
+    /* Cap media: overlay to darken the light inline gradient backgrounds */
+    :root[data-theme='dark'] .cap-media::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(8, 12, 26, 0.58);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Philosophy — highlight-serif was #0b1220, completely invisible in dark */
+    :root[data-theme='dark'] .highlight-serif {
+      color: #dce8f8;
+    }
+    :root[data-theme='dark'] .highlight-sans {
+      color: #7890ac;
+    }
+    :root[data-theme='dark'] .manifesto-deco {
+      color: rgba(130, 165, 220, 0.06);
+    }
+
+    /* Stats metrics — borders were rgba(18,21,27) which vanish on dark bg */
+    :root[data-theme='dark'] .stats-metrics {
+      border-top-color: rgba(200, 220, 255, 0.1);
+      border-bottom-color: rgba(200, 220, 255, 0.1);
+    }
+    :root[data-theme='dark'] .stat-metric + .stat-metric {
+      border-left-color: rgba(200, 220, 255, 0.1);
+    }
+    :root[data-theme='dark'] .metric-suffix {
+      color: #6585a5;
+    }
+
+    /* Testimonial cards — hardcoded white bg */
+    :root[data-theme='dark'] .testimonial-card {
+      background: rgba(12, 17, 32, 0.92);
+      border-color: rgba(200, 220, 255, 0.1);
+      color: #8aa0bc;
+    }
+
+    /* Stats quote card */
+    :root[data-theme='dark'] .stats-quote-card {
+      background: rgba(10, 15, 28, 0.88);
+    }
+
+    /* Mobile metric dividers */
+    @media (max-width: 768px) {
+      :root[data-theme='dark'] .stat-metric + .stat-metric {
+        border-top-color: rgba(200, 220, 255, 0.1);
+      }
+    }
+
+    /* ===================================================
+       Design Improvements — All Themes
+       =================================================== */
+
+    /* Hero availability badge */
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px 6px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(18, 21, 27, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.1s forwards;
+      width: fit-content;
+    }
+
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #4ade80;
+      box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.2);
+      flex-shrink: 0;
+    }
+
+    :root[data-theme='dark'] .hero-badge {
+      background: rgba(14, 20, 36, 0.72);
+      border-color: rgba(180, 210, 255, 0.12);
+      color: #7a96b4;
+    }
+
+    /* Refined cap-card body text */
+    .cap-card p {
+      font-size: 15px;
+      line-height: 1.62;
+    }
+
+    /* Sharper section label chips */
+    .section-label-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(18, 21, 27, 0.05);
+      border: 1px solid rgba(18, 21, 27, 0.08);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    :root[data-theme='dark'] .section-label-chip {
+      background: rgba(180, 210, 255, 0.06);
+      border-color: rgba(180, 210, 255, 0.1);
+    }
+
+    /* Smoother glass card hover */
+    .glass-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 56px rgba(18, 21, 27, 0.1), var(--inner-glow);
+    }
+
+    /* Better visible hero serif line */
+    .serif-line {
+      color: #4a5260;
+      letter-spacing: -1.5px;
+    }
+
+    /* Stat metric: richer number color in dark */
+    :root[data-theme='dark'] .metric-value {
+      color: #e0eaf8;
+    }
+
+    /* Project overlay: show subtle title hint at rest */
+    .project-overlay-tag {
+      position: absolute;
+      bottom: 20px;
+      left: 24px;
+      right: 24px;
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: opacity 0.3s;
+    }
+    .project-card:hover .project-overlay-tag {
+      opacity: 0;
+    }
+
+    /* Testimonial card author name in dark */
+    :root[data-theme='dark'] .testimonial-card [style*="font-weight: 600"] {
+      color: #b4c8e0;
+    }
+
     /* Glass Card */
     .glass-card {
       background: rgba(255, 255, 255, 0.68);
@@ -815,6 +1024,7 @@
     .cap-media {
       border-radius: 20px;
       overflow: hidden;
+      position: relative;
       border: 1px solid rgba(18, 21, 27, 0.08);
       background: #e8ebf0;
       min-height: 154px;
@@ -1427,6 +1637,10 @@
       <div class="aurora-bg"></div>
       <canvas class="hero-particles" id="hero-particles" aria-hidden="true"></canvas>
       <div class="hero-content">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          <span data-en="Available for new projects" data-zh="接受新项目委托">Available for new projects</span>
+        </div>
         <h1 class="hero-title"><span class="serif-line" id="hero-l1" data-en="Designing"
             data-zh="设计">Designing</span><span class="sans-line" id="hero-l2" data-en="Intelligent Experiences"
             data-zh="智能体验">Intelligent Experiences</span></h1>
@@ -1441,8 +1655,7 @@
     </section>
     <section id="capabilities" class="section-padding">
       <div class="section-header stagger-item" style="margin-bottom: 60px;">
-        <h4 style="text-transform: uppercase; letter-spacing: 2px; color: var(--amber); margin-bottom: 16px;"
-          data-en="Capabilities" data-zh="核心能力">Capabilities</h4>
+        <div class="section-label-chip" data-en="Capabilities" data-zh="核心能力">Capabilities</div>
         <h2 style="font-size: 48px;" data-en="Full-stack Design" data-zh="全栈设计能力">Full-stack Design</h2>
       </div>
       <div class="bento-grid">
@@ -1698,6 +1911,7 @@
     </section>
     <section id="projects" class="section-padding">
       <div class="section-header stagger-item" style="margin-bottom: 40px;">
+        <div class="section-label-chip" data-en="Work" data-zh="精选案例">Work</div>
         <h2 style="font-size: 48px;" data-en="Selected Work" data-zh="精选案例">Selected Work</h2>
       </div>
       <div class="bento-grid">
@@ -1979,6 +2193,7 @@
       }
 
       function drawBackgroundGlow() {
+        const darkMode = document.documentElement.getAttribute('data-theme') === 'dark';
         const g1 = ctx.createRadialGradient(
           sphereCenterX,
           sphereCenterY + height * 0.12,
@@ -1987,9 +2202,15 @@
           sphereCenterY + height * 0.12,
           width * 0.42
         );
-        g1.addColorStop(0, 'rgba(18, 26, 56, 0.09)');
-        g1.addColorStop(0.55, 'rgba(18, 26, 56, 0.05)');
-        g1.addColorStop(1, 'rgba(18, 26, 56, 0)');
+        if (darkMode) {
+          g1.addColorStop(0, 'rgba(60, 100, 200, 0.1)');
+          g1.addColorStop(0.55, 'rgba(40, 80, 160, 0.05)');
+          g1.addColorStop(1, 'rgba(20, 60, 130, 0)');
+        } else {
+          g1.addColorStop(0, 'rgba(18, 26, 56, 0.09)');
+          g1.addColorStop(0.55, 'rgba(18, 26, 56, 0.05)');
+          g1.addColorStop(1, 'rgba(18, 26, 56, 0)');
+        }
         ctx.fillStyle = g1;
         ctx.fillRect(0, 0, width, height);
       }
@@ -2041,7 +2262,10 @@
           const alpha = 0.12 + normalizedDepth * 0.62;
           ctx.beginPath();
           ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(30, 37, 72, ${alpha})`;
+          const darkMode = document.documentElement.getAttribute('data-theme') === 'dark';
+          ctx.fillStyle = darkMode
+            ? `rgba(148, 185, 240, ${alpha * 0.45})`
+            : `rgba(30, 37, 72, ${alpha})`;
           ctx.fill();
         }
       }
