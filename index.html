@@ -391,9 +391,13 @@
     :root[data-theme='dark'] .stats-subtitle,
     :root[data-theme='dark'] .metric-label,
     :root[data-theme='dark'] .stats-quote-text,
-    :root[data-theme='dark'] .manifesto-text,
     :root[data-theme='dark'] .social-link {
       color: #b4bece;
+    }
+
+    /* Manifesto text: muted base so emphasis words pop */
+    :root[data-theme='dark'] .manifesto-text {
+      color: #6b82a0;
     }
 
     :root[data-theme='dark'] .stats-title,
@@ -406,6 +410,11 @@
 
     :root[data-theme='dark'] .footer {
       background: #0b0f16;
+    }
+
+    /* CRITICAL: page footer element uses class .big-footer, not .footer */
+    :root[data-theme='dark'] .big-footer {
+      background: #080c14;
     }
 
     /* ===================================================
@@ -444,6 +453,17 @@
     :root[data-theme='dark'] .nav-logo {
       background: rgba(170, 195, 255, 0.1);
       border: 1.5px solid rgba(170, 195, 255, 0.14);
+      color: #c8daf0;
+    }
+
+    /* lang-switch: --ink becomes #f0f4ff in dark → near-white bg with white text */
+    :root[data-theme='dark'] .lang-switch {
+      background: rgba(180, 210, 255, 0.1);
+      color: #c2d4ee;
+      border: 1px solid rgba(180, 210, 255, 0.15);
+    }
+    :root[data-theme='dark'] .lang-switch:hover {
+      background: rgba(180, 210, 255, 0.18);
     }
 
     /* Capability cards — body text was nearly invisible */
@@ -469,12 +489,15 @@
       z-index: 1;
     }
 
-    /* Philosophy — highlight-serif was #0b1220, completely invisible in dark */
+    /* Philosophy manifesto hierarchy (dark mode):
+       highlight-serif = strong emphasis (brighter than base)
+       manifesto-text  = base (muted, set separately above)
+       highlight-sans  = secondary/echo (same muted tone as base, mirrors light mode) */
     :root[data-theme='dark'] .highlight-serif {
-      color: #dce8f8;
+      color: #c2d6f0;
     }
     :root[data-theme='dark'] .highlight-sans {
-      color: #7890ac;
+      color: #6b82a0;
     }
     :root[data-theme='dark'] .manifesto-deco {
       color: rgba(130, 165, 220, 0.06);
