@@ -316,16 +316,36 @@
       gap: 8px;
     }
 
-    .theme-select {
+    .theme-switcher {
+      display: flex;
+      align-items: center;
       background: var(--glass);
-      color: var(--ink);
       border: 1px solid var(--glass-border);
-      padding: 8px 12px;
       border-radius: var(--radius-full);
-      font-size: 13px;
-      font-weight: 600;
+      padding: 3px;
+    }
+
+    .theme-btn {
+      background: none;
+      border: none;
+      padding: 5px 7px;
+      border-radius: var(--radius-full);
       cursor: pointer;
-      outline: none;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      transition: background 0.18s, color 0.18s;
+    }
+
+    .theme-btn:hover {
+      color: var(--ink);
+    }
+
+    .theme-btn.active {
+      background: var(--ink);
+      color: var(--ivory);
     }
 
     :root[data-theme='dark'] .nav-pill.scrolled {
@@ -1126,8 +1146,8 @@
         display: none;
       }
 
-      .theme-select {
-        max-width: 132px;
+      .theme-switcher {
+        flex-shrink: 0;
       }
 
       .stats-top-grid {
@@ -1373,11 +1393,17 @@
           href="#stats" class="nav-item" data-en="Clients" data-zh="评价">Clients</a><a href="#contact" class="nav-item"
           data-en="Contact" data-zh="联系">Contact</a></div>
       <div class="nav-actions">
-        <select class="theme-select" id="theme-select" aria-label="Theme Mode">
-          <option value="auto" data-en="Auto" data-zh="跟随系统">Auto</option>
-          <option value="light" data-en="Light" data-zh="白天模式">Light</option>
-          <option value="dark" data-en="Dark" data-zh="夜晚模式">Dark</option>
-        </select>
+        <div class="theme-switcher" id="theme-switcher" role="group" aria-label="Theme Mode">
+          <button class="theme-btn" data-theme-val="auto" title="System">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </button>
+          <button class="theme-btn" data-theme-val="light" title="Light">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg>
+          </button>
+          <button class="theme-btn" data-theme-val="dark" title="Dark">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+        </div>
         <button class="lang-switch" id="lang-btn">EN / 中</button>
       </div>
     </nav>
@@ -1815,7 +1841,7 @@
   </main>
   <script>
     const langBtn = document.getElementById('lang-btn');
-    const themeSelect = document.getElementById('theme-select');
+    const themeSwitcher = document.getElementById('theme-switcher');
     const systemDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
     let currentLang = localStorage.getItem('site_lang') || 'en';
     let currentTheme = localStorage.getItem('site_theme') || 'auto';
@@ -1823,7 +1849,11 @@
     function applyTheme(themeMode) {
       const isDark = themeMode === 'dark' || (themeMode === 'auto' && systemDarkScheme.matches);
       document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
-      if (themeSelect) themeSelect.value = themeMode;
+      if (themeSwitcher) {
+        themeSwitcher.querySelectorAll('.theme-btn').forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.themeVal === themeMode);
+        });
+      }
       localStorage.setItem('site_theme', themeMode);
     }
 
@@ -1857,10 +1887,13 @@
       initHeroAnimation();
     }
 
-    if (themeSelect) {
-      themeSelect.addEventListener('change', (event) => {
-        currentTheme = event.target.value;
-        applyTheme(currentTheme);
+    if (themeSwitcher) {
+      themeSwitcher.addEventListener('click', (event) => {
+        const btn = event.target.closest('.theme-btn');
+        if (btn) {
+          currentTheme = btn.dataset.themeVal;
+          applyTheme(currentTheme);
+        }
       });
     }
 
