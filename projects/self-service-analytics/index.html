@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Self-Service Analytics Tool｜自助分析工具</title>
+    <meta
+      name="description"
+      content="Self-Service Analytics Tool 自助分析工具案例详情，展示数据选择、字段配置、图表生成、筛选分析、看板编排与发布管理的完整产品体验设计。"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="../../components/site-nav.css" />
+    <link rel="stylesheet" href="../../components/site-footer.css" />
+    <script src="../../components/site-nav.js" defer></script>
+    <script src="../../components/site-footer.js" defer></script>
+  </head>
+  <body>
+    <div class="page-grid" aria-hidden="true"></div>
+
+    <site-nav data-root="../../" data-home="../../index.html"></site-nav>
+
+    <main>
+      <section class="hero-section">
+        <div class="container hero-layout">
+          <div class="hero-copy reveal">
+            <div class="detail-nav" aria-label="页面导航">
+              <a class="back-link" href="../../index.html#projects">返回</a>
+              <span class="breadcrumb-label">作品 / Self-Service Analytics Tool</span>
+            </div>
+            <h1>Self-Service Analytics</h1>
+            <p class="hero-subtitle">自助分析工具</p>
+            <p class="hero-summary">
+              面向业务用户与数据分析人员的自助分析工具，支持用户基于平台内的数据资产完成数据选择、字段配置、图表生成、筛选分析、看板编排与发布管理。
+            </p>
+            <p class="hero-summary">
+              项目目标是降低报表制作和数据分析门槛，让业务用户不依赖研发或专业数据人员，也能快速完成从数据选择到结果呈现的完整链路。
+            </p>
+
+            <div class="hero-metrics" aria-label="核心数据">
+              <div>
+                <strong>6</strong>
+                <span>个核心分析环节</span>
+              </div>
+              <div>
+                <strong>2</strong>
+                <span>类核心用户</span>
+              </div>
+              <div>
+                <strong>全链路</strong>
+                <span>报表制作、指标分析、看板搭建</span>
+              </div>
+            </div>
+          </div>
+
+          <figure class="hero-image-card reveal">
+            <img
+              src="./assets/self-service-analytics-hero.png"
+              alt="自助分析工具工作台概览，展示数据资产、图表配置、看板画布与发布入口"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section problem-section" id="project-background">
+        <div class="container problem-layout">
+          <div class="section-copy problem-intro reveal">
+            <p class="section-kicker">01 项目背景</p>
+            <h2>业务用户需要数据，但传统分析链路依赖太重</h2>
+            <p>
+              在云内部业务场景中，很多业务团队需要频繁查看指标、制作报表、搭建看板和分析数据变化。但传统分析流程通常依赖专业数据人员或研发支持，业务用户很难独立完成完整的数据分析任务。
+            </p>
+            <p>
+              自助分析工具要解决的不是“生成图表”这一单点问题，而是让用户知道有哪些数据可用、字段代表什么、是否有权限使用、如何配置指标和维度、如何组织看板，以及分析结果如何被保存、发布和复用。
+            </p>
+            <p class="callout-text">核心问题：如何让业务用户用更低成本完成数据选择、图表配置、看板搭建和结果发布？</p>
+          </div>
+
+          <div class="problem-list reveal">
+            <div><strong>数据选择成本高</strong><span>用户不知道应该选择哪个数据源，也不清楚字段含义、适用场景、权限状态和使用边界。</span></div>
+            <div><strong>图表配置门槛高</strong><span>指标、维度、字段映射、筛选条件和图表类型之间关系复杂，业务用户容易配置错误。</span></div>
+            <div><strong>看板搭建流程割裂</strong><span>从选择数据、生成图表、调整布局到发布看板，中间涉及多个步骤，缺少清晰路径。</span></div>
+            <div><strong>分析结果难以复用</strong><span>报表和看板如果缺少统一管理、发布和权限机制，很难形成持续复用的数据消费能力。</span></div>
+          </div>
+
+          <figure class="problem-visual problem-image reveal" aria-label="自助分析从传统依赖流程转为用户自助完成流程的问题场景图">
+            <img
+              src="./assets/self-service-analytics-problem-scenario.png"
+              alt="传统分析流程与自助分析流程的对比示意图"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section muted-section">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="section-kicker">02 用户角色与关键任务</p>
+            <h2>围绕不同用数成熟度，拆解分析链路中的关键任务</h2>
+          </div>
+          <div class="goal-grid">
+            <article class="text-card reveal">
+              <span>01</span>
+              <h3>业务用户</h3>
+              <p>快速找到可用数据，完成基础报表、指标分析和经营看板搭建，并通过筛选条件验证业务问题。</p>
+            </article>
+            <article class="text-card reveal">
+              <span>02</span>
+              <h3>数据分析人员</h3>
+              <p>更灵活地配置字段、指标、维度、图表类型和筛选条件，沉淀标准分析模板，减少重复支持成本。</p>
+            </article>
+            <article class="text-card reveal">
+              <span>03</span>
+              <h3>管理者</h3>
+              <p>通过稳定的看板和报表获得清晰判断，关注关键指标变化、异常趋势和团队可复用的数据入口。</p>
+            </article>
+            <article class="text-card reveal">
+              <span>04</span>
+              <h3>关键任务</h3>
+              <p>从数据选择、字段配置、图表生成、筛选分析、看板编排到发布管理，形成完整任务闭环。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section challenge-section">
+        <div class="container split-layout reverse">
+          <figure class="challenge-image reveal" aria-label="自助分析工具设计挑战四象限示意图">
+            <img
+              src="./assets/self-service-analytics-challenge-overview.png"
+              alt="自助分析工具设计挑战四象限示意图"
+            />
+          </figure>
+
+          <div class="section-copy reveal">
+            <p class="section-kicker">03 设计挑战</p>
+            <h2>把专业分析能力转译成业务用户可完成的配置路径</h2>
+            <p>
+              自助分析的难点不在于把所有配置项展示出来，而在于让不同角色用合适的复杂度完成任务：业务用户需要默认路径和清晰反馈，分析人员需要灵活配置，管理者需要可信、可复用的结果。
+            </p>
+            <ul class="dense-list">
+              <li>将数据源、字段、指标、维度、筛选器等专业概念转译为业务用户能理解的界面语言。</li>
+              <li>在自由度与易用性之间取得平衡，让常见任务有默认路径，专业用户仍可进入高级配置。</li>
+              <li>建立数据源、图表、组件、看板之间的关系，支持布局调整、筛选联动和发布管理。</li>
+              <li>让字段、配置、筛选和发布状态都可验证，帮助用户快速定位错误配置项。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section muted-section ia-section">
+        <div class="container split-layout">
+          <div class="section-copy reveal">
+            <p class="section-kicker">04 信息架构设计</p>
+            <h2>围绕数据选择、图表配置、看板编排、预览发布展开</h2>
+            <p>
+              Self-Service Analytics Tool 的信息架构不是单纯“画图表”，而是从数据选择到分析结果发布的完整链路。用户需要先找到可信数据，再理解字段和口径，随后配置指标、维度、图表和筛选条件，最后将结果组织为可阅读、可复用的看板。
+            </p>
+            <div class="ia-list">
+              <span>数据源选择</span>
+              <span>字段配置</span>
+              <span>图表生成</span>
+              <span>筛选分析</span>
+              <span>看板编排</span>
+              <span>发布管理</span>
+              <span>权限状态</span>
+              <span>更新记录</span>
+            </div>
+            <p class="callout-text">对象模型：Data Source + Field + Metric + Dimension + Chart + Filter + Dashboard + Publish</p>
+          </div>
+
+          <figure class="ia-visual reveal">
+            <img
+              src="./assets/self-service-analytics-information-architecture.png"
+              alt="自助分析工具信息架构与对象模型图"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section muted-section workflow-section">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="section-kicker">05 核心方案 1｜数据源与字段选择</p>
+            <h2>让用户理解哪些数据可用、字段代表什么、是否有权限使用</h2>
+          </div>
+          <figure class="workflow-image reveal">
+            <img
+              src="./assets/self-service-analytics-data-field-selection.png"
+              alt="数据源与字段选择界面，展示数据源列表、字段说明、字段示例和权限状态"
+            />
+          </figure>
+          <div class="support-grid">
+            <article class="text-card reveal">
+              <h3>数据选择先解释，再配置</h3>
+              <p>数据选择是自助分析的起点。页面需要同时呈现数据源分类、字段类型、字段说明、字段示例、可用状态和权限状态，帮助用户判断数据是否适合当前问题。</p>
+            </article>
+            <article class="text-card reveal">
+              <h3>降低选错字段的返工成本</h3>
+              <p>通过指标口径、维度说明、字段可用性和示例值，让业务用户在生成图表前先理解字段含义，减少因选错字段导致的配置失败。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section config-section">
+        <div class="container split-layout">
+          <div class="section-copy reveal">
+            <p class="section-kicker">06 核心方案 2｜图表配置与筛选联动</p>
+            <h2>把复杂配置拆成用户能理解、能验证的分组</h2>
+            <p>
+              图表配置是用户从数据进入可视化结果的关键步骤。配置面板需要让用户知道字段放在哪里、图表为什么这样变化、配置是否有效，并通过实时预览减少盲目试错。
+            </p>
+            <p>
+              筛选器决定用户如何进一步分析数据。全局筛选器、组件筛选器、时间范围、条件过滤、筛选联动和结果反馈需要保持可解释，避免因筛选范围不清造成分析误解。
+            </p>
+            <div class="config-type-grid">
+              <span>图表类型选择、指标配置、维度配置</span>
+              <span>字段映射、排序规则、样式配置</span>
+              <span>全局筛选器、组件筛选器、时间范围</span>
+              <span>筛选联动、作用范围、结果反馈</span>
+              <span>实时预览、配置校验、异常定位</span>
+            </div>
+          </div>
+
+          <figure class="config-product reveal" aria-label="自助分析工具图表配置面板界面图">
+            <img
+              src="./assets/self-service-analytics-chart-config-panel.png"
+              alt="图表配置面板，展示图表类型、指标维度、字段映射、筛选条件和实时预览"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section muted-section debug-section">
+        <div class="container split-layout reverse">
+          <figure class="debug-product-image reveal" aria-label="自助分析工具看板编排与发布管理界面图">
+            <img
+              src="./assets/self-service-analytics-dashboard-publish.png"
+              alt="看板编排与发布管理界面，展示组件库、看板画布、筛选器、权限设置和发布状态"
+            />
+          </figure>
+
+          <div class="section-copy reveal">
+            <p class="section-kicker">07 核心方案 3｜看板编排与发布管理</p>
+            <h2>让分析结果从个人配置变成团队可复用内容</h2>
+            <p>
+              看板编排用于将多个图表组合成可阅读、可复用的分析页面，并保持布局、筛选和发布状态清晰。发布管理则让分析结果从个人草稿进入团队消费场景。
+            </p>
+            <ul class="dense-list">
+              <li>通过组件库、字段入口和画布布局，让用户从单个图表自然过渡到完整看板。</li>
+              <li>在看板层支持全局筛选器、组件筛选器和筛选联动，明确每个条件影响哪些图表。</li>
+              <li>区分草稿、预览、已发布和更新记录，让用户知道内容是否已经对他人可见。</li>
+              <li>在发布前确认权限设置、可见范围和影响对象，支持团队持续复用分析结果。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="container split-layout">
+          <div class="section-copy reveal">
+            <p class="section-kicker">08 关键设计决策</p>
+            <h2>用默认路径承接大多数任务，用高级能力覆盖复杂场景</h2>
+            <p>
+              关键决策是把自助分析拆成稳定路径，而不是把所有专业能力平铺给用户。常见任务用默认配置快速生成结果，高级配置则在需要时展开，避免普通用户被复杂度打断。
+            </p>
+            <div class="error-taxonomy">
+              <span>默认模板优先</span>
+              <span>字段解释前置</span>
+              <span>配置分组稳定</span>
+              <span>实时预览反馈</span>
+              <span>筛选范围可见</span>
+              <span>错误定位到项</span>
+              <span>发布状态明确</span>
+              <span>团队权限可控</span>
+            </div>
+          </div>
+
+          <figure class="diagram-card error-visual reveal" aria-label="自助分析工具关键设计决策图">
+            <img
+              src="./assets/self-service-analytics-design-decisions.png"
+              alt="关键设计决策图，展示默认路径、字段解释、配置反馈、筛选范围和发布控制"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section outcome-section">
+        <div class="container outcome-layout">
+          <figure class="outcome-visual reveal" aria-label="自助分析工具项目成果总结图">
+            <img
+              src="./assets/self-service-analytics-outcome-summary.png"
+              alt="项目成果总结图，展示 6 个核心环节、2 类核心用户、完整链路和可复用设计模式"
+            />
+          </figure>
+
+          <div class="section-copy outcome-copy reveal">
+            <p class="section-kicker outcome-kicker"><span aria-hidden="true"></span>09 项目价值与成果</p>
+            <h2>让数据从平台资产<span class="outcome-title-tail">转化为<em>业务决策能力</em></span></h2>
+            <p>
+              对用户，产品降低了报表制作和看板搭建门槛，减少对研发或专业数据人员的依赖；对业务，提升了数据资产的使用效率，支撑业务分析、指标监控和经营看板场景；对平台，沉淀了字段配置、图表配置、筛选器、看板布局和发布管理等通用设计模式。
+            </p>
+            <ul class="outcome-value-list">
+              <li><span class="value-mark mark-layers" aria-hidden="true"></span>覆盖数据选择、字段配置、图表生成、筛选分析、看板编排、发布管理等 6 个核心环节。</li>
+              <li><span class="value-mark mark-link" aria-hidden="true"></span>支撑业务用户与数据分析人员完成报表制作、指标分析和可视化看板搭建。</li>
+              <li><span class="value-mark mark-code" aria-hidden="true"></span>将专业数据分析流程转化为清晰的配置式产品体验，降低理解和试错成本。</li>
+              <li><span class="value-mark mark-trend" aria-hidden="true"></span>让分析结果更容易保存、发布、复用，并为后续复杂分析能力扩展提供基础框架。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <site-footer></site-footer>
+
+    <script>
+      (() => {
+        const revealItems = document.querySelectorAll(".reveal");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12 }
+        );
+
+        revealItems.forEach((item) => observer.observe(item));
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Platform｜云内部数据管理与消费一站式平台</title>
+    <meta
+      name="description"
+      content="Data Platform 云内部数据管理与消费一站式平台案例详情，展示数据资产管理、数据市场、数据服务、权限状态与消费入口的完整体验设计。"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="../../components/site-nav.css" />
+    <link rel="stylesheet" href="../../components/site-footer.css" />
+    <script src="../../components/site-nav.js" defer></script>
+    <script src="../../components/site-footer.js" defer></script>
+  </head>
+  <body>
+    <div class="page-grid" aria-hidden="true"></div>
+
+    <site-nav data-root="../../" data-home="../../index.html"></site-nav>
+
+    <main>
+      <section class="hero-section">
+        <div class="container hero-layout">
+          <div class="hero-copy reveal">
+            <div class="detail-nav" aria-label="页面导航">
+              <a class="back-link" href="../../index.html#projects">返回</a>
+              <span class="breadcrumb-label">作品 / Data Platform</span>
+            </div>
+            <h1>Data Platform</h1>
+            <p class="hero-subtitle">云内部数据管理与消费一站式平台</p>
+            <p class="hero-summary">
+              一个面向云内部业务场景的数据管理与数据消费平台，将数据资产、数据市场、数据服务、权限状态、消费入口和平台管理组织成统一体验，帮助内部团队完成数据发现、理解、申请、服务使用和业务消费。
+            </p>
+
+            <div class="hero-metrics" aria-label="核心数据">
+              <div>
+                <strong>6</strong>
+                <span>类核心平台模块</span>
+              </div>
+              <div>
+                <strong>4</strong>
+                <span>类关键用户角色</span>
+              </div>
+              <div>
+                <strong>全链路</strong>
+                <span>管理、发现、申请、服务到消费</span>
+              </div>
+            </div>
+          </div>
+
+          <figure class="hero-image-card image-frame reveal" data-file="data-platform-hero.png">
+            <img
+              src="./assets/data-platform-hero.png"
+              alt="Data Platform 平台工作台总览界面，展示数据资产管理、数据市场、数据服务、权限状态和消费入口"
+            />
+            <div class="image-placeholder" aria-hidden="true">
+              <span>data-platform-hero.png</span>
+              <strong>平台工作台总览图</strong>
+            </div>
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section problem-section" id="project-background">
+        <div class="container problem-layout">
+          <div class="section-copy problem-intro reveal">
+            <p class="section-kicker">01 项目背景</p>
+            <h2>把分散的数据能力，收敛成一个可进入、可理解、可消费的平台</h2>
+            <p>
+              在云内部业务场景中，数据分布在不同系统、团队和流程中。用户需要查找数据、理解字段、确认权限、申请服务并进入业务消费，但相关能力常常分散在多个入口里。
+            </p>
+            <p>
+              不同角色关注点也不同：数据管理人员关注资产、字段、状态、权限和负责人；业务用户关注能否快速找到可用数据并完成申请；数据运营人员关注上架、标签、推荐和复用；平台管理人员关注用户、角色、流程和规则配置。
+            </p>
+            <p class="callout-text">核心问题：如何将分散的数据管理、数据服务与数据消费能力，整合成一套清晰、高效、可扩展的一站式平台体验？</p>
+          </div>
+
+          <figure class="problem-visual image-frame reveal" data-file="data-platform-problem-scenario.png">
+            <img
+              src="./assets/data-platform-problem-scenario.png"
+              alt="Data Platform 问题场景图，展示分散的数据资产、数据市场、数据服务、权限和状态如何整合到统一平台"
+            />
+            <div class="image-placeholder" aria-hidden="true">
+              <span>data-platform-problem-scenario.png</span>
+              <strong>问题场景图</strong>
+            </div>
+          </figure>
+
+          <div class="problem-list reveal">
+            <div><strong>入口分散</strong><span>数据资产、服务、权限申请和消费场景分布在不同系统，用户需要反复切换。</span></div>
+            <div><strong>资产理解成本高</strong><span>字段、来源、状态、适用场景和负责人信息不集中，业务用户难以判断数据是否可用。</span></div>
+            <div><strong>权限状态不透明</strong><span>用户不清楚当前对象是否有权限、审批到了哪一步、下一步应该做什么。</span></div>
+            <div><strong>管理与消费割裂</strong><span>平台不能只做后台管理，还要连接真实业务消费路径，帮助数据被持续复用。</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section muted-section">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="section-kicker">02 用户角色与关键任务</p>
+            <h2>围绕同一套数据对象，承接管理、发现、服务和消费任务</h2>
+          </div>
+          <div class="goal-grid">
+            <article class="text-card reveal">
+              <span>业务用户</span>
+              <h3>找到并使用数据</h3>
+              <p>搜索数据资产，理解字段和适用场景，确认权限状态，发起申请，并进入看板、API、下载等消费入口。</p>
+            </article>
+            <article class="text-card reveal">
+              <span>数据管理人员</span>
+              <h3>维护数据资产</h3>
+              <p>管理资产分类、字段说明、数据来源、状态、负责人、更新时间、权限入口和关联服务。</p>
+            </article>
+            <article class="text-card reveal">
+              <span>数据运营人员</span>
+              <h3>提升发现与复用</h3>
+              <p>维护数据上架、场景标签、市场推荐、热门资产和复用路径，让优质数据更容易被找到。</p>
+            </article>
+            <article class="text-card reveal">
+              <span>平台管理人员</span>
+              <h3>配置规则与流程</h3>
+              <p>管理用户、角色、权限规则、审批流程、平台配置和异常状态，保证平台长期可扩展。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section challenge-section">
+        <div class="container split-layout reverse">
+          <figure class="challenge-image image-frame reveal" data-file="data-platform-challenge-overview.png">
+            <img
+              src="./assets/data-platform-challenge-overview.png"
+              alt="Data Platform 设计挑战四象限图，展示模块边界、资产理解、权限状态和消费链路四类复杂度"
+            />
+            <div class="image-placeholder" aria-hidden="true">
+              <span>data-platform-challenge-overview.png</span>
+              <strong>设计挑战四象限图</strong>
+            </div>
+          </figure>
+
+          <div class="section-copy reveal">
+            <p class="section-kicker">03 设计挑战</p>
+            <h2>既要管理复杂数据对象，也要让业务用户顺畅消费数据</h2>
+            <p>
+              Data Platform 的难点不是把所有数据能力放进一个菜单，而是为不同角色建立清晰的对象关系和任务路径。用户既要理解资产，也要判断权限、申请服务、进入消费场景。
+            </p>
+            <ul class="dense-list">
+              <li>明确数据资产管理、数据市场、数据服务、权限状态、数据消费入口和平台管理的模块边界。</li>
+              <li>把字段、来源、状态、权限、负责人、更新时间和适用场景组织成可理解的资产详情。</li>
+              <li>统一数据、服务、申请和消费入口的状态反馈，让用户知道当前是否有权限、是否可申请、下一步做什么。</li>
+              <li>打通数据发现、理解、申请、服务和消费路径，避免平台停留在后台管理。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section muted-section ia-section">
+        <div class="container split-layout">
+          <div class="section-copy reveal">
+            <p class="section-kicker">04 信息架构设计</p>
+            <h2>围绕资产管理、数据发现、数据服务、权限状态和平台管理展开</h2>
+            <p>
+              信息架构围绕“资产管理、数据发现、数据服务、权限状态、平台管理”展开。核心价值是让平台从功能集合变成可理解的数据对象系统，用户可以围绕对象完成管理、发现、申请、服务和消费。
+            </p>
+            <p class="formula">
+              Data Platform = Data Asset + Data Market + Data Service + Data Consumption + Permission + Platform Management
+            </p>
+            <div class="ia-list">
+              <span>数据资产管理</span>
+              <span>数据市场</span>
+              <span>数据服务</span>
+              <span>数据消费入口</span>
+              <span>权限与状态管理</span>
+              <span>平台管理</span>
+              <span>数据进入平台</span>
+              <span>数据发现</span>
+              <span>权限申请</span>
+              <span>服务使用</span>
+              <span>业务消费</span>
+            </div>
+          </div>
+
+          <figure class="ia-visual image-frame reveal" data-file="data-platform-information-architecture.png">
+            <img
+              src="./assets/data-platform-information-architecture.png"
+              alt="Data Platform 信息架构图，展示数据资产管理、数据市场、数据服务、消费入口、权限状态和平台管理的关系"
+            />
+            <div class="image-placeholder" aria-hidden="true">
+              <span>data-platform-information-architecture.png</span>
+              <strong>信息架构图</strong>
+            </div>
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section muted-section workflow-section">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="section-kicker">05 核心方案 1：数据资产管理</p>
+            <h2>把数据资产从“表格资源”转化为可理解的产品对象</h2>
+          </div>
+          <figure class="workflow-image image-frame reveal" data-file="data-platform-asset-management.png">
+            <img
+              src="./assets/data-platform-asset-management.png"
+              alt="Data Platform 数据资产管理界面，展示资产列表、分类筛选、资产详情、字段说明、数据来源、状态和权限入口"
+            />
+            <div class="image-placeholder" aria-hidden="true">
+              <span>data-platform-asset-management.png</span>
+              <strong>数据资产管理界面</strong>
+            </div>
+            <figcaption>因内部产品页面图片由 AI 生成，仅示例业务。</figcaption>
+          </figure>
+          <div class="support-grid">
+            <article class="text-card reveal">
+              <span>资产列表</span>
+              <h3>让用户先判断“这是不是我要的数据”</h3>
+              <p>列表突出资产名称、业务域、数据类型、状态、负责人、更新时间和权限状态，并提供分类、搜索和筛选入口。</p>
+            </article>
+            <article class="text-card reveal">
+              <span>资产详情</span>
+              <h3>用详情页承接理解与信任判断</h3>
+              <p>详情页集中展示字段说明、数据来源、质量状态、适用场景、关联服务、负责人和权限申请入口，降低业务用户理解成本。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section config-section">
+        <div class="container split-layout">
+          <div class="section-copy reveal">
+            <p class="section-kicker">06 核心方案 2：数据市场与数据服务</p>
+            <h2>让专业数据能力以业务用户能理解的方式被发现和申请</h2>
+            <p>
+              数据市场偏消费视角，帮助用户通过搜索、分类筛选、场景标签、数据卡片、详情页和申请入口完成从发现到申请的路径。数据服务则把数据能力服务化，支持服务列表、服务详情、输入参数、输出字段、权限要求、服务状态、服务申请和消费入口。
+            </p>
+            <p>
+              设计重点是让用户从“找到数据”自然进入“申请数据”和“使用服务”，避免在专业名词、权限状态和系统入口之间反复切换。
+            </p>
+            <div class="config-type-grid">
+              <span>搜索数据名称、业务场景、标签</span>
+              <span>场景分类、热度推荐、已授权筛选</span>
+              <span>数据卡片展示可用性和主要操作</span>
+              <span>服务详情展示用途、入参、出参和权限要求</span>
+              <span>服务申请连接审批状态和消费入口</span>
+            </div>
+          </div>
+
+          <figure class="config-product image-frame reveal" data-file="data-platform-market-service.png">
+            <img
+              src="./assets/data-platform-market-service.png"
+              alt="Data Platform 数据市场与数据服务界面，展示搜索、标签、数据卡片、服务详情、输入参数、输出字段和服务申请"
+            />
+            <div class="image-placeholder" aria-hidden="true">
+              <span>data-platform-market-service.png</span>
+              <strong>数据市场与数据服务界面</strong>
+            </div>
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section muted-section debug-section">
+        <div class="container split-layout reverse">
+          <figure class="debug-product-image image-frame reveal" data-file="data-platform-permission-consumption.png">
+            <img
+              src="./assets/data-platform-permission-consumption.png"
+              alt="Data Platform 权限状态与数据消费入口界面，展示已发布、未授权、审批中、已通过、已驳回、可使用、不可用和异常状态"
+            />
+            <div class="image-placeholder" aria-hidden="true">
+              <span>data-platform-permission-consumption.png</span>
+              <strong>权限状态与消费入口界面</strong>
+            </div>
+          </figure>
+
+          <div class="section-copy reveal">
+            <p class="section-kicker">07 核心方案 3：权限状态与消费入口</p>
+            <h2>让“能不能用、怎么用、下一步做什么”始终清楚</h2>
+            <p>
+              权限和状态是 Data Platform 的关键体验。用户需要清楚知道当前对象是否可用、是否有权限、流程到哪一步、下一步能做什么。消费入口则连接数据资产、数据服务和业务使用场景。
+            </p>
+            <ul class="dense-list">
+              <li>让权限状态和操作入口强关联，减少无效点击和流程中断。</li>
+              <li>对无权限、审批中、不可用、异常等状态给出原因和下一步操作。</li>
+              <li>支持立即使用、申请权限、查看申请进度、查看服务说明、联系负责人和进入消费场景。</li>
+            </ul>
+            <div class="error-taxonomy">
+              <span>已发布</span>
+              <span>未授权</span>
+              <span>审批中</span>
+              <span>已通过</span>
+              <span>已驳回</span>
+              <span>可使用</span>
+              <span>不可用</span>
+              <span>异常</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="container split-layout">
+          <div class="section-copy reveal">
+            <p class="section-kicker">08 关键设计决策</p>
+            <h2>让复杂平台从功能集合变成围绕对象运转的工作系统</h2>
+            <p>
+              关键设计决策不是增加页面数量，而是先定义平台对象，再围绕对象关系组织页面和状态。这样用户进入任意数据对象时，都能理解它是什么、是否可用、如何申请、如何消费。
+            </p>
+            <div class="decision-list">
+              <div><strong>先定义对象，再定义页面</strong><span>平台拆成数据资产、数据市场、数据服务、数据消费、权限和平台管理六类对象。</span></div>
+              <div><strong>状态必须绑定操作</strong><span>每个状态都回答“现在是什么、为什么、下一步做什么”，避免用户只看到标签却无法推进。</span></div>
+              <div><strong>管理路径和消费路径分层</strong><span>管理侧保留字段、来源、负责人、发布规则；消费侧优先呈现场景、可用性和行动入口。</span></div>
+              <div><strong>平台管理承担治理能力</strong><span>用户、角色、权限规则、审批流程和异常状态被沉淀为平台配置，而不是散落在业务页面中。</span></div>
+            </div>
+          </div>
+
+          <figure class="diagram-card image-frame reveal" data-file="data-platform-design-decisions.png">
+            <img
+              src="./assets/data-platform-design-decisions.png"
+              alt="Data Platform 关键设计决策图，展示对象模型、状态语言、管理消费分层和平台治理能力"
+            />
+            <div class="image-placeholder" aria-hidden="true">
+              <span>data-platform-design-decisions.png</span>
+              <strong>关键设计决策图</strong>
+            </div>
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section outcome-section">
+        <div class="container outcome-layout">
+          <figure class="outcome-visual image-frame reveal" data-file="data-platform-outcome-summary.png">
+            <img
+              src="./assets/data-platform-outcome-summary.png"
+              alt="Data Platform 项目价值与成果总结图，展示六类核心模块、完整数据链路、统一状态反馈和可复用设计模式"
+            />
+            <div class="image-placeholder" aria-hidden="true">
+              <span>data-platform-outcome-summary.png</span>
+              <strong>项目价值与成果总结图</strong>
+            </div>
+          </figure>
+
+          <div class="section-copy outcome-copy reveal">
+            <p class="section-kicker outcome-kicker"><span aria-hidden="true"></span>09 项目价值与成果</p>
+            <h2>Data Platform 不只是数据后台，而是一套可持续使用的数据体验系统</h2>
+            <p>
+              对用户，平台降低数据发现、理解和申请成本，减少多系统切换，并增强权限状态、申请状态和服务状态透明度。对业务，平台支撑数据从管理、发现、申请、服务到消费的完整协作链路。对平台侧，设计沉淀出可复用的信息架构、状态语言和消费入口模式。
+            </p>
+            <ul class="outcome-value-list">
+              <li><span class="value-mark mark-layers" aria-hidden="true"></span>覆盖数据资产管理、数据市场、数据服务、数据消费入口、权限与状态管理、平台管理等 6 类核心模块。</li>
+              <li><span class="value-mark mark-link" aria-hidden="true"></span>建立从数据发现、详情理解、权限申请、服务使用到业务消费的完整链路。</li>
+              <li><span class="value-mark mark-code" aria-hidden="true"></span>沉淀资产详情、数据卡片、服务申请、权限状态、消费入口等多类可复用设计模式。</li>
+              <li><span class="value-mark mark-trend" aria-hidden="true"></span>将分散的数据能力整合为统一平台框架，为内部数据资产沉淀、服务化和业务消费提供体验基础。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <site-footer></site-footer>
+
+    <script>
+      (() => {
+        const revealItems = document.querySelectorAll(".reveal");
+        const imageFrames = document.querySelectorAll(".image-frame");
+
+        imageFrames.forEach((frame) => {
+          const image = frame.querySelector("img");
+          if (!image) return;
+
+          const markPlaceholder = () => frame.classList.add("is-placeholder");
+          image.addEventListener("error", markPlaceholder, { once: true });
+
+          if (image.complete && image.naturalWidth === 0) {
+            markPlaceholder();
+          }
+        });
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12 }
+        );
+
+        revealItems.forEach((item) => observer.observe(item));
+      })();
+    </script>
+  </body>
+</html>

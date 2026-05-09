@@ -9,6 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="components/site-footer.css" />
+  <script src="components/site-footer.js" defer></script>
   <style>
     /* ============================
        1. Design Tokens & Variables
@@ -261,16 +263,17 @@
     .nav-logo {
       width: 40px;
       height: 40px;
-      background: var(--ink);
-      color: #fff;
       border-radius: 50%;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 14px;
-      letter-spacing: -0.5px;
+    }
+    .nav-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
     }
 
     .nav-links {
@@ -378,8 +381,6 @@
     }
 
     :root[data-theme='dark'] .glass-card,
-    :root[data-theme='dark'] .stats-quote-card,
-    :root[data-theme='dark'] .stats-visual-card,
     :root[data-theme='dark'] .stat-card,
     :root[data-theme='dark'] .cap-card,
     :root[data-theme='dark'] .project-card {
@@ -391,6 +392,8 @@
     :root[data-theme='dark'] .stats-subtitle,
     :root[data-theme='dark'] .metric-label,
     :root[data-theme='dark'] .stats-quote-text,
+    :root[data-theme='dark'] .metric-note,
+    :root[data-theme='dark'] .testimonial-role,
     :root[data-theme='dark'] .social-link {
       color: #b4bece;
     }
@@ -401,15 +404,209 @@
     }
 
     :root[data-theme='dark'] .stats-title,
-    :root[data-theme='dark'] .stats-quote-text strong,
+    :root[data-theme='dark'] .testimonial-copy,
+    :root[data-theme='dark'] .testimonial-name,
     :root[data-theme='dark'] .metric-value,
-    :root[data-theme='dark'] .stats-quote-mark,
     :root[data-theme='dark'] .serif-line {
       color: #e8edf8;
     }
 
-    :root[data-theme='dark'] .footer {
-      background: #0b0f16;
+    /* ===================================================
+       Dark Mode — Extended Color Fixes
+       (covers all elements missing dark overrides)
+       =================================================== */
+
+    /* Mesh blobs: replace washed-out light blobs with blue-tinted glows */
+    :root[data-theme='dark'] .blob-1 {
+      background: radial-gradient(circle, rgba(50, 80, 160, 0.5), transparent 70%);
+    }
+    :root[data-theme='dark'] .blob-2 {
+      background: radial-gradient(circle, rgba(35, 60, 120, 0.4), transparent 70%);
+    }
+    :root[data-theme='dark'] .blob-3 {
+      background: radial-gradient(circle, rgba(25, 48, 100, 0.4), transparent 70%);
+    }
+
+    /* Hero aurora — switch to blue-navy tones */
+    :root[data-theme='dark'] .aurora-bg {
+      background: radial-gradient(circle at 50% 50%, rgba(40, 70, 150, 0.28), transparent 42%),
+        radial-gradient(circle at 80% 20%, rgba(25, 55, 110, 0.22), transparent 30%),
+        radial-gradient(circle at 20% 80%, rgba(18, 42, 90, 0.22), transparent 30%);
+      opacity: 0.65;
+    }
+
+    /* Hero text */
+    :root[data-theme='dark'] .sans-line {
+      color: #dce8f8;
+    }
+
+    /* Nav */
+    :root[data-theme='dark'] .nav-item {
+      color: #b8c6dc;
+    }
+    :root[data-theme='dark'] .nav-logo {
+      background: transparent;
+    }
+
+    /* lang-switch: --ink becomes #f0f4ff in dark → near-white bg with white text */
+    :root[data-theme='dark'] .lang-switch {
+      background: rgba(180, 210, 255, 0.1);
+      color: #c2d4ee;
+      border: 1px solid rgba(180, 210, 255, 0.15);
+    }
+    :root[data-theme='dark'] .lang-switch:hover {
+      background: rgba(180, 210, 255, 0.18);
+    }
+
+    /* Capability cards — body text was nearly invisible */
+    :root[data-theme='dark'] .cap-card p {
+      color: #8aa0bc;
+    }
+    :root[data-theme='dark'] .cap-link-hint {
+      color: #6585a5;
+    }
+    :root[data-theme='dark'] .cap-link-arrow {
+      background: rgba(180, 210, 255, 0.06);
+      border-color: rgba(180, 210, 255, 0.12);
+      color: #8aa0bc;
+    }
+
+    /* Cap media: overlay to darken the light inline gradient backgrounds */
+    :root[data-theme='dark'] .cap-media::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(8, 12, 26, 0.58);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Philosophy manifesto hierarchy (dark mode):
+       highlight-serif = strong emphasis (brighter than base)
+       manifesto-text  = base (muted, set separately above)
+       highlight-sans  = secondary/echo (same muted tone as base, mirrors light mode) */
+    :root[data-theme='dark'] .highlight-serif {
+      color: #c2d6f0;
+    }
+    :root[data-theme='dark'] .highlight-sans {
+      color: #6b82a0;
+    }
+    :root[data-theme='dark'] .manifesto-deco {
+      color: rgba(130, 165, 220, 0.06);
+    }
+
+    /* Stats and testimonials */
+    :root[data-theme='dark'] .testimonial-card,
+    :root[data-theme='dark'] .stat-metric {
+      background: rgba(12, 17, 32, 0.82);
+      border-color: rgba(200, 220, 255, 0.1);
+    }
+    :root[data-theme='dark'] .stats-metrics {
+      border-top-color: rgba(200, 220, 255, 0.1);
+    }
+    :root[data-theme='dark'] .metric-suffix {
+      color: currentColor;
+    }
+
+    /* ===================================================
+       Design Improvements — All Themes
+       =================================================== */
+
+    /* Hero availability badge */
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px 6px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(18, 21, 27, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.1s forwards;
+      width: fit-content;
+    }
+
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #4ade80;
+      box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.2);
+      flex-shrink: 0;
+    }
+
+    :root[data-theme='dark'] .hero-badge {
+      background: rgba(14, 20, 36, 0.72);
+      border-color: rgba(180, 210, 255, 0.12);
+      color: #7a96b4;
+    }
+
+    /* Refined cap-card body text */
+    .cap-card p {
+      font-size: 15px;
+      line-height: 1.62;
+    }
+
+    /* Sharper section label chips */
+    .section-label-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(18, 21, 27, 0.05);
+      border: 1px solid rgba(18, 21, 27, 0.08);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    :root[data-theme='dark'] .section-label-chip {
+      background: rgba(180, 210, 255, 0.06);
+      border-color: rgba(180, 210, 255, 0.1);
+    }
+
+    /* Smoother glass card hover */
+    .glass-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 56px rgba(18, 21, 27, 0.1), var(--inner-glow);
+    }
+
+    /* Better visible hero serif line */
+    .serif-line {
+      color: #4a5260;
+      letter-spacing: -1.5px;
+    }
+
+    /* Stat metric: richer number color in dark */
+    :root[data-theme='dark'] .metric-value {
+      color: #e0eaf8;
+    }
+
+    /* Project overlay: show subtle title hint at rest */
+    .project-overlay-tag {
+      position: absolute;
+      bottom: 20px;
+      left: 24px;
+      right: 24px;
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: opacity 0.3s;
+    }
+    .project-card:hover .project-overlay-tag {
+      opacity: 0;
     }
 
     /* CRITICAL: page footer element uses class .big-footer, not .footer */
@@ -830,123 +1027,249 @@
       letter-spacing: 1px;
     }
 
-    .stats-top-grid {
-      display: grid;
-      grid-template-columns: 1.25fr 1fr;
-      gap: 24px;
-      margin-bottom: 24px;
-    }
-
-    .stats-quote-card {
-      padding: 28px 30px;
-      border-radius: 26px;
-      border: 1px solid rgba(18, 21, 27, 0.08);
-      background: rgba(255, 255, 255, 0.66);
-      box-shadow: var(--shadow-sm);
-      text-align: center;
-    }
-
-    .stats-quote-text {
-      font-size: clamp(1.45rem, 2.3vw, 2.2rem);
-      line-height: 1.32;
-      color: #6f7683;
-      letter-spacing: -0.01em;
-    }
-
-    .stats-quote-text strong {
-      color: #101723;
-      font-weight: 800;
-    }
-
-    .stats-quote-mark {
-      font-size: 44px;
-      line-height: 1;
-      margin-top: 10px;
-      color: #101723;
-      font-weight: 900;
-    }
-
-    .stats-visual-card {
-      border-radius: 26px;
-      overflow: hidden;
-      border: 1px solid rgba(18, 21, 27, 0.08);
-      background: rgba(255, 255, 255, 0.7);
-      box-shadow: var(--shadow-sm);
-      min-height: 100%;
-    }
-
-    .stats-visual-card img {
-      width: 100%;
-      height: 100%;
-      min-height: 240px;
-      max-height: 300px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .stats-metrics {
-      margin-top: 18px;
-      border-top: 1px solid rgba(18, 21, 27, 0.14);
-      border-bottom: 1px solid rgba(18, 21, 27, 0.14);
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .stat-metric {
-      padding: 20px 18px;
-      text-align: center;
-      position: relative;
-    }
-
-    .stat-metric+.stat-metric {
-      border-left: 1px solid rgba(18, 21, 27, 0.14);
-    }
-
-    .metric-value {
-      font-size: clamp(34px, 3.8vw, 48px);
-      line-height: 1;
-      color: #0f1520;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 6px;
-      display: inline-flex;
-      align-items: baseline;
-      gap: 4px;
-      justify-content: center;
-    }
-
-    .metric-suffix {
-      font-size: 0.7em;
-      color: #6f7683;
-      font-weight: 700;
-    }
-
-    .metric-label {
-      font-size: 15px;
-      color: #5f6774;
-      letter-spacing: 0.01em;
+    #projects.section-padding {
+      padding-bottom: 80px;
     }
 
     #stats.section-padding {
-      padding: 54px 0 84px;
+      padding: 60px 0 96px;
+      background: transparent;
     }
 
-    .stats-header {
-      margin-bottom: 26px;
-      text-align: left;
+    #stats > .container {
+      max-width: none;
+      padding: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .feedback-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(420px, 1.08fr);
+      gap: 48px;
+      align-items: center;
+      margin-bottom: 54px;
+      background: transparent;
     }
 
     .stats-title {
-      font-size: clamp(34px, 4.2vw, 52px);
-      margin-bottom: 10px;
+      font-size: 48px;
+      margin-bottom: 28px;
       color: #101723;
+      letter-spacing: -0.02em;
     }
 
     .stats-subtitle {
-      font-size: 18px;
+      font-size: 20px;
       color: #66707d;
-      max-width: 760px;
-      line-height: 1.5;
+      max-width: 620px;
+      line-height: 1.75;
+      font-weight: 500;
+    }
+
+    .feedback-visual {
+      min-height: 280px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      overflow: visible;
+    }
+
+    .feedback-visual img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      mix-blend-mode: multiply;
+      filter: saturate(112%) contrast(102%);
+      transform: translateX(120px);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 22px;
+      width: min(100%, var(--container));
+      margin-top: -100px;
+      margin-inline: auto;
+      margin-bottom: 44px;
+      background: transparent;
+    }
+
+    .testimonial-card {
+      min-height: 214px;
+      padding: 28px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-radius: 26px;
+      background: rgba(255, 255, 255, 0.76);
+      border: 1px solid rgba(18, 21, 27, 0.07);
+      box-shadow: 0 24px 70px rgba(38, 54, 83, 0.07), var(--inner-glow);
+      color: #172031;
+      font-size: 15px;
+      line-height: 1.6;
+      text-align: left;
+    }
+
+    .testimonial-quote-icon {
+      color: #9fb5ff;
+      font-size: 52px;
+      line-height: 0.7;
+      font-weight: 900;
+      text-align: left;
+      transform: translateX(-0.72em);
+      margin-bottom: 14px;
+    }
+
+    .testimonial-copy {
+      font-size: 15px;
+      line-height: 1.6;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .testimonial-divider {
+      width: 68px;
+      height: 2px;
+      background: rgba(18, 21, 27, 0.08);
+      margin: 22px 0 20px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      gap: 20px;
+      color: #687180;
+    }
+
+    .testimonial-name {
+      color: #606a78;
+      font-size: 17px;
+      font-weight: 500;
+    }
+
+    .testimonial-role {
+      margin-top: 6px;
+      font-size: 15px;
+    }
+
+    .stats-metrics {
+      border-top: 1px solid rgba(18, 21, 27, 0.08);
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+      width: min(100%, var(--container));
+      margin-inline: auto;
+      padding-top: 34px;
+      background: transparent;
+    }
+
+    .stat-metric {
+      min-height: 170px;
+      padding: 24px 26px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.62);
+      border: 1px solid rgba(18, 21, 27, 0.05);
+      box-shadow: 0 20px 60px rgba(50, 72, 110, 0.06), var(--inner-glow);
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      grid-template-areas:
+        "icon value"
+        "icon label"
+        "note note";
+      column-gap: 16px;
+      align-content: start;
+    }
+
+    .metric-icon {
+      position: relative;
+      grid-area: icon;
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--metric-icon-bg, rgba(85, 130, 255, 0.12));
+      color: var(--metric-color, #3778ff);
+      margin: 0;
+    }
+
+    .metric-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .metric-value {
+      grid-area: value;
+      position: relative;
+      font-size: clamp(34px, 3.4vw, 48px);
+      line-height: 1;
+      color: var(--metric-color, #3778ff);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      margin: 0;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+
+    .metric-suffix {
+      font-size: 0.62em;
+      color: currentColor;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .metric-label {
+      grid-area: label;
+      position: relative;
+      font-size: 15px;
+      color: #505a68;
+      font-weight: 800;
+      letter-spacing: 0;
+      margin: 6px 0 0;
+    }
+
+    .metric-note {
+      grid-area: note;
+      position: relative;
+      color: #77808d;
+      font-size: 14px;
+      line-height: 1.6;
+      font-weight: 600;
+      margin-top: 22px;
+    }
+
+    .stat-metric--blue {
+      --metric-color: #2f73ff;
+      --metric-icon-bg: rgba(47, 115, 255, 0.13);
+    }
+
+    .stat-metric--green {
+      --metric-color: #35bd8d;
+      --metric-icon-bg: rgba(53, 189, 141, 0.14);
+    }
+
+    .stat-metric--violet {
+      --metric-color: #7454db;
+      --metric-icon-bg: rgba(116, 84, 219, 0.13);
+    }
+
+    .stat-metric--sky {
+      --metric-color: #2c8adf;
+      --metric-icon-bg: rgba(44, 138, 223, 0.13);
     }
 
     /* Capabilities */
@@ -960,7 +1283,16 @@
 
     #capabilities .bento-grid {
       grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
+      gap: 20px;
+    }
+
+    #capabilities .cap-card--with-media {
+      align-items: stretch;
+      min-height: 0;
+    }
+
+    #capabilities .cap-media {
+      min-height: 0;
     }
 
     .cap-grid {
@@ -970,8 +1302,8 @@
     }
 
     .cap-card {
-      padding: 24px;
-      min-height: 194px;
+      padding: 28px;
+      min-height: 0;
       display: flex;
       flex-direction: column;
     }
@@ -1039,18 +1371,19 @@
 
     .cap-card--with-media {
       display: grid;
-      grid-template-columns: minmax(160px, 40%) minmax(0, 1fr);
-      gap: 20px;
-      align-items: stretch;
+      grid-template-columns: minmax(160px, 38%) minmax(0, 1fr);
+      gap: 24px;
+      align-items: center;
     }
 
     .cap-media {
-      border-radius: 20px;
+      border-radius: 16px;
       overflow: hidden;
       position: relative;
       border: 1px solid rgba(18, 21, 27, 0.08);
       background: #e8ebf0;
-      min-height: 154px;
+      min-height: 180px;
+      align-self: stretch;
     }
 
     .cap-card--wide .cap-media {
@@ -1077,7 +1410,7 @@
       flex-direction: column;
       justify-content: flex-start;
       padding-top: 2px;
-      height: 100%;
+      min-width: 0;
     }
 
     .cap-card--with-media .cap-content {
@@ -1090,7 +1423,7 @@
     }
 
     .cap-card--media-right {
-      grid-template-columns: minmax(0, 1fr) minmax(160px, 40%);
+      grid-template-columns: minmax(0, 1fr) minmax(160px, 38%);
     }
 
     .cap-card--media-right .cap-media {
@@ -1193,13 +1526,19 @@
     .project-card {
       position: relative;
       height: 400px;
+      display: block;
+      color: inherit;
+      text-decoration: none;
+      cursor: pointer;
     }
 
     .project-bg {
       position: absolute;
       inset: 0;
       transition: transform 0.6s var(--ease);
-      background-size: cover;
+      background-color: #f7f8fb;
+      background-repeat: no-repeat;
+      background-size: contain;
       background-position: center;
     }
 
@@ -1209,16 +1548,40 @@
 
     .project-overlay {
       position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(246, 249, 255, 0.12) 18%, rgba(98, 108, 126, 0.16) 58%, rgba(8, 12, 20, 0.22) 100%);
+      backdrop-filter: blur(8px) saturate(112%);
+      -webkit-backdrop-filter: blur(8px) saturate(112%);
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: 40px;
+      align-items: flex-start;
+      gap: 6px;
+      padding: 24px 40px;
       color: #fff;
-      opacity: 0;
-      transform: translateY(20px);
+      opacity: 1;
+      transform: translateY(0);
       transition: 0.4s var(--ease);
+    }
+
+    .project-overlay > div,
+    .project-overlay h3 {
+      width: 100%;
+      color: #fff !important;
+      line-height: 1.12;
+      text-align: left;
+      text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
+    }
+
+    .project-overlay > div {
+      margin: 0;
+      line-height: 1.25;
+    }
+
+    .project-overlay h3 {
+      font-size: 32px;
+      margin: 0;
     }
 
     .project-card:hover .project-overlay {
@@ -1240,6 +1603,119 @@
 
     .project-card:hover::before {
       opacity: 1;
+    }
+
+    /* Smart Hardware */
+    .hardware-section {
+      padding: 0 0 96px;
+      scroll-margin-top: 132px;
+    }
+
+    .hardware-section .section-header {
+      margin-bottom: 32px;
+    }
+
+    .hardware-title {
+      font-size: 48px;
+    }
+
+    .hardware-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .hardware-card {
+      min-height: 330px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .hardware-swatch {
+      position: relative;
+      height: 210px;
+      min-height: 210px;
+      background: var(--hardware-gradient, linear-gradient(135deg, #dfe5ef 0%, #b9c3d2 100%));
+      border-bottom: 1px solid rgba(18, 21, 27, 0.07);
+      overflow: hidden;
+    }
+
+    .hardware-swatch::before {
+      content: '';
+      position: absolute;
+      inset: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.42);
+      background:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0)),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.18) 0 1px, transparent 1px 18px);
+      opacity: 0.72;
+    }
+
+    .hardware-swatch::after {
+      content: '';
+      position: absolute;
+      inset: auto 18px 18px;
+      height: 42px;
+      border-top: 1px solid rgba(255, 255, 255, 0.5);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      background: rgba(255, 255, 255, 0.18);
+      transform: skewX(-10deg);
+      transform-origin: bottom left;
+    }
+
+    .hardware-swatch--image {
+      display: block;
+      background:
+        radial-gradient(circle at 50% 48%, var(--hardware-bg-center, #fffdf9) 0%, var(--hardware-bg, #fdfaf5) 62%, var(--hardware-bg-edge, #faf6ef) 100%);
+    }
+
+    .hardware-swatch--image::before,
+    .hardware-swatch--image::after {
+      display: none;
+    }
+
+    .hardware-swatch--image img {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    .hardware-card-body {
+      padding: 22px 22px 24px;
+      display: flex;
+      min-height: 120px;
+      flex: 1;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hardware-eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #687180;
+      margin-bottom: 10px;
+    }
+
+    .hardware-card h3 {
+      font-size: clamp(21px, 1.8vw, 26px);
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    :root[data-theme='dark'] .hardware-swatch {
+      border-bottom-color: rgba(226, 235, 252, 0.1);
+    }
+
+    :root[data-theme='dark'] .hardware-eyebrow {
+      color: #8fa0b7;
     }
 
     /* Hobbies (Parallax) */
@@ -1269,45 +1745,90 @@
       max-width: 300px;
     }
 
-    /* Marquee */
-    .marquee-wrapper {
-      overflow: hidden;
-      white-space: nowrap;
-      position: relative;
-      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 28px;
     }
 
-    .marquee-track {
+    .hero-tag {
       display: inline-flex;
-      gap: 32px;
-      animation: scroll 40s linear infinite;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 14px 7px 8px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(18, 21, 27, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 999px;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 500;
+      font-family: var(--font-heading);
+      white-space: nowrap;
     }
 
-    .testimonial-card {
-      width: 320px;
-      padding: 22px;
-      background: rgba(255, 255, 255, 0.78);
-      border-radius: 16px;
-      border: 1px solid rgba(18, 21, 27, 0.08);
-      white-space: normal;
-      font-size: 15px;
-      line-height: 1.55;
+    .hero-tag-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      flex-shrink: 0;
     }
 
-    @keyframes scroll {
-      from {
-        transform: translateX(0);
-      }
-
-      to {
-        transform: translateX(-50%);
-      }
+    :root[data-theme='dark'] .hero-tag {
+      background: rgba(14, 20, 36, 0.72);
+      border-color: rgba(180, 210, 255, 0.12);
+      color: #c8daf0;
     }
 
-    /* Footer & CTA */
-    .cta-section {
-      text-align: center;
-      margin-bottom: 80px;
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-secondary-btn {
+      display: inline-flex;
+      height: 80px;
+      padding: 0 48px;
+      background: transparent;
+      color: var(--ink);
+      border: 1.5px solid var(--ink);
+      border-radius: var(--radius-full);
+      align-items: center;
+      font-size: 20px;
+      font-weight: 600;
+      font-family: var(--font-heading);
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .hero-secondary-btn:hover,
+    .hero-secondary-btn:focus-visible {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    :root[data-theme='dark'] .hero-secondary-btn {
+      color: var(--ink);
+      border-color: var(--ink);
+    }
+
+    :root[data-theme='dark'] .hero-secondary-btn:hover,
+    :root[data-theme='dark'] .hero-secondary-btn:focus-visible {
+      background: var(--ink);
+      color: #11141a;
+    }
+
+    .hero-secondary-btn:focus-visible {
+      outline: 3px solid rgba(18, 21, 27, 0.16);
+      outline-offset: 4px;
     }
 
     .magnetic-btn {
@@ -1322,10 +1843,19 @@
       font-size: 20px;
       font-weight: 600;
       font-family: var(--font-heading);
-      transition: transform 0.1s;
+      transition: transform 0.2s ease, opacity 0.2s ease;
       cursor: pointer;
       position: relative;
       overflow: hidden;
+    }
+
+    .magnetic-btn:hover {
+      transform: scale(1.03);
+      opacity: 0.9;
+    }
+
+    .magnetic-btn:active {
+      transform: scale(0.97);
     }
 
     .ripple {
@@ -1367,6 +1897,27 @@
       .cap-card--tall {
         min-height: 228px;
       }
+
+      .feedback-hero {
+        grid-template-columns: 1fr;
+      }
+
+      .testimonials-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 0;
+      }
+
+      .feedback-visual img {
+        transform: none;
+      }
+
+      .stats-metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hardware-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
 
     @media (max-width: 768px) {
@@ -1378,6 +1929,18 @@
         font-size: 48px;
       }
 
+      .hero-cta-group {
+        gap: 12px;
+      }
+
+      .magnetic-btn,
+      .hero-secondary-btn {
+        height: 64px;
+        padding: 0 30px;
+        font-size: 17px;
+        justify-content: center;
+      }
+
       .sans-line {
         white-space: normal;
       }
@@ -1386,8 +1949,13 @@
         grid-template-columns: 1fr;
       }
 
-      .bento-col-2 {
+      .bento-col-2,
+      .bento-col-3 {
         grid-column: auto;
+      }
+
+      .cap-card--narrow {
+        min-height: auto !important;
       }
 
       .philo-wrapper {
@@ -1402,16 +1970,8 @@
         flex-shrink: 0;
       }
 
-      .stats-top-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .stats-header {
-        margin-bottom: 18px;
-      }
-
       .stats-subtitle {
-        font-size: 16px;
+        font-size: 14px;
       }
 
       #capabilities.section-padding {
@@ -1450,26 +2010,135 @@
         padding: 22px;
       }
 
-      .stats-quote-card {
-        padding: 22px 16px;
-      }
-
-      .stats-visual-card img {
-        min-height: 180px;
-        max-height: 220px;
-      }
-
+      .feedback-hero,
+      .testimonials-grid,
       .stats-metrics {
         grid-template-columns: 1fr;
       }
 
-      .stat-metric+.stat-metric {
-        border-left: none;
-        border-top: 1px solid rgba(18, 21, 27, 0.14);
+      .feedback-visual {
+        min-height: 220px;
       }
+
+      .feedback-visual img {
+        max-height: 260px;
+      }
+
+      .testimonial-card,
+      .stat-metric {
+        min-height: auto;
+        padding: 26px;
+      }
+
+      .hardware-section {
+        padding-bottom: 76px;
+        scroll-margin-top: 112px;
+      }
+
+      .hardware-title {
+        font-size: 44px;
+        line-height: 1.08;
+      }
+
+      .hardware-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hardware-swatch {
+        height: 190px;
+        min-height: 190px;
+      }
+
     }
 
     /* Manifesto (V3) */
+    #philosophy.philosophy-section {
+      position: relative;
+      width: 100vw;
+      max-width: none;
+      margin-left: calc(50% - 50vw);
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      isolation: isolate;
+      background:
+        radial-gradient(ellipse at 50% 46%, rgba(20, 27, 38, 0.42), transparent 58%),
+        #020407;
+    }
+
+    :root[data-theme='dark'] #philosophy.philosophy-section {
+      background:
+        radial-gradient(ellipse at 50% 46%, rgba(20, 27, 38, 0.42), transparent 58%),
+        #020407;
+    }
+
+    .philosophy-video {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+
+    #philosophy.philosophy-section::before,
+    #philosophy.philosophy-section::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    #philosophy.philosophy-section::before {
+      z-index: 1;
+      background: none;
+    }
+
+    :root[data-theme='dark'] #philosophy.philosophy-section::before {
+      background: none;
+    }
+
+    #philosophy.philosophy-section::after {
+      z-index: 1;
+      background: none;
+      mask-image: none;
+    }
+
+    :root[data-theme='dark'] #philosophy.philosophy-section::after {
+      background: none;
+    }
+
+    #philosophy.philosophy-section .container {
+      z-index: 2;
+    }
+
+    #philosophy .manifesto-text {
+      color: rgba(245, 248, 255, 0.54);
+      text-shadow: 0 16px 60px rgba(0, 0, 0, 0.42);
+    }
+
+    #philosophy .manifesto-text.active {
+      opacity: 1;
+    }
+
+    #philosophy .highlight-serif {
+      color: #f7f9ff;
+    }
+
+    #philosophy .highlight-sans {
+      color: rgba(245, 248, 255, 0.54);
+    }
+
+    #philosophy .manifesto-text span[style] {
+      color: rgba(245, 248, 255, 0.76) !important;
+    }
+
+    #philosophy .manifesto-deco {
+      color: rgba(245, 248, 255, 0.06);
+    }
+
     .manifesto-wrapper {
       padding: 100px 0;
     }
@@ -1522,6 +2191,12 @@
       pointer-events: none;
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      .philosophy-video {
+        display: none;
+      }
+    }
+
     @keyframes rotateSlow {
       from {
         transform: rotate(0deg);
@@ -1532,101 +2207,54 @@
       }
     }
 
-    /* Footer Grand Finale (V3) */
-    .big-footer {
-      background: var(--ink);
-      color: #fff;
-      padding-top: 160px;
-      padding-bottom: 60px;
+    .cap-tags {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 8px;
+      margin-bottom: 12px;
+      letter-spacing: 0.01em;
+      opacity: 0.75;
+    }
+
+    .bento-col-3 {
+      grid-column: span 3;
+    }
+
+    .cap-card--narrow {
+      display: flex;
+      flex-direction: column;
+      padding: 0 !important;
+      min-height: 340px;
+    }
+
+    .cap-narrow-media {
+      width: 100%;
+      height: 160px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       position: relative;
       overflow: hidden;
-      width: 100vw;
-      margin-left: calc(50% - 50vw);
+      border-radius: 20px 20px 0 0;
+      border-bottom: 1px solid rgba(18, 21, 27, 0.06);
+      background: linear-gradient(135deg, #f5f7fa 0%, #eef1f6 100%);
     }
 
-    .footer-marquee-wrapper {
-      position: absolute;
-      top: 10%;
-      left: 0;
-      width: 100%;
-      opacity: 0.05;
-      pointer-events: none;
-      z-index: 0;
-      white-space: nowrap;
-    }
-
-    .footer-marquee-text {
-      font-size: 200px;
-      font-weight: 800;
-      text-transform: uppercase;
-      display: inline-block;
-      animation: footerScroll 60s linear infinite;
-    }
-
-    @keyframes footerScroll {
-      from {
-        transform: translateX(0);
-      }
-
-      to {
-        transform: translateX(-50%);
-      }
-    }
-
-    .noise-overlay {
-      position: absolute;
-      inset: 0;
-      background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-      opacity: 0.1;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .footer-content {
-      position: relative;
-      z-index: 2;
-    }
-
-    .footer-cta-title {
-      font-size: clamp(3rem, 7vw, 6rem);
-      line-height: 1;
-      margin-bottom: 48px;
-      color: #fff;
-    }
-
-    .social-links-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 24px;
-      margin-top: 80px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding-top: 40px;
-    }
-
-    .social-link {
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 18px;
-      text-decoration: none;
-      transition: color 0.3s;
-      display: inline-block;
-    }
-
-    .social-link:hover {
-      color: var(--amber);
-    }
-
-    .footer-bottom {
-      margin-top: 100px;
+    .cap-card--narrow .cap-content {
+      padding: 20px 22px 22px;
+      flex: 1;
       display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      font-size: 14px;
-      opacity: 0.6;
+      flex-direction: column;
     }
 
-    .studio-time {
-      font-family: 'DM Sans', sans-serif;
-      letter-spacing: 1px;
+    .cap-card--narrow .cap-icon {
+      margin-bottom: 12px;
+    }
+
+    :root[data-theme='dark'] .cap-narrow-media {
+      background: linear-gradient(135deg, rgba(30,36,48,0.8) 0%, rgba(22,28,40,0.8) 100%);
+      border-bottom-color: rgba(180, 210, 255, 0.08);
     }
   </style>
 </head>
@@ -1638,7 +2266,7 @@
     <div class="mesh-blob blob-3"></div>
   </div>
   <div class="nav-pill-wrapper">
-    <nav class="nav-pill"><a href="#" class="nav-logo">LL</a>
+    <nav class="nav-pill"><a href="index.html" class="nav-logo"><img src="images/logo.png" alt="LL Logo" /></a>
       <div class="nav-links"><a href="#capabilities" class="nav-item" data-en="Capabilities"
           data-zh="能力">Capabilities</a><a href="#philosophy" class="nav-item" data-en="Philosophy"
           data-zh="理念">Philosophy</a><a href="#projects" class="nav-item" data-en="Work" data-zh="作品">Work</a><a
@@ -1668,250 +2296,162 @@
             data-zh="设计">Designing</span><span class="sans-line" id="hero-l2" data-en="Intelligent Experiences"
             data-zh="智能体验">Intelligent Experiences</span></h1>
         <p class="hero-subtitle"
-          data-en="Crafting clarity from complexity. Specialized in AI interfaces and B2B SaaS systems."
-          data-zh="在复杂中构建清晰。专注于 AI 界面与 B2B SaaS 系统设计。">Crafting clarity from complexity. Specialized in AI
-          interfaces and B2B SaaS systems. </p><button class="magnetic-btn"
-          onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})"
-          style="opacity: 0; animation: fadeUp 0.8s 0.8s forwards;"><span data-en="View Projects" data-zh="查看作品">View
-            Projects</span></button>
+          data-en="Bridging complex technology and real business through design, making AI and data systems clearer, configurable, observable, and deployable."
+          data-zh="用设计连接复杂技术与真实业务，让 AI 与数据系统更清晰、可配置、可观察、可落地。">用设计连接复杂技术与真实业务，让 AI 与数据系统更清晰、可配置、可观察、可落地。</p>
+        <div class="hero-tags" style="opacity: 0; animation: fadeUp 0.8s 0.6s forwards;">
+          <div class="hero-tag">
+            <span class="hero-tag-icon" style="background: rgba(96,165,250,0.15);">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#60a5fa" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span data-en="Agent UX" data-zh="Agent 体验">Agent UX</span>
+          </div>
+          <div class="hero-tag">
+            <span class="hero-tag-icon" style="background: rgba(74,222,128,0.15);">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke="#4ade80" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span data-en="AI Workflow" data-zh="AI 工作流">AI Workflow</span>
+          </div>
+          <div class="hero-tag">
+            <span class="hero-tag-icon" style="background: rgba(192,132,252,0.15);">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="2" y="7" width="20" height="14" rx="2" stroke="#c084fc" stroke-width="2.2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" stroke="#c084fc" stroke-width="2.2" stroke-linecap="round"/></svg>
+            </span>
+            <span data-en="Enterprise UX" data-zh="企业级体验">Enterprise UX</span>
+          </div>
+          <div class="hero-tag">
+            <span class="hero-tag-icon" style="background: rgba(56,189,248,0.15);">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="5" rx="9" ry="3" stroke="#38bdf8" stroke-width="2.2"/><path d="M3 5v4c0 1.66 4.03 3 9 3s9-1.34 9-3V5" stroke="#38bdf8" stroke-width="2.2"/><path d="M3 9v4c0 1.66 4.03 3 9 3s9-1.34 9-3V9" stroke="#38bdf8" stroke-width="2.2"/></svg>
+            </span>
+            <span data-en="Data Platform" data-zh="数据平台">Data Platform</span>
+          </div>
+        </div>
+        <div class="hero-cta-group" style="opacity: 0; animation: fadeUp 0.8s 0.9s forwards;">
+          <button class="magnetic-btn"
+            onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})"><span data-en="View Projects" data-zh="查看作品">View Projects</span></button>
+          <a class="hero-secondary-btn" id="resume-download-btn" href="images/resume-ai-product-designer.png" type="image/png"
+            download="刘璐-高级AI产品设计师-简历.png" aria-label="下载图片简历"><span data-en="Download Resume"
+              data-zh="下载简历">Download Resume</span></a>
+        </div>
       </div>
     </section>
     <section id="capabilities" class="section-padding">
       <div class="section-header stagger-item" style="margin-bottom: 60px;">
-        <div class="section-label-chip" data-en="Capabilities" data-zh="核心能力">Capabilities</div>
-        <h2 style="font-size: 48px;" data-en="Full-stack Design" data-zh="全栈设计能力">Full-stack Design</h2>
+        <div class="section-label-chip" data-en="Capabilities" data-zh="能力">Capabilities</div>
+        <h2 style="font-size: 48px;" data-en="Core Capabilities" data-zh="核心能力">Core Capabilities</h2>
       </div>
       <div class="bento-grid">
-        <!-- === AI Capabilities (Top Row) === -->
+        <!-- Card 01: image left -->
         <a class="glass-card cap-card cap-card--with-media bento-col-2 cap-link-card stagger-item tilt-card"
-          href="capabilities/ai-product-design/index.html" aria-label="View AI Product Design details">
-          <div class="cap-media"
-            style="background: linear-gradient(135deg, #f5f7fa 0%, #eef1f6 100%); display:flex; align-items:center; justify-content:center; position: relative; overflow: hidden;">
-            <!-- Premium Abstract Apple-style Art for AI Product Design -->
-            <div
-              style="position: absolute; width: 140px; height: 140px; background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 70%); filter: blur(20px); left: -20px; top: -20px;">
-            </div>
-            <svg viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg"
-              style="width:100%;height:100%;opacity:0.9; filter: drop-shadow(0 8px 16px rgba(18,21,27,0.06));">
-              <rect x="20" y="20" width="50" height="32" rx="8" fill="#d1d7e0" opacity="0.6" />
-              <rect x="80" y="20" width="50" height="32" rx="8" fill="#c5cdd8" opacity="0.5" />
-              <rect x="140" y="20" width="40" height="32" rx="8" fill="#bcc5d3" opacity="0.4" />
-              <rect x="20" y="64" width="70" height="36" rx="8" fill="#c8d0dc" opacity="0.55" />
-              <rect x="100" y="64" width="80" height="36" rx="8" fill="#d5dbe5" opacity="0.5" />
-              <circle cx="45" cy="36" r="6" fill="#8b95a5" />
-              <circle cx="105" cy="36" r="4" fill="#9aa4b4" />
-              <circle cx="55" cy="82" r="5" fill="#8b95a5" />
-              <line x1="51" y1="36" x2="80" y2="36" stroke="#a0a8b5" stroke-width="1.5" stroke-dasharray="4 3" />
-              <line x1="45" y1="52" x2="55" y2="64" stroke="#a0a8b5" stroke-width="1.2" opacity="0.5" />
-            </svg>
+          href="capabilities/ai-product-design/index.html" aria-label="View AI Product & Agent Experience Design details">
+          <div class="cap-media">
+            <img src="images/01.png" alt="AI Product & Agent Experience Design" />
           </div>
           <div class="cap-content">
             <div class="cap-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <rect x="3" y="5" width="8" height="6" rx="2"></rect>
-                <rect x="13" y="5" width="8" height="6" rx="2"></rect>
-                <rect x="8" y="13" width="8" height="6" rx="2"></rect>
-                <path d="M11 8h2"></path>
-                <path d="M9.5 11v2"></path>
-                <path d="M14.5 11v2"></path>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="5" cy="12" r="2"></circle>
+                <circle cx="19" cy="6" r="2"></circle>
+                <circle cx="19" cy="18" r="2"></circle>
+                <line x1="7" y1="11" x2="17" y2="7"></line>
+                <line x1="7" y1="13" x2="17" y2="17"></line>
               </svg>
             </div>
-            <h3 data-en="AI Product Design" data-zh="AI 产品设计">AI Product Design</h3>
-            <p data-en="Translating model capabilities, product goals, and evaluation loops into AI-native workflows that are usable, measurable, and launch-ready."
-              data-zh="将模型能力、业务目标与评估闭环转化为可落地的 AI 原生工作流，兼顾可用性、可衡量性与上线效率。">Translating model capabilities, product goals,
-              and evaluation loops into AI-native workflows that are usable, measurable, and launch-ready.</p>
+            <h3 data-en="AI Product &amp; Agent Experience Design" data-zh="AI 产品与 Agent 体验设计">AI Product &amp; Agent Experience Design</h3>
+            <p data-en="Translating models, tools, knowledge sources, and task nodes into configurable, debuggable, and iterable Agent workflow experiences."
+              data-zh="将模型、工具、知识源与任务节点转化为可配置、可调试、可迭代的 Agent 工作流体验。">Translating models, tools, knowledge sources, and task nodes into configurable, debuggable, and iterable Agent workflow experiences.</p>
+            <p class="cap-tags" data-en="LLM Experience · Tool Calling UX · Agent Workflow" data-zh="大模型体验 · 工具调用设计 · Agent 工作流">LLM Experience · Tool Calling UX · Agent Workflow</p>
             <span class="cap-link-hint"><span data-en="View details" data-zh="查看详情">View details</span><span
                 class="cap-link-arrow" aria-hidden="true">↗</span></span>
           </div>
         </a>
+
+        <!-- Card 02: image right -->
         <a class="glass-card cap-card cap-card--with-media cap-card--media-right bento-col-2 cap-link-card stagger-item tilt-card"
-          href="capabilities/human-ai-interaction/index.html" aria-label="View Human-AI Interaction details">
-          <div class="cap-media"
-            style="background: linear-gradient(135deg, #f5f7fa 0%, #eef1f6 100%); display:flex; align-items:center; justify-content:center; position: relative; overflow: hidden;">
-            <div
-              style="position: absolute; width: 120px; height: 120px; background: radial-gradient(circle, rgba(200,210,230,0.4) 0%, rgba(255,255,255,0) 70%); filter: blur(15px); right: -10px; bottom: -10px;">
-            </div>
-            <svg viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg"
-              style="width:100%;height:100%;opacity:0.9; filter: drop-shadow(0 8px 16px rgba(18,21,27,0.06));">
-              <circle cx="40" cy="50" r="24" fill="#d8dde6" opacity="0.5" />
-              <circle cx="80" cy="50" r="24" fill="#c5cdd9" opacity="0.5" />
-              <ellipse cx="60" cy="50" rx="12" ry="18" fill="#b8c2d0" opacity="0.35" />
-              <circle cx="40" cy="44" r="3" fill="#8b95a5" />
-              <circle cx="80" cy="44" r="3" fill="#8b95a5" />
-              <path d="M37 56 Q40 62 43 56" stroke="#8b95a5" stroke-width="1.5" fill="none" />
-              <path d="M77 56 Q80 62 83 56" stroke="#8b95a5" stroke-width="1.5" fill="none" />
-              <line x1="52" y1="40" x2="68" y2="40" stroke="#a0a8b5" stroke-width="1.2" stroke-dasharray="3 2" />
-              <line x1="52" y1="60" x2="68" y2="60" stroke="#a0a8b5" stroke-width="1.2" stroke-dasharray="3 2" />
-            </svg>
+          href="capabilities/complex-platform-design/index.html" aria-label="View Complex Platform & Workflow Design details">
+          <div class="cap-media">
+            <img src="images/02.png" alt="Complex Platform & Workflow Design" />
           </div>
           <div class="cap-content">
             <div class="cap-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <circle cx="8" cy="12" r="2.5"></circle>
-                <circle cx="16" cy="12" r="2.5"></circle>
-                <path d="M8 6h4"></path>
-                <path d="M12 18h4"></path>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+                <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+                <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+                <path d="M17.5 14v7M14 17.5h7"></path>
               </svg>
             </div>
-            <h3 data-en="Human-AI Interaction" data-zh="人机协同交互">Human-AI Interaction</h3>
-            <p data-en="Designing transparent feedback, confidence cues, and control patterns so people can guide, trust, and correct AI throughout the workflow."
-              data-zh="设计透明反馈、置信提示与控制机制，让用户能在整个流程中理解、引导并修正 AI 的输出。">Designing transparent feedback, confidence cues, and
-              control patterns so people can guide, trust, and correct AI throughout the workflow.</p>
+            <h3 data-en="Complex Platform &amp; Workflow Design" data-zh="复杂平台与工作流设计">Complex Platform &amp; Workflow Design</h3>
+            <p data-en="Breaking down multi-role, multi-object, multi-state complex systems into clear task paths and platform workspaces."
+              data-zh="将多角色、多对象、多状态、多流程的复杂系统，拆解为清晰的任务路径与平台工作台。">Breaking down multi-role, multi-object, multi-state complex systems into clear task paths and platform workspaces.</p>
+            <p class="cap-tags" data-en="Task System · Configuration · Status Flow" data-zh="任务系统 · 配置管理 · 状态流转">Task System · Configuration · Status Flow</p>
             <span class="cap-link-hint"><span data-en="View details" data-zh="查看详情">View details</span><span
                 class="cap-link-arrow" aria-hidden="true">↗</span></span>
           </div>
         </a>
-        <a class="glass-card cap-card cap-card--with-media cap-card--media-right bento-col-2 cap-link-card stagger-item tilt-card"
-          href="capabilities/agent-experience-design/index.html" aria-label="View Agent Experience Design details">
-          <div class="cap-media"
-            style="background: linear-gradient(135deg, #f5f7fa 0%, #eef1f6 100%); display:flex; align-items:center; justify-content:center; position: relative; overflow: hidden;">
-            <div
-              style="position: absolute; width: 160px; height: 160px; background: radial-gradient(circle, rgba(230,235,245,0.6) 0%, rgba(255,255,255,0) 70%); filter: blur(25px); left: 20%; top: 10%;">
-            </div>
-            <svg viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg"
-              style="width:100%;height:100%;opacity:0.9; filter: drop-shadow(0 8px 16px rgba(18,21,27,0.06));">
-              <rect x="35" y="10" width="50" height="14" rx="7" fill="#c8d0dc" opacity="0.6" />
-              <rect x="35" y="32" width="50" height="14" rx="7" fill="#bcc5d3" opacity="0.55" />
-              <rect x="35" y="54" width="50" height="14" rx="7" fill="#d1d7e0" opacity="0.5" />
-              <rect x="35" y="76" width="50" height="14" rx="7" fill="#dde1e8" opacity="0.45" />
-              <line x1="60" y1="24" x2="60" y2="32" stroke="#a0a8b5" stroke-width="1.5" />
-              <line x1="60" y1="46" x2="60" y2="54" stroke="#a0a8b5" stroke-width="1.5" />
-              <line x1="60" y1="68" x2="60" y2="76" stroke="#a0a8b5" stroke-width="1.5" />
-              <circle cx="42" cy="17" r="3" fill="#7ccc7c" opacity="0.7" />
-              <circle cx="42" cy="39" r="3" fill="#7ccc7c" opacity="0.7" />
-              <circle cx="42" cy="61" r="3" fill="#e8c455" opacity="0.7" />
-              <circle cx="42" cy="83" r="3" fill="#a0a8b5" opacity="0.5" />
-            </svg>
-          </div>
-          <div class="cap-content">
-            <div class="cap-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <circle cx="6" cy="6" r="2"></circle>
-                <circle cx="18" cy="6" r="2"></circle>
-                <circle cx="6" cy="18" r="2"></circle>
-                <circle cx="18" cy="18" r="2"></circle>
-                <path d="M8 6h8"></path>
-                <path d="M6 8v8"></path>
-              </svg>
-            </div>
-            <h3 data-en="Agent Experience Design" data-zh="智能体体验设计">Agent Experience Design</h3>
-            <p data-en="Structuring agent journeys with visible plans, status feedback, checkpoints, and handoff controls across multi-step autonomous tasks."
-              data-zh="为多步骤智能体任务构建计划可视化、状态反馈、检查点与接管机制，提升复杂流程的可见性与信任感。">Structuring agent journeys with visible plans,
-              status feedback, checkpoints, and handoff controls across multi-step autonomous tasks.</p>
-            <span class="cap-link-hint"><span data-en="View details" data-zh="查看详情">View details</span><span
-                class="cap-link-arrow" aria-hidden="true">↗</span></span>
-          </div>
-        </a>
+
+        <!-- Card 03: image left -->
         <a class="glass-card cap-card cap-card--with-media bento-col-2 cap-link-card stagger-item tilt-card"
-          href="capabilities/multimodal-interaction/index.html" aria-label="View Multimodal Interaction details">
-          <div class="cap-media"
-            style="background: linear-gradient(135deg, #f5f7fa 0%, #eef1f6 100%); display:flex; align-items:center; justify-content:center; position: relative; overflow: hidden;">
-            <div
-              style="position: absolute; width: 130px; height: 130px; background: radial-gradient(circle, rgba(240,242,248,0.8) 0%, rgba(255,255,255,0) 70%); filter: blur(15px); right: 10%; top: 20%;">
-            </div>
-            <svg viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg"
-              style="width:100%;height:100%;opacity:0.9; filter: drop-shadow(0 8px 16px rgba(18,21,27,0.06));">
-              <circle cx="100" cy="60" r="18" fill="#c8d0dc" opacity="0.5" />
-              <circle cx="100" cy="60" r="8" fill="#a0a8b5" opacity="0.4" />
-              <!-- Mic -->
-              <rect x="38" y="22" width="14" height="22" rx="7" fill="#bcc5d3" opacity="0.55" />
-              <line x1="45" y1="44" x2="45" y2="52" stroke="#a0a8b5" stroke-width="1.5" />
-              <line x1="39" y1="52" x2="51" y2="52" stroke="#a0a8b5" stroke-width="1.5" />
-              <!-- Text -->
-              <rect x="142" y="24" width="30" height="4" rx="2" fill="#bcc5d3" opacity="0.5" />
-              <rect x="142" y="32" width="22" height="4" rx="2" fill="#c8d0dc" opacity="0.45" />
-              <rect x="142" y="40" width="26" height="4" rx="2" fill="#d1d7e0" opacity="0.4" />
-              <!-- Lens -->
-              <circle cx="45" cy="88" r="12" fill="none" stroke="#bcc5d3" stroke-width="2.5" opacity="0.55" />
-              <circle cx="45" cy="88" r="5" fill="#c8d0dc" opacity="0.4" />
-              <!-- Touch -->
-              <circle cx="155" cy="88" r="8" fill="#d1d7e0" opacity="0.4" />
-              <circle cx="155" cy="88" r="4" fill="#bcc5d3" opacity="0.55" />
-              <circle cx="155" cy="88" r="12" fill="none" stroke="#d8dde6" stroke-width="1" opacity="0.4" />
-              <!-- Connecting lines -->
-              <line x1="52" y1="36" x2="82" y2="55" stroke="#b0b8c5" stroke-width="1" stroke-dasharray="4 3"
-                opacity="0.5" />
-              <line x1="142" y1="36" x2="118" y2="55" stroke="#b0b8c5" stroke-width="1" stroke-dasharray="4 3"
-                opacity="0.5" />
-              <line x1="52" y1="82" x2="86" y2="65" stroke="#b0b8c5" stroke-width="1" stroke-dasharray="4 3"
-                opacity="0.5" />
-              <line x1="148" y1="82" x2="114" y2="65" stroke="#b0b8c5" stroke-width="1" stroke-dasharray="4 3"
-                opacity="0.5" />
-            </svg>
+          href="capabilities/data-platform-design/index.html" aria-label="View Data Platform & Analytics Product Design details">
+          <div class="cap-media">
+            <img src="images/03.png" alt="Data Platform & Analytics Product Design" />
           </div>
           <div class="cap-content">
             <div class="cap-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M12 3a3 3 0 0 1 3 3v4a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3z"></path>
-                <path d="M7 10a5 5 0 0 0 10 0"></path>
-                <path d="M12 15v5"></path>
-                <path d="M8 20h8"></path>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 3v18h18"></path>
+                <path d="M7 16l4-6 4 4 4-8"></path>
               </svg>
             </div>
-            <h3 data-en="Multimodal Interaction" data-zh="多模态交互">Multimodal Interaction</h3>
-            <p data-en="Orchestrating text, voice, image, and interface signals into seamless flows that preserve context and reduce friction across modalities."
-              data-zh="统筹文本、语音、图像与界面信号，在多模态流程中保持上下文连续，并显著降低交互摩擦。">Orchestrating text, voice, image, and interface
-              signals into seamless flows that preserve context and reduce friction across modalities.</p>
+            <h3 data-en="Data Platform &amp; Analytics Product Design" data-zh="数据平台与分析产品设计">Data Platform &amp; Analytics Product Design</h3>
+            <p data-en="Connecting data production, management, analytics, and consumption so data capabilities are more accessible to business users."
+              data-zh="连接数据生产、管理、分析与消费，让数据能力更容易被业务理解和使用。">Connecting data production, management, analytics, and consumption so data capabilities are more accessible to business users.</p>
+            <p class="cap-tags" data-en="Data Asset · Data Annotation · Self-service Analytics" data-zh="数据资产 · 数据标注 · 自助分析">Data Asset · Data Annotation · Self-service Analytics</p>
             <span class="cap-link-hint"><span data-en="View details" data-zh="查看详情">View details</span><span
                 class="cap-link-arrow" aria-hidden="true">↗</span></span>
           </div>
         </a>
-        <!-- === Traditional Design Capabilities (Bottom Row) === -->
-        <div class="glass-card cap-card cap-card--compact stagger-item tilt-card">
-          <div class="cap-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <path d="M12 3v18"></path>
-              <path d="M3 12h18"></path>
-              <path d="M6.6 6.6l10.8 10.8"></path>
-              <path d="M17.4 6.6L6.6 17.4"></path>
-            </svg>
+
+        <!-- Card 04: image right -->
+        <a class="glass-card cap-card cap-card--with-media cap-card--media-right bento-col-2 cap-link-card stagger-item tilt-card"
+          href="capabilities/information-architecture/index.html" aria-label="View Information Architecture & System Abstraction details">
+          <div class="cap-media">
+            <img src="images/04.png" alt="Information Architecture & System Abstraction" />
           </div>
-          <h3 data-en="Product Strategy" data-zh="产品策略">Product Strategy</h3>
-          <p data-en="Defining MVPs, user journeys, and roadmap planning for scalable products with clear milestones and team alignment."
-            data-zh="定义 MVP、用户旅程，以及可扩展产品的路线图规划，并建立清晰里程碑与团队协同。">Defining MVPs, user journeys, and roadmap planning for
-            scalable products with clear milestones and team alignment.</p>
-        </div>
-        <div class="glass-card cap-card cap-card--compact stagger-item tilt-card">
-          <div class="cap-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <circle cx="8" cy="8" r="2"></circle>
-              <circle cx="16" cy="8" r="2"></circle>
-              <circle cx="8" cy="16" r="2"></circle>
-              <path d="M16 16h.01"></path>
-              <path d="M20 20H4V4h16z"></path>
-            </svg>
+          <div class="cap-content">
+            <div class="cap-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="4" r="2"></circle>
+                <circle cx="5" cy="12" r="2"></circle>
+                <circle cx="19" cy="12" r="2"></circle>
+                <circle cx="9" cy="20" r="2"></circle>
+                <circle cx="15" cy="20" r="2"></circle>
+                <line x1="12" y1="6" x2="5" y2="10"></line>
+                <line x1="12" y1="6" x2="19" y2="10"></line>
+                <line x1="5" y1="14" x2="9" y2="18"></line>
+                <line x1="19" y1="14" x2="15" y2="18"></line>
+              </svg>
+            </div>
+            <h3 data-en="Information Architecture &amp; System Abstraction" data-zh="信息架构与系统抽象">Information Architecture &amp; System Abstraction</h3>
+            <p data-en="Building scalable product experience frameworks from business processes, object models, user roles, and system rules."
+              data-zh="从业务流程、对象模型、用户角色和系统规则出发，构建可扩展的产品体验框架。">Building scalable product experience frameworks from business processes, object models, user roles, and system rules.</p>
+            <p class="cap-tags" data-en="Information Architecture · Object Modeling · System Thinking" data-zh="信息架构 · 对象建模 · 系统思维">Information Architecture · Object Modeling · System Thinking</p>
+            <span class="cap-link-hint"><span data-en="View details" data-zh="查看详情">View details</span><span
+                class="cap-link-arrow" aria-hidden="true">↗</span></span>
           </div>
-          <h3 data-en="UI/Visual" data-zh="视觉设计">UI/Visual</h3>
-          <p data-en="Pixel-perfect interfaces with robust design systems, consistent component rules, and strong visual hierarchy."
-            data-zh="基于严谨设计系统打造像素级界面，并确保组件一致性与清晰视觉层级。">Pixel-perfect interfaces with robust design systems, consistent
-            component rules, and strong visual hierarchy.</p>
-        </div>
-        <div class="glass-card cap-card cap-card--compact stagger-item tilt-card">
-          <div class="cap-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <path d="M13 2L4 14h7l-1 8 10-14h-7z"></path>
-            </svg>
-          </div>
-          <h3 data-en="Prototyping" data-zh="交互原型">Prototyping</h3>
-          <p data-en="High-fidelity interactive prototypes in Framer & Figma to validate flows, edge cases, and product decisions early."
-            data-zh="在 Framer 与 Figma 中构建高保真交互原型，提前验证关键流程、边界场景与产品决策。">High-fidelity interactive prototypes in Framer &
-            Figma to validate flows, edge cases, and product decisions early.</p>
-        </div>
-        <div class="glass-card cap-card cap-card--compact stagger-item tilt-card">
-          <div class="cap-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <circle cx="11" cy="11" r="7"></circle>
-              <path d="M21 21l-4.3-4.3"></path>
-            </svg>
-          </div>
-          <h3 data-en="User Research" data-zh="用户研究">User Research</h3>
-          <p data-en="Usability testing, interviews, and data-driven iteration cycles to uncover real needs and prioritize the right improvements."
-            data-zh="通过可用性测试、访谈与数据驱动迭代，识别真实需求并优先推进高价值改进。">Usability testing, interviews, and data-driven iteration
-            cycles to uncover real needs and prioritize the right improvements.</p>
-        </div>
+        </a>
       </div>
     </section>
-    <section id="philosophy" class="section-padding" style="position: relative; overflow: hidden;">
+    <section id="philosophy" class="section-padding philosophy-section">
+      <video
+        class="philosophy-video"
+        data-philosophy-video
+        data-src="videos/philosophy-bg.mp4"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="none"
+        aria-hidden="true"
+      ></video>
       <div class="manifesto-deco">✻</div>
       <div class="container" style="max-width: 1000px; text-align: center;">
         <div class="manifesto-wrapper">
@@ -1934,174 +2474,270 @@
     </section>
     <section id="projects" class="section-padding">
       <div class="section-header stagger-item" style="margin-bottom: 40px;">
-        <div class="section-label-chip" data-en="Work" data-zh="精选案例">Work</div>
-        <h2 style="font-size: 48px;" data-en="Selected Work" data-zh="精选案例">Selected Work</h2>
+        <div class="section-label-chip" data-en="Work" data-zh="作品">Work</div>
+        <h2 style="font-size: 48px;" data-en="Recent Case Studies" data-zh="近期案例">Recent Case Studies</h2>
       </div>
       <div class="bento-grid">
-        <div class="glass-card project-card bento-col-2 stagger-item">
-          <div class="project-bg" style="background-image: linear-gradient(135deg, #1A1A2E 0%, #4C1D95 100%);"></div>
+        <a class="glass-card project-card bento-col-2 stagger-item" href="projects/agent-builder/index.html"
+          aria-label="View Agent Builder case study">
+          <div class="project-bg" style="background-image: url('images/projects/agent-builder-cover.png');"></div>
           <div class="project-overlay">
-            <div data-en="FinTech · AI Analytics" data-zh="金融科技 · AI 分析"
-              style="color: var(--amber); margin-bottom: 8px;">FinTech · AI Analytics</div>
-            <h3 style="color: #fff; font-size: 32px;" data-en="Nexus Dashboard" data-zh="Nexus 数据看板">Nexus
-              Dashboard </h3>
+            <div data-en="AI Agent · Builder" data-zh="Agent 编排 · 平台"
+              style="color: var(--amber);">AI Agent · Builder</div>
+            <h3 style="color: #fff;" data-en="Agent Builder" data-zh="Agent Builder">Agent Builder</h3>
           </div>
-        </div>
-        <div class="glass-card project-card stagger-item">
-          <div class="project-bg" style="background-image: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);"></div>
+        </a>
+        <a class="glass-card project-card stagger-item" href="projects/data-annotation-service/index.html"
+          aria-label="View Data Annotation Service case study">
+          <div class="project-bg" style="background-image: url('images/projects/data-annotation-cover.png');"></div>
           <div class="project-overlay">
-            <div data-en="SaaS · Design System" data-zh="SaaS · 设计系统"
-              style="color: #fff; margin-bottom: 8px; opacity: 0.8;">SaaS · Design System</div>
-            <h3 style="color: #fff;" data-en="Flow UI Kit" data-zh="Flow UI 组件库">Flow UI Kit</h3>
+            <div data-en="Data Service · Annotation" data-zh="数据服务 · 标注"
+              style="color: #fff; opacity: 0.8;">Data Service · Annotation</div>
+            <h3 style="color: #fff;" data-en="Data Annotation Service" data-zh="数据标注服务">Data Annotation Service</h3>
           </div>
-        </div>
-        <div class="glass-card project-card stagger-item">
-          <div class="project-bg" style="background-image: linear-gradient(135deg, #0EA5E9 0%, #2563EB 100%);"></div>
+        </a>
+        <a class="glass-card project-card stagger-item" href="projects/self-service-analytics/index.html"
+          aria-label="View Self-Service Analytics case study">
+          <div class="project-bg" style="background-image: url('images/projects/self-service-analytics-cover.png');"></div>
           <div class="project-overlay">
-            <div data-en="Mobile · Consumer" data-zh="移动端 · 消费类" style="color: #fff; margin-bottom: 8px; opacity: 0.8;">
-              Mobile · Consumer</div>
-            <h3 style="color: #fff;" data-en="Zen Habit App" data-zh="Zen 习惯养成 App">Zen Habit App</h3>
+            <div data-en="Data Analytics · Self-service" data-zh="数据分析 · 自助分析"
+              style="color: #fff; opacity: 0.8;">Data Analytics · Self-service</div>
+            <h3 style="color: #fff;" data-en="Self-Service Analytics" data-zh="自助分析工具">Self-Service Analytics</h3>
           </div>
-        </div>
-        <div class="glass-card project-card bento-col-2 stagger-item">
-          <div class="project-bg" style="background-image: linear-gradient(135deg, #10B981 0%, #059669 100%);"></div>
+        </a>
+        <a class="glass-card project-card bento-col-2 stagger-item" href="projects/data-platform/index.html"
+          aria-label="View Data Platform case study">
+          <div class="project-bg" style="background-image: url('images/projects/data-platform-cover.png');"></div>
           <div class="project-overlay">
-            <div data-en="Web3 · Platform" data-zh="Web3 · 平台" style="color: #fff; margin-bottom: 8px; opacity: 0.8;">
-              Web3 · Platform</div>
-            <h3 style="color: #fff; font-size: 32px;" data-en="Ether Exchange" data-zh="Ether 交易平台">Ether
-              Exchange</h3>
+            <div data-en="Data Platform · Management" data-zh="数据平台 · 管理消费" style="color: #fff; opacity: 0.8;">Data Platform · Management</div>
+            <h3 style="color: #fff;" data-en="Data Platform" data-zh="Data Platform">Data Platform</h3>
           </div>
-        </div>
+        </a>
       </div>
     </section>
-    <section id="stats" class="section-padding" style="overflow: hidden;">
-      <div class="container">
-        <div class="stats-header stagger-item">
-          <h2 class="stats-title" data-en="What Our Clients Say" data-zh="客户评价">What Our Clients Say</h2>
-          <p class="stats-subtitle"
-            data-en="Join customers who trust AI to transform their business and scale with confidence."
-            data-zh="加入那些信赖 AI 推动业务转型并实现稳定增长的客户行列。">
-            Join customers who trust AI to transform their business and scale with confidence.
-          </p>
-        </div>
-        <div class="stats-top-grid">
-          <div class="stats-quote-card stagger-item">
-            <p class="stats-quote-text"
-              data-en="Their AI-driven approach helped us reach the right audience and grow faster with smarter insights."
-              data-zh="他们的 AI 驱动方法帮助我们找到正确受众，并通过更智能的洞察实现更快增长。">
-              Their AI-driven approach helped us reach the right audience and grow faster with smarter insights.
-            </p>
-            <div class="stats-quote-mark">”</div>
-          </div>
-          <div class="stats-visual-card stagger-item">
-            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1800&auto=format&fit=crop"
-              alt="Client portrait">
-          </div>
-        </div>
+    <section id="smart-hardware" class="hardware-section">
+      <div class="section-header stagger-item">
+        <div class="section-label-chip" data-en="Hardware" data-zh="硬件">Hardware</div>
+        <h2 class="hardware-title" data-en="Smart Hardware" data-zh="智能硬件">Smart Hardware</h2>
       </div>
-      <div class="marquee-wrapper">
-        <div class="marquee-track">
-          <div class="testimonial-card glass-card">
-            <p>"Liu is a visionary designer who bridges the gap between complex tech and intuitive
-              UX." </p>
-            <div style="margin-top: 16px; font-weight: 600;">— Sarah J. (PM, Google)</div>
+      <div class="hardware-grid">
+        <article class="glass-card hardware-card stagger-item" style="--hardware-gradient: linear-gradient(135deg, #c9d7e8 0%, #5d7fa6 100%);">
+          <div class="hardware-swatch hardware-swatch--image" style="--hardware-bg-center: #fffefb; --hardware-bg: #fdfaf5; --hardware-bg-edge: #fbf7f1;">
+            <img src="images/hardware/handi-robot-card.png" alt="Handi Robot" />
           </div>
-          <div class="testimonial-card glass-card">
-            <p>"Delivered the project 2 weeks ahead of schedule. The design system is top notch."
+          <div class="hardware-card-body">
+            <div class="hardware-eyebrow" data-en="Robotics" data-zh="机器人">Robotics</div>
+            <h3 data-en="Handi Robot" data-zh="Handi 机器人">Handi Robot</h3>
+          </div>
+        </article>
+        <article class="glass-card hardware-card stagger-item" style="--hardware-gradient: linear-gradient(135deg, #d9e5d0 0%, #77a66b 100%);">
+          <div class="hardware-swatch hardware-swatch--image" style="--hardware-bg-center: #fffdf9; --hardware-bg: #fcf8f4; --hardware-bg-edge: #faf5ef;">
+            <img src="images/hardware/xiaowu-robot-card.png" alt="Xiaowu Robot" />
+          </div>
+          <div class="hardware-card-body">
+            <div class="hardware-eyebrow" data-en="Robotics" data-zh="机器人">Robotics</div>
+            <h3 data-en="Xiaowu Robot" data-zh="小武机器人">Xiaowu Robot</h3>
+          </div>
+        </article>
+        <article class="glass-card hardware-card stagger-item" style="--hardware-gradient: linear-gradient(135deg, #f3d8bd 0%, #c97847 100%);">
+          <div class="hardware-swatch hardware-swatch--image" style="--hardware-bg-center: #fff9f4; --hardware-bg: #f6eee8; --hardware-bg-edge: #efe3dc;">
+            <img src="images/hardware/smart-piano-card.png" alt="Smart Piano" />
+          </div>
+          <div class="hardware-card-body">
+            <div class="hardware-eyebrow" data-en="Music Interaction" data-zh="音乐交互">Music Interaction</div>
+            <h3 data-en="Smart Piano" data-zh="智能钢琴">Smart Piano</h3>
+          </div>
+        </article>
+        <article class="glass-card hardware-card stagger-item" style="--hardware-gradient: linear-gradient(135deg, #d9d5ef 0%, #6d65a8 100%);">
+          <div class="hardware-swatch hardware-swatch--image" style="--hardware-bg: #fbf8f4;">
+            <img src="images/hardware/smart-billiards-cue-card.png" alt="Smart Billiards Cue" />
+          </div>
+          <div class="hardware-card-body">
+            <div class="hardware-eyebrow" data-en="Sports Hardware" data-zh="运动硬件">Sports Hardware</div>
+            <h3 data-en="Smart Billiards Cue" data-zh="智能台球杆">Smart Billiards Cue</h3>
+          </div>
+        </article>
+      </div>
+    </section>
+    <section id="stats" class="section-padding" style="overflow: visible;">
+      <div class="container">
+        <div class="feedback-hero">
+          <div class="stats-header stagger-item">
+            <h2 class="stats-title" data-en="Testimonials" data-zh="评价">评价</h2>
+            <p class="stats-subtitle"
+              data-en="Real feedback from clients, partners, and teams keeps pushing me to improve the value of design."
+              data-zh="来自客户、合作伙伴和团队的真实反馈，是我持续提升设计价值的动力。">
+              来自客户、合作伙伴和团队的真实反馈，是我持续提升设计价值的动力。
             </p>
-            <div style="margin-top: 16px; font-weight: 600;">— Mike R. (CTO, StartUp)</div>
           </div>
-          <div class="testimonial-card glass-card">
-            <p>"Incredible attention to detail. The animations added so much delight." </p>
-            <div style="margin-top: 16px; font-weight: 600;">— Emily W. (Founder)</div>
-          </div>
-          <div class="testimonial-card glass-card">
-            <p>"Liu is a visionary designer who bridges the gap between complex tech and
-              intuitive UX." </p>
-            <div style="margin-top: 16px; font-weight: 600;">— Sarah J. (PM, Google)</div>
-          </div>
-          <div class="testimonial-card glass-card">
-            <p>"Delivered the project 2 weeks ahead of schedule. The design system is top
-              notch." </p>
-            <div style="margin-top: 16px; font-weight: 600;">— Mike R. (CTO, StartUp)</div>
+          <div class="feedback-visual stagger-item">
+            <img src="images/feedback-visual.png" alt="评价插图" />
           </div>
         </div>
-      </div>
-      <div class="container">
+
+        <div class="testimonials-grid">
+          <article class="testimonial-card stagger-item">
+            <div>
+              <div class="testimonial-quote-icon">“</div>
+              <p class="testimonial-copy"
+                data-en="In complex business scenarios, core needs are quickly identified, with design solutions that are both creative and practical."
+                data-zh="在复杂的业务场景中，总能快速抓住核心需求，提出兼具创新性与落地性的设计方案。">
+                在复杂的业务场景中，总能快速抓住核心需求，提出兼具创新性与落地性的设计方案。
+              </p>
+            </div>
+            <div>
+              <div class="testimonial-divider"></div>
+              <div class="testimonial-author">
+                <div>
+                  <div class="testimonial-name" data-en="Lin Zhou · Product Lead" data-zh="林舟 · 产品负责人">林舟 · 产品负责人</div>
+                  <div class="testimonial-role" data-en="Leading Technology Company" data-zh="某头部科技公司">某头部科技公司</div>
+                </div>
+                <div class="testimonial-mini-icon testimonial-mini-icon--blue">
+                  <svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="13" rx="2"></rect><path d="M8 6V4h8v2M4 11h16"></path></svg>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial-card stagger-item">
+            <div>
+              <div class="testimonial-quote-icon">“</div>
+              <p class="testimonial-copy"
+                data-en="The design system is professional and easy to scale, greatly improving our collaboration efficiency and product consistency."
+                data-zh="设计系统非常专业且易于扩展，极大提升了团队的协同效率和产品体验一致性。">
+                设计系统非常专业且易于扩展，极大提升了团队的协同效率和产品体验一致性。
+              </p>
+            </div>
+            <div>
+              <div class="testimonial-divider"></div>
+              <div class="testimonial-author">
+                <div>
+                  <div class="testimonial-name" data-en="Chen Ran · Design System Lead" data-zh="陈然 · 设计系统负责人">陈然 · 设计系统负责人</div>
+                  <div class="testimonial-role" data-en="Leading Technology Company" data-zh="某头部科技公司">某头部科技公司</div>
+                </div>
+                <div class="testimonial-mini-icon testimonial-mini-icon--green">
+                  <svg viewBox="0 0 24 24"><path d="M4 19V5"></path><path d="M4 19h16"></path><path d="M8 15l3-4 3 2 5-7"></path></svg>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial-card stagger-item">
+            <div>
+              <div class="testimonial-quote-icon">“</div>
+              <p class="testimonial-copy"
+                data-en="The attention to detail is impressive. The motion and interaction details are carefully handled, making the product feel more vivid and delightful."
+                data-zh="对细节的把控令人印象深刻，动效与交互设计恰到好处，让产品体验更加生动和愉悦。">
+                对细节的把控令人印象深刻，动效与交互设计恰到好处，让产品体验更加生动和愉悦。
+              </p>
+            </div>
+            <div>
+              <div class="testimonial-divider"></div>
+              <div class="testimonial-author">
+                <div>
+                  <div class="testimonial-name" data-en="Zhou Yue · Interaction Design Lead" data-zh="周悦 · 交互设计负责人">周悦 · 交互设计负责人</div>
+                  <div class="testimonial-role" data-en="Leading Technology Company" data-zh="某头部科技公司">某头部科技公司</div>
+                </div>
+                <div class="testimonial-mini-icon testimonial-mini-icon--violet">
+                  <svg viewBox="0 0 24 24"><path d="M13 3l1.8 4.2L19 9l-4.2 1.8L13 15l-1.8-4.2L7 9l4.2-1.8L13 3z"></path><path d="M6 14l.9 2.1L9 17l-2.1.9L6 20l-.9-2.1L3 17l2.1-.9L6 14z"></path></svg>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial-card stagger-item">
+            <div>
+              <div class="testimonial-quote-icon">“</div>
+              <p class="testimonial-copy"
+                data-en="Building a bridge between complex technology and user experience is an essential design capability for the team."
+                data-zh="能在复杂的技术与用户体验之间架起桥梁，是团队中不可或缺的核心设计师。">
+                能在复杂的技术与用户体验之间架起桥梁，是团队中不可或缺的核心设计师。
+              </p>
+            </div>
+            <div>
+              <div class="testimonial-divider"></div>
+              <div class="testimonial-author">
+                <div>
+                  <div class="testimonial-name" data-en="He Chuan · Technical Product Lead" data-zh="何川 · 技术产品负责人">何川 · 技术产品负责人</div>
+                  <div class="testimonial-role" data-en="Leading Technology Company" data-zh="某头部科技公司">某头部科技公司</div>
+                </div>
+                <div class="testimonial-mini-icon testimonial-mini-icon--sky">
+                  <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M5 21a7 7 0 0 1 14 0"></path></svg>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
         <div class="stats-metrics">
-          <div class="stat-metric stagger-item">
-            <div class="metric-value"><span class="counter" data-target="7">0</span><span class="metric-suffix">+</span>
-            </div>
-            <div class="metric-label" data-en="Years of Experience" data-zh="从业年限">Years of Experience</div>
+          <div class="stat-metric stat-metric--blue stagger-item">
+            <div class="metric-icon"><svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="13" rx="2"></rect><path d="M8 6V4h8v2M4 11h16"></path></svg></div>
+            <div class="metric-value"><span class="counter" data-target="10">0</span><span class="metric-suffix">+</span></div>
+            <div class="metric-label" data-en="Years of Experience" data-zh="从业年限">从业年限</div>
+            <div class="metric-note" data-en="Focused on AI product experience and design system building."
+              data-zh="专注于 AI 产品体验设计与设计系统构建">专注于 AI 产品体验设计与设计系统构建</div>
           </div>
-          <div class="stat-metric stagger-item">
-            <div class="metric-value"><span class="counter" data-target="45">0</span><span
-                class="metric-suffix">+</span></div>
-            <div class="metric-label" data-en="Projects Completed" data-zh="成功项目">Projects Completed</div>
+          <div class="stat-metric stat-metric--green stagger-item">
+            <div class="metric-icon"><svg viewBox="0 0 24 24"><path d="M5 6h14v12H5z"></path><path d="M8 9h8M8 13h5"></path></svg></div>
+            <div class="metric-value"><span class="counter" data-target="15">0</span><span class="metric-suffix">+</span></div>
+            <div class="metric-label" data-en="Completed Projects" data-zh="成功项目">成功项目</div>
+            <div class="metric-note" data-en="Across AI, data platforms, and tool-based products."
+              data-zh="涵盖 AI、数据平台、工具类产品等多个领域">涵盖 AI、数据平台、工具类产品等多个领域</div>
           </div>
-          <div class="stat-metric stagger-item">
-            <div class="metric-value"><span class="counter" data-target="98">0</span><span
-                class="metric-suffix">%</span></div>
-            <div class="metric-label" data-en="Client Satisfaction" data-zh="客户满意度">Client Satisfaction</div>
+          <div class="stat-metric stat-metric--violet stagger-item">
+            <div class="metric-icon"><svg viewBox="0 0 24 24"><circle cx="8" cy="9" r="3"></circle><circle cx="16" cy="9" r="3"></circle><path d="M3 20a5 5 0 0 1 10 0M11 20a5 5 0 0 1 10 0"></path></svg></div>
+            <div class="metric-value"><span class="counter" data-target="6">0</span><span class="metric-suffix">+</span></div>
+            <div class="metric-label" data-en="Collaborating Teams" data-zh="协作团队">协作团队</div>
+            <div class="metric-note" data-en="Working with R&D, product, and business teams to create value."
+              data-zh="与研发、产品、业务团队高效协作共创价值">与研发、产品、业务团队高效协作共创价值</div>
+          </div>
+          <div class="stat-metric stat-metric--sky stagger-item">
+            <div class="metric-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><path d="M12 12l5-5"></path><path d="M12 4v4M20 12h-4"></path></svg></div>
+            <div class="metric-value"><span class="counter" data-target="98">0</span><span class="metric-suffix">%</span></div>
+            <div class="metric-label" data-en="Client Satisfaction" data-zh="客户满意度">客户满意度</div>
+            <div class="metric-note" data-en="Consistently recognized by clients and partners."
+              data-zh="持续获得客户与合作伙伴的高度认可">持续获得客户与合作伙伴的高度认可</div>
           </div>
         </div>
       </div>
     </section>
-    <footer id="contact" class="big-footer">
-      <div class="noise-overlay"></div>
-
-      <div class="footer-marquee-wrapper">
-        <div class="footer-marquee-text">
-          SAY HELLO · CONTACT · SAY HELLO · CONTACT · SAY HELLO · CONTACT · SAY HELLO · CONTACT ·
-        </div>
-        <div class="footer-marquee-text">
-          SAY HELLO · CONTACT · SAY HELLO · CONTACT · SAY HELLO · CONTACT · SAY HELLO · CONTACT ·
-        </div>
-      </div>
-
-      <div class="container footer-content">
-        <div class="cta-section" style="text-align: left;">
-          <h2 class="footer-cta-title" data-en="Let's build something future-proof." data-zh="让我们构建面向未来的产品。">
-            Let's build something future-proof.
-          </h2>
-          <button class="magnetic-btn" id="contact-btn" style="height: 100px; padding: 0 60px; font-size: 24px;">
-            <span data-en="Start a Project" data-zh="开启合作">Start a Project</span>
-          </button>
-        </div>
-
-        <div class="social-links-grid">
-          <a href="#" class="social-link magnetic-link" data-en="Twitter" data-zh="推特">Twitter</a>
-          <a href="#" class="social-link magnetic-link" data-en="LinkedIn" data-zh="领英">LinkedIn</a>
-          <a href="#" class="social-link magnetic-link" data-en="Dribbble" data-zh="追波">Dribbble</a>
-          <a href="#" class="social-link magnetic-link" data-en="Email" data-zh="邮件">Email</a>
-        </div>
-
-        <div class="footer-bottom">
-          <div>
-            <div>&copy; 2024 Liu Lu. Based in Shanghai.</div>
-            <div style="margin-top: 8px;" data-en="Available for new opportunities." data-zh="即刻启程，探索新机遇。">
-              Available for new opportunities.
-            </div>
-          </div>
-          <div class="studio-time" id="studio-time">
-            Design Studio · 09:48 AM GMT+8
-          </div>
-        </div>
-      </div>
-    </footer>
+    <site-footer></site-footer>
   </main>
   <script>
     const langBtn = document.getElementById('lang-btn');
     const themeToggle = document.getElementById('theme-toggle');
     const systemDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
     let currentLang = localStorage.getItem('site_lang') || 'en';
-    let currentTheme = localStorage.getItem('site_theme') || 'auto';
+    const themeResetVersion = 'light-default-20260508';
+    if (localStorage.getItem('site_theme_reset') !== themeResetVersion) {
+      localStorage.setItem('site_theme', 'light');
+      localStorage.setItem('site_theme_reset', themeResetVersion);
+    }
+    let currentTheme = localStorage.getItem('site_theme') || 'light';
 
     function applyTheme(themeMode) {
       const isDark = themeMode === 'dark' || (themeMode === 'auto' && systemDarkScheme.matches);
       document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
       if (themeToggle) themeToggle.classList.toggle('is-dark', isDark);
       localStorage.setItem('site_theme', themeMode);
+    }
+
+    async function downloadLinkedFile(link) {
+      const fileUrl = link.href;
+      const fileName = link.getAttribute('download') || 'resume.png';
+      const response = await fetch(fileUrl);
+      if (!response.ok) throw new Error(`Download failed: ${response.status}`);
+
+      const blob = await response.blob();
+      const blobUrl = URL.createObjectURL(blob);
+      const downloadLink = document.createElement('a');
+      downloadLink.href = blobUrl;
+      downloadLink.download = fileName;
+      downloadLink.style.display = 'none';
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      downloadLink.remove();
+      setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
     }
 
     function splitHeroLine(el, baseDelay) {
@@ -2131,6 +2767,9 @@
       langBtn.textContent = currentLang === 'en' ? 'EN / 中' : '中 / EN';
       document.documentElement.lang = currentLang === 'en' ? 'en' : 'zh-CN';
       localStorage.setItem('site_lang', currentLang);
+      document.dispatchEvent(new CustomEvent('site-language-change', {
+        detail: { language: currentLang }
+      }));
       initHeroAnimation();
     }
 
@@ -2148,13 +2787,30 @@
 
     applyTheme(currentTheme);
 
+    const resumeDownloadBtn = document.getElementById('resume-download-btn');
+    if (resumeDownloadBtn) {
+      resumeDownloadBtn.addEventListener('click', async (event) => {
+        event.preventDefault();
+        try {
+          await downloadLinkedFile(resumeDownloadBtn);
+        } catch (error) {
+          console.error(error);
+        }
+      });
+    }
+
     langBtn.addEventListener('click', () => {
       currentLang = currentLang === 'en' ? 'zh' : 'en';
       updateLanguage();
     });
 
-    if (currentLang === 'zh') updateLanguage();
-    else initHeroAnimation();
+    updateLanguage();
+
+    window.addEventListener('pageshow', (event) => {
+      if (!event.persisted) return;
+      currentLang = localStorage.getItem('site_lang') || 'en';
+      updateLanguage();
+    });
 
     function initHeroParticles() {
       const canvas = document.getElementById('hero-particles');
@@ -2397,16 +3053,6 @@
     });
 
     document.querySelectorAll('.magnetic-btn').forEach(btn => {
-      btn.addEventListener('mousemove', (e) => {
-        const rect = btn.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
-      });
-
-      btn.addEventListener('mouseleave', () => {
-        btn.style.transform = 'translate(0, 0)';
-      });
 
       btn.addEventListener('click', function (e) {
         const circle = document.createElement('div');
@@ -2437,20 +3083,46 @@
 
     document.querySelectorAll('.reveal-type').forEach(item => manifestoObserver.observe(item));
 
-    function updateStudioTime() {
-      const timeEl = document.getElementById('studio-time');
-      if (!timeEl) return;
-      const timeStr = new Date().toLocaleTimeString('en-US', {
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: true,
-        timeZone: 'Asia/Shanghai'
+    function initPhilosophyVideo() {
+      const video = document.querySelector('[data-philosophy-video]');
+      if (!video) return;
+
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const src = video.getAttribute('data-src');
+      if (!src || reducedMotion) return;
+
+      const loadVideo = () => {
+        if (video.getAttribute('src')) return;
+        video.setAttribute('src', src);
+        video.load();
+        video.play().catch(() => {});
+      };
+
+      if ('IntersectionObserver' in window) {
+        const videoObserver = new IntersectionObserver(
+          (entries, observer) => {
+            if (!entries.some(entry => entry.isIntersecting)) return;
+            loadVideo();
+            observer.disconnect();
+          },
+          { rootMargin: '420px 0px' }
+        );
+        videoObserver.observe(video);
+      } else {
+        loadVideo();
+      }
+
+      document.addEventListener('visibilitychange', () => {
+        if (!video.getAttribute('src')) return;
+        if (document.hidden) {
+          video.pause();
+          return;
+        }
+        video.play().catch(() => {});
       });
-      timeEl.textContent = `Design Studio · ${timeStr} GMT+8`;
     }
 
-    setInterval(updateStudioTime, 1000);
-    updateStudioTime();
+    initPhilosophyVideo();
   </script>
 </body>
 

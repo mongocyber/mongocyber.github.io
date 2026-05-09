@@ -1,0 +1,29 @@
+@import url("../agent-builder/style.css");
+
+.hero-copy h1 {
+  max-width: 620px;
+  white-space: normal;
+  font-size: clamp(54px, 5vw, 78px);
+}
+
+.hero-summary + .hero-summary {
+  margin-top: 16px;
+}
+
+.error-visual {
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+@media (max-width: 1080px) {
+  .hero-copy h1 {
+    font-size: clamp(48px, 9vw, 64px);
+  }
+}
+
+@media (max-width: 760px) {
+  .hero-copy h1 {
+    font-size: clamp(36px, 11vw, 46px);
+  }
+}

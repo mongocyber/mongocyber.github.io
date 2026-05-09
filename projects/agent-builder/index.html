@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agent Builder｜云内部 Agent 编排平台</title>
+    <meta
+      name="description"
+      content="Agent Builder 云内部 Agent 编排平台案例详情，展示 Agent 创建、编排、调试、日志与异常反馈的完整产品体验设计。"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="../../components/site-nav.css" />
+    <link rel="stylesheet" href="../../components/site-footer.css" />
+    <script src="../../components/site-nav.js" defer></script>
+    <script src="../../components/site-footer.js" defer></script>
+  </head>
+  <body>
+    <div class="page-grid" aria-hidden="true"></div>
+
+    <site-nav data-root="../../" data-home="../../index.html"></site-nav>
+
+    <main>
+      <section class="hero-section">
+        <div class="container hero-layout">
+          <div class="hero-copy reveal">
+            <div class="detail-nav" aria-label="页面导航">
+              <a class="back-link" href="../../index.html#projects">返回</a>
+              <span class="breadcrumb-label">作品 / Agent Builder</span>
+            </div>
+            <h1>Agent Builder</h1>
+            <p class="hero-subtitle">云内部 Agent 编排平台</p>
+            <p class="hero-summary">
+              一个面向云内部业务场景的 AI Agent 工作流编排平台，将模型、工具、知识源、任务节点与卡片配置组织成可创建、可编排、可调试、可复用的完整 Agent 流程。
+            </p>
+
+            <div class="hero-metrics" aria-label="核心数据">
+              <div>
+                <strong>6</strong>
+                <span>类能力配置对象</span>
+              </div>
+              <div>
+                <strong>7+</strong>
+                <span>业务团队与场景</span>
+              </div>
+              <div>
+                <strong>4</strong>
+                <span>类复用设计模式</span>
+              </div>
+            </div>
+          </div>
+
+          <figure class="hero-image-card reveal">
+            <img
+              src="./assets/agent-builder-hero.png"
+              alt="Agent Builder 工作流编排界面，展示节点连接、运行状态与顶部操作入口"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section problem-section" id="project-background">
+        <div class="container problem-layout">
+          <div class="section-copy problem-intro reveal">
+            <p class="section-kicker">01 项目背景</p>
+            <h2>快速构建可执行 Agent</h2>
+            <p>
+              随着大语言模型能力进入内部业务场景，越来越多团队希望用 Agent 承接知识问答、任务拆解、工具调用、流程执行和结果生成等工作。
+            </p>
+            <p>
+              但一个可落地运行的 Agent 并不只是输入一段 Prompt。它需要同时管理模型、工具、知识源、任务节点、卡片展示、工作流关系、输入输出、执行条件和异常处理。使用者也不只有一种：Agent 创建者需要快速搭建并验证流程，业务场景负责人需要复用团队能力并稳定交付结果，平台维护者需要保证能力对象可管理、异常可定位。
+            </p>
+            <p class="callout-text">核心问题：如何把复杂的 Agent 技术能力，转化为业务用户能理解、能配置、能验证、能复用的产品体验？</p>
+          </div>
+
+          <div class="problem-list reveal">
+            <div><strong>对象关系复杂</strong><span>模型、工具、知识源、节点、卡片和日志属于不同技术对象，用户很难判断它们之间的依赖关系。</span></div>
+            <div><strong>任务路径容易断点</strong><span>创建者需要从创建、配置、编排走到调试和修正，路径一旦分散就会增加试错成本。</span></div>
+            <div><strong>运行过程缺少解释</strong><span>场景负责人不仅要知道成功或失败，还要知道系统调用了什么、读取了什么、失败发生在哪一步。</span></div>
+            <div><strong>团队复用成本高</strong><span>平台维护者如果无法沉淀模板、节点和异常模式，就会让每个团队重复搭建同类 Agent。</span></div>
+          </div>
+
+          <figure class="problem-visual problem-image reveal" aria-label="从复杂技术能力到可执行 Agent Workflow 的问题场景图">
+            <img
+              src="./assets/problem-scenario.png"
+              alt="Agent Builder 将分散 AI 能力组织为可执行工作流的场景示意图"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section muted-section">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="section-kicker">02 设计目标</p>
+            <h2>让复杂能力进入一个完整闭环</h2>
+          </div>
+          <div class="goal-grid">
+            <article class="text-card reveal">
+              <span>01</span>
+              <h3>降低理解成本</h3>
+              <p>用清晰的信息分层承接模型、工具、知识源、任务节点和卡片配置，让创建者先理解对象，再完成配置。</p>
+            </article>
+            <article class="text-card reveal">
+              <span>02</span>
+              <h3>建立完整工作流</h3>
+              <p>把 Agent 创建、能力选择、节点配置、流程编排、执行调试和日志查看串成一条连续任务路径。</p>
+            </article>
+            <article class="text-card reveal">
+              <span>03</span>
+              <h3>提升执行可观察性</h3>
+              <p>通过节点状态、执行路径、工具调用结果、知识源命中和异常反馈，让用户看清 Agent 的运行过程。</p>
+            </article>
+            <article class="text-card reveal">
+              <span>04</span>
+              <h3>支持持续迭代</h3>
+              <p>让场景负责人和平台维护者能复用已有模板、调整关键参数，并把成熟流程沉淀为团队级能力资产。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section challenge-section">
+        <div class="container split-layout reverse">
+          <figure class="challenge-image reveal" aria-label="四象限设计挑战图">
+            <img
+              src="./assets/challenge-overview.png"
+              alt="Agent Builder 设计挑战四象限示意图"
+            />
+          </figure>
+
+          <div class="section-copy reveal">
+            <p class="section-kicker">03 设计挑战</p>
+            <h2>既要表达系统能力，也要让业务用户能完成配置</h2>
+            <p>
+              Agent Builder 的难点不在于把所有配置项摆出来，而在于为不同角色提供合适的抽象层级：新手创建者需要按流程完成搭建，熟练配置者需要细粒度调整模型、工具和节点，平台维护者还需要管理模板、版本、异常和复用边界。
+            </p>
+            <ul class="dense-list">
+              <li>将技术对象产品化，让创建者知道每类能力解决什么问题、何时需要配置。</li>
+              <li>在画布、节点和配置面板之间建立稳定关系，避免配置者在复杂流程中迷失。</li>
+              <li>把执行日志、节点状态和异常反馈前置为核心体验，帮助场景负责人完成验证和修正。</li>
+              <li>在默认流程和高级配置之间取得平衡，让新用户能搭建，熟练用户能扩展，平台侧能复用。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section muted-section ia-section">
+        <div class="container split-layout">
+          <div class="section-copy reveal">
+            <p class="section-kicker">04 信息架构设计</p>
+            <h2>围绕创建、配置、编排、调试、观察、迭代展开</h2>
+            <p>
+              信息架构没有按技术菜单堆叠，而是围绕关键任务组织入口：创建者从新建 Agent 进入，完成能力选择、节点配置和流程编排；场景负责人从运行结果和日志进入，判断流程是否可用；平台维护者从模板、版本和异常类型进入，管理可复用能力。底层再拆成三层：资产层承接模型、工具、知识源等可复用能力；编排层表达节点关系、输入输出和执行顺序；观测层提供调试、日志、异常和版本管理。
+            </p>
+            <div class="ia-list">
+              <span>Agent 列表</span>
+              <span>Agent 创建</span>
+              <span>Agent 详情</span>
+              <span>工作流编排</span>
+              <span>节点配置</span>
+              <span>卡片配置</span>
+              <span>执行调试</span>
+              <span>运行日志</span>
+              <span>异常反馈</span>
+              <span>版本 / 发布管理</span>
+            </div>
+          </div>
+
+          <figure class="ia-visual reveal">
+            <img
+              src="./assets/xinxi.png"
+              alt="Agent Builder 信息架构图，展示 Agent 列表、创建、详情、工作流编排、运行观测以及模型、工具、知识源、任务节点等关系"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section muted-section workflow-section">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="section-kicker">05 工作流编排设计</p>
+            <h2>用节点式画布表达执行关系、配置入口和运行状态</h2>
+          </div>
+          <figure class="workflow-image reveal" aria-label="工作流编排界面图">
+            <img
+              src="./assets/workflow-editor.png"
+              alt="Agent Builder 工作流编排界面示例"
+            />
+            <figcaption>因内部产品页面图片由AI生成，仅示例业务。</figcaption>
+          </figure>
+          <div class="support-grid">
+            <article class="text-card reveal">
+              <img
+                class="support-card-icon"
+                src="./assets/node-card-info-icon.png"
+                alt=""
+                aria-hidden="true"
+              />
+              <h3>节点卡片信息</h3>
+              <p>关键决策是把画布作为主工作区，而不是把流程拆散到多页表单。节点卡片承载名称、类型、输入来源、输出结果、配置完整度、异常提示和快捷操作，让用户在画布上就能判断节点是否可运行。</p>
+            </article>
+            <article class="text-card reveal">
+              <img
+                class="support-card-icon"
+                src="./assets/node-status-icon.png"
+                alt=""
+                aria-hidden="true"
+              />
+              <h3>节点状态</h3>
+              <p>状态设计贯穿配置和运行阶段，覆盖未配置、已配置、运行中、成功、失败、跳过和待确认，让创建者能顺着节点定位断点，而不是在日志里反向查找问题。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section config-section">
+        <div class="container split-layout">
+          <div class="section-copy reveal">
+            <p class="section-kicker">06 节点配置面板设计</p>
+            <h2>统一配置框架，支持不同节点扩展</h2>
+            <p>
+              节点配置是 Agent Builder 的核心操作区。关键决策是固定一套配置主干：基础信息、输入配置、参数设置、输出定义、高级设置和测试运行；不同节点只在必要位置扩展专属字段。这样既能承接模型、工具、知识源等差异，又能降低用户在不同节点之间切换时的学习成本。
+            </p>
+            <div class="config-type-grid">
+              <span>模型节点：模型选择、Prompt、上下文、输出格式、温度参数</span>
+              <span>工具节点：工具选择、入参映射、调用条件、返回结果、异常处理</span>
+              <span>知识源节点：知识库、检索范围、召回策略、引用展示、命中结果</span>
+              <span>任务节点：任务说明、执行条件、输入依赖、输出结构、下一步流转</span>
+              <span>卡片配置：展示类型、字段映射、布局配置、状态展示、操作入口</span>
+            </div>
+          </div>
+
+          <figure class="config-product reveal" aria-label="节点配置面板产品界面图">
+            <img
+              src="./assets/node-config-panel.png"
+              alt="Agent Builder 节点配置面板，展示模型、工具、知识源、任务节点与卡片配置"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section muted-section debug-section">
+        <div class="container split-layout reverse">
+          <figure class="debug-product-image reveal" aria-label="执行调试与日志页面图">
+            <img
+              src="./assets/process-visible.png"
+              alt="Agent Builder 执行调试页面，展示运行路径、节点状态、结构化结果和日志定位能力"
+            />
+          </figure>
+
+          <div class="section-copy reveal">
+            <p class="section-kicker">07 执行调试体验设计</p>
+            <h2>让 Agent 执行过程可见、异常可定位</h2>
+            <p>
+              调试体验的关键决策是把验证留在搭建流程内，而不是让用户跳到独立日志中心。页面被拆成三层：全局执行状态、节点执行过程、详细日志与结果。用户点击运行后，节点按执行顺序点亮，并展示输入输出、工具调用结果、知识源命中和异常位置，使调试从“看报错”变成“沿路径定位问题”。
+            </p>
+            <ul class="dense-list">
+              <li>运行前提示配置缺口，避免无效执行。</li>
+              <li>运行中展示节点状态和当前执行位置。</li>
+              <li>运行后结构化呈现输入、输出、工具调用和知识源命中。</li>
+              <li>异常位置明确标记，并支持跳回对应节点配置。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="container split-layout">
+          <div class="section-copy reveal">
+            <p class="section-kicker">08 执行日志与异常反馈设计</p>
+            <h2>把原始日志转成业务用户能理解的过程解释</h2>
+            <p>
+              执行日志不是直接暴露给研发看的原始日志，而是面向业务用户的过程解释。关键决策是先给业务可读解释，再保留可展开的技术细节：页面将日志分成整体结果、节点过程、输入输出详情和技术错误信息，并用可理解的异常类型告诉用户下一步应该检查什么。
+            </p>
+            <div class="error-taxonomy">
+              <span>配置缺失</span>
+              <span>参数错误</span>
+              <span>工具调用失败</span>
+              <span>知识源未命中</span>
+              <span>权限不足</span>
+              <span>模型返回异常</span>
+              <span>超时或系统错误</span>
+            </div>
+          </div>
+
+          <figure class="diagram-card error-visual reveal" aria-label="执行日志转译为业务过程解释的图形化示意图">
+            <img
+              src="./assets/execution-log-feedback.png"
+              alt="执行日志转译为业务过程解释的图形化示意图"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section outcome-section">
+        <div class="container outcome-layout">
+          <figure class="outcome-visual reveal" aria-label="项目成果总结图">
+            <img
+              src="./assets/outcome-summary.png"
+              alt="Agent Builder 项目成果总结图，展示 6 类核心能力、7+ 业务团队与场景、4 类复用模式和完整链路"
+            />
+          </figure>
+
+          <div class="section-copy outcome-copy reveal">
+            <p class="section-kicker outcome-kicker"><span aria-hidden="true"></span>09 项目价值与成果</p>
+            <h2>让 AI 能力从单点使用<span class="outcome-title-tail">沉淀为<em>平台能力</em></span></h2>
+            <p>
+              对创建者，平台把 Agent 搭建从分散配置收敛为一条连续流程，降低理解和调试成本；对场景负责人，运行结果、日志和异常反馈让流程是否可用更容易判断；对平台侧，7+ 个内部团队和场景可以复用同一套能力对象和设计模式，减少重复开发、重复配置和经验依赖。
+            </p>
+            <ul class="outcome-value-list">
+              <li><span class="value-mark mark-layers" aria-hidden="true"></span>统一模型、工具、知识源、任务节点、卡片配置、工作流等 6 类核心能力的配置入口。</li>
+              <li><span class="value-mark mark-link" aria-hidden="true"></span>覆盖 Agent 创建、能力选择、流程编排、执行调试、日志查看和异常修正的完整链路。</li>
+              <li><span class="value-mark mark-code" aria-hidden="true"></span>沉淀 Agent 编排、节点配置、执行反馈、异常处理等 4 类可复用设计模式，便于后续场景扩展。</li>
+              <li><span class="value-mark mark-trend" aria-hidden="true"></span>让用户从“配置一个 Agent”升级为“持续验证、调整和复用一套 Agent 流程”。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <site-footer></site-footer>
+
+    <script>
+      (() => {
+        const revealItems = document.querySelectorAll(".reveal");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12 }
+        );
+
+        revealItems.forEach((item) => observer.observe(item));
+      })();
+    </script>
+  </body>
+</html>

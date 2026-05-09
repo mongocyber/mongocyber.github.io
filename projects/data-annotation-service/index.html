@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Annotation Service｜数据标注服务</title>
+    <meta
+      name="description"
+      content="Data Annotation Service 数据标注服务案例详情，展示模板创建、任务分发、文本与图片标注、进度管理和结果验收的完整平台化体验设计。"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="../../components/site-nav.css" />
+    <link rel="stylesheet" href="../../components/site-footer.css" />
+    <script src="../../components/site-nav.js" defer></script>
+    <script src="../../components/site-footer.js" defer></script>
+  </head>
+  <body>
+    <div class="page-grid" aria-hidden="true"></div>
+
+    <site-nav data-root="../../" data-home="../../index.html"></site-nav>
+
+    <main>
+      <section class="hero-section">
+        <div class="container hero-layout">
+          <div class="hero-copy reveal">
+            <div class="detail-nav" aria-label="页面导航">
+              <a class="back-link" href="../../index.html#projects">返回</a>
+              <span class="breadcrumb-label">作品 / Data Annotation Service</span>
+            </div>
+            <h1>Data Annotation Service</h1>
+            <p class="hero-subtitle">数据标注服务平台</p>
+            <p class="hero-summary">
+              一个面向 AI 数据生产流程的内部平台，将分散在文档、表格和人工沟通中的标注协作，整理成可配置、可分发、可执行、可追踪、可验收的生产系统。
+            </p>
+
+            <div class="hero-metrics" aria-label="核心数据">
+              <div>
+                <strong>2</strong>
+                <span>文本与图片核心标注场景</span>
+              </div>
+              <div>
+                <strong>5</strong>
+                <span>模板、分发、执行、进度、验收关键阶段</span>
+              </div>
+              <div>
+                <strong>3</strong>
+                <span>管理端、执行端、验收端关键路径</span>
+              </div>
+            </div>
+          </div>
+
+          <figure class="hero-image-card reveal">
+            <img
+              src="./assets/annotation-hero.png"
+              alt="数据标注服务平台工作台示意，展示图片标注、标签选择、规则校验和结果提交能力"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section problem-section" id="project-background">
+        <div class="container problem-layout">
+          <div class="section-copy problem-intro reveal">
+            <p class="section-kicker">01 项目背景</p>
+            <h2>从人工分发到可追踪的数据生产系统</h2>
+            <p>
+              AI 数据标注不是把样本发给执行人员这么简单。一个完整任务通常包含数据集准备、模板和规则定义、人员分配、标注执行、异常处理、进度追踪、结果复核和最终导出。
+            </p>
+            <p>
+              在没有统一平台时，这些环节会被拆散到表格、文档、聊天工具和人工检查中。管理人员很难判断任务是否正常推进，执行人员也难以确认规则、提交要求和异常反馈是否一致。
+            </p>
+            <p class="callout-text">核心问题：如何把数据标注从一次性的人工协作，设计成一套规则清晰、状态透明、结果可回收的平台化生产流程？</p>
+          </div>
+
+          <div class="problem-list reveal">
+            <div><strong>规则分散</strong><span>字段、标签、判断标准、示例和提交要求分布在不同文档中，执行人员容易出现理解偏差。</span></div>
+            <div><strong>分发不透明</strong><span>任务量、人员负载、截止时间和异常任务缺少统一状态，管理人员只能靠人工追问。</span></div>
+            <div><strong>执行成本高</strong><span>文本和图片标注的操作方式不同，如果工作台结构不清晰，会直接影响效率和质量。</span></div>
+            <div><strong>验收链路弱</strong><span>标注结果需要检查、筛选、退回和导出，缺少验收机制会提高后续数据使用风险。</span></div>
+          </div>
+
+          <figure
+            class="image-slot problem-visual reveal"
+            aria-label="展示数据标注从分散协作到平台化生产流程的问题场景"
+          >
+            <img
+              src="./assets/annotation-problem-scenario.png"
+              alt="数据标注从规则文档、任务表格、人工分发和聊天反馈，收敛为模板配置、任务分发、标注执行、进度监控和结果验收的流程示意"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section muted-section">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="section-kicker">02 设计目标</p>
+            <h2>让标注任务从规则到结果形成闭环</h2>
+          </div>
+          <div class="goal-grid">
+            <article class="text-card reveal">
+              <span>01</span>
+              <h3>统一任务规则</h3>
+              <p>用模板承载字段、标签、规则、示例和校验，让每次任务创建都有稳定结构。</p>
+            </article>
+            <article class="text-card reveal">
+              <span>02</span>
+              <h3>连接双角色路径</h3>
+              <p>管理端关注创建、分发、进度和验收，执行端关注规则理解、标注效率和提交反馈。</p>
+            </article>
+            <article class="text-card reveal">
+              <span>03</span>
+              <h3>提升执行效率</h3>
+              <p>针对文本和图片两类高频工作台，减少视线跳转和重复操作，并保留明确的异常入口。</p>
+            </article>
+            <article class="text-card reveal">
+              <span>04</span>
+              <h3>保证结果可回收</h3>
+              <p>把进度、质量、异常和验收状态前置，让管理人员能判断哪些结果可以继续使用。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section challenge-section">
+        <div class="container split-layout reverse">
+          <figure
+            class="image-slot challenge-image reveal"
+            aria-label="展示数据标注服务的四类设计挑战"
+          >
+            <img
+              src="./assets/annotation-challenge-overview.png"
+              alt="数据标注服务设计挑战四象限，包含任务标准化、双角色路径、长链路状态、效率与质量平衡"
+            />
+          </figure>
+
+          <div class="section-copy reveal">
+            <p class="section-kicker">03 设计挑战</p>
+            <h2>既要统一生产流程，也要保留不同标注任务的差异</h2>
+            <p>
+              数据标注平台不能只做任务列表。它需要同时承接标准化生产、不同标注类型的操作差异，以及管理人员和执行人员完全不同的关注点。
+            </p>
+            <ul class="dense-list">
+              <li>文本分类、文本抽取、图片框选等任务的输入、操作和结果结构不同，需要用模板统一底层规则，同时允许任务类型扩展。</li>
+              <li>管理人员需要看到任务是否正常推进，执行人员需要在最少干扰下完成判断、选择、填写和提交。</li>
+              <li>任务状态不能只是“进行中、已完成”，还要表达分发、异常、退回、待验收、已验收等下一步动作。</li>
+              <li>标注效率和质量互相牵制，页面既要降低重复操作，也要通过规则、校验和反馈减少错标、漏标和不可用结果。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section muted-section ia-section">
+        <div class="container split-layout">
+          <div class="section-copy reveal">
+            <p class="section-kicker">04 信息架构设计</p>
+            <h2>围绕模板、任务、执行、进度、验收建立闭环</h2>
+            <p>
+              信息架构没有按功能菜单堆叠，而是围绕标注任务生命周期组织入口：先用模板定义规则，再用任务承载数据和人员分配，执行端围绕任务完成标注，管理端持续查看进度和异常，最后进入结果验收与导出。
+            </p>
+            <div class="ia-list">
+              <span>标注模板</span>
+              <span>数据集选择</span>
+              <span>任务创建</span>
+              <span>人员分发</span>
+              <span>文本标注工作台</span>
+              <span>图片标注工作台</span>
+              <span>进度管理</span>
+              <span>结果验收</span>
+              <span>异常反馈</span>
+              <span>结果导出</span>
+            </div>
+          </div>
+
+          <figure class="ia-visual reveal">
+            <img
+              src="./assets/annotation-information-architecture.png"
+              alt="数据标注服务从模板配置、任务创建、人员分发、标注执行、进度管理到结果验收的流程示意"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section config-section">
+        <div class="container split-layout">
+          <div class="section-copy reveal">
+            <p class="section-kicker">05 任务对象与模板设计</p>
+            <h2>以 Annotation Task 承接完整生命周期</h2>
+            <p>
+              我将 Annotation Task 作为核心对象。模板定义任务规则，数据集提供待处理样本，执行人员在工作台完成标注，进度和结果验收持续回写到同一个任务对象上。
+            </p>
+            <p>
+              模板是标注服务的基础能力，需要把任务类型、字段结构、标签体系、规则说明、示例、校验条件和提交要求沉淀为可复用配置，避免每次创建任务都重新解释规则。
+            </p>
+            <div class="config-type-grid">
+              <span>Template：任务类型、字段结构、标签体系、规则说明、示例样本</span>
+              <span>Dataset：样本字段、图片或文本来源、批次、数据质量状态</span>
+              <span>Assignee：标注人员、复核人员、任务量、截止时间</span>
+              <span>Workspace：文本标注、图片标注、保存草稿、跳过、异常反馈</span>
+              <span>Progress：完成率、人员进度、异常样本、退回记录</span>
+              <span>Result Review：抽检、复核、通过、退回、导出可用结果</span>
+            </div>
+          </div>
+
+          <figure
+            class="image-slot config-product reveal"
+            aria-label="展示 Annotation Task 对象模型和模板配置界面"
+          >
+            <img
+              src="./assets/annotation-task-template-model.png"
+              alt="Annotation Task 对象模型与标注模板配置界面，展示 Template、Dataset、Assignee、Workspace、Progress 和 Result Review 的关系"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section muted-section debug-section">
+        <div class="container split-layout reverse">
+          <figure
+            class="image-slot debug-product-image reveal"
+            aria-label="展示任务创建与人员分发流程"
+          >
+            <img
+              src="./assets/annotation-task-distribution.png"
+              alt="数据标注任务创建与分发界面，展示选择数据、选择模板、分配人员、发布确认、任务摘要和风险提示"
+            />
+          </figure>
+
+          <div class="section-copy reveal">
+            <p class="section-kicker">06 任务创建与分发设计</p>
+            <h2>让管理人员在发布前看清数据、规则、人员和风险</h2>
+            <p>
+              任务创建是从规则进入生产的关键节点。设计上避免“填完表单就发布”，而是让管理人员按顺序确认数据集、模板、人员、时间、任务量和质量策略。
+            </p>
+            <ul class="dense-list">
+              <li>用步骤条表达任务发布路径，让管理人员知道当前处于哪一步。</li>
+              <li>在分发阶段同时展示人员负载、样本量和截止时间，减少分配不均。</li>
+              <li>发布前给出任务摘要和风险提示，避免规则缺失、样本异常或人员不足。</li>
+              <li>把管理端的发布结果同步到执行端任务上下文，确保标注人员看到同一套规则。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section workflow-section">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="section-kicker">07 标注工作台设计</p>
+            <h2>让文本和图片标注在同一任务框架下高效执行</h2>
+          </div>
+          <figure
+            class="image-slot workflow-image reveal"
+            aria-label="展示文本与图片标注工作台"
+          >
+            <img
+              src="./assets/annotation-workbench.png"
+              alt="文本与图片标注工作台界面，展示样本队列、规则说明、标签与字段面板、图片画布、对象列表和提交反馈"
+            />
+            <figcaption>因内部产品页面图片由 AI 生成，仅示例业务。</figcaption>
+          </figure>
+          <div class="support-grid">
+            <article class="text-card reveal">
+              <span>文本标注</span>
+              <h3>减少视线跳转</h3>
+              <p>页面中心保留样本文本，右侧集中承载标签、字段和提交操作；规则说明和示例不离开当前工作台，提交后直接进入下一条。</p>
+            </article>
+            <article class="text-card reveal">
+              <span>图片标注</span>
+              <h3>保持空间关系清晰</h3>
+              <p>左侧提供图片队列，中心保留大画布和缩放拖拽操作；区域框、对象列表和标签状态保持联动，减少漏标和重复标注。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section muted-section">
+        <div class="container split-layout">
+          <div class="section-copy reveal">
+            <p class="section-kicker">08 进度管理与结果验收设计</p>
+            <h2>让管理人员快速判断任务是否正常推进、结果是否可回收</h2>
+            <p>
+              进度管理和结果验收是平台化流程的收口。管理人员不仅要看完成率，还要看人员进度、异常样本、待复核结果、退回记录和可导出状态。
+            </p>
+            <div class="error-taxonomy">
+              <span>总体完成率</span>
+              <span>人员进度</span>
+              <span>异常样本</span>
+              <span>待复核结果</span>
+              <span>退回记录</span>
+              <span>导出状态</span>
+            </div>
+          </div>
+
+          <figure
+            class="image-slot reveal"
+            aria-label="展示进度管理与结果验收看板"
+          >
+            <img
+              src="./assets/annotation-review-dashboard.png"
+              alt="进度管理与结果验收看板，展示总体完成率、人员进度、异常样本、验收队列、退回记录和导出可用结果入口"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section outcome-section">
+        <div class="container outcome-layout">
+          <figure
+            class="image-slot outcome-visual reveal"
+            aria-label="展示数据标注服务项目成果总结"
+          >
+            <img
+              src="./assets/annotation-outcome-summary.png"
+              alt="数据标注服务项目成果总结，展示 2 类标注场景、5 个关键阶段、统一任务对象和可复用设计模式"
+            />
+          </figure>
+
+          <div class="section-copy outcome-copy reveal">
+            <p class="section-kicker outcome-kicker"><span aria-hidden="true"></span>09 项目价值与成果</p>
+            <h2>将分散标注流程整合为标准化任务系统</h2>
+            <p>
+              对标注人员，平台把样本、规则、字段、标签和提交反馈放回同一工作台，减少反复查文档和询问管理人员；对管理人员，任务进度、人员状态、异常结果和验收队列让风险更早暴露；对平台侧，模板配置、任务分发、标注工作台、进度监控和结果验收可以复用到后续更多数据生产场景。
+            </p>
+            <ul class="outcome-value-list">
+              <li><span class="value-mark mark-layers" aria-hidden="true"></span>支持文本和图片 2 类核心数据标注场景。</li>
+              <li><span class="value-mark mark-link" aria-hidden="true"></span>覆盖模板配置、任务分发、标注执行、进度管理、结果验收等 5 个关键阶段。</li>
+              <li><span class="value-mark mark-code" aria-hidden="true"></span>用 Annotation Task 统一规则、数据、人员、工作台、进度和结果验收。</li>
+              <li><span class="value-mark mark-trend" aria-hidden="true"></span>把人工分发和手动回收转化为状态清晰、结果可追踪的平台化流程。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <site-footer></site-footer>
+
+    <script>
+      (() => {
+        const revealItems = document.querySelectorAll(".reveal");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12 }
+        );
+
+        revealItems.forEach((item) => observer.observe(item));
+      })();
+    </script>
+  </body>
+</html>

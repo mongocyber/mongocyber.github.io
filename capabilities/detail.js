@@ -23,6 +23,9 @@
 
     document.documentElement.lang = currentLang === "en" ? "en" : "zh-CN";
     localStorage.setItem("site_lang", currentLang);
+    document.dispatchEvent(new CustomEvent("site-language-change", {
+      detail: { language: currentLang }
+    }));
   }
 
   if (langBtn) {
@@ -34,7 +37,7 @@
 
   function syncNav() {
     if (!navPill) return;
-    navPill.classList.toggle("scrolled", window.scrollY > 10);
+    navPill.classList.toggle("scrolled", window.scrollY > 50);
   }
 
   const observer = new IntersectionObserver(

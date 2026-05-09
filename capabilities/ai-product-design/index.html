@@ -3,27 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI Product Design</title>
+    <title>01 | AI Product &amp; Agent Experience Design</title>
     <meta
       name="description"
-      content="AI Product Design - translating model capabilities into usable, measurable, AI-native product workflows."
+      content="AI Product and Agent Experience Design - turning models, tools, knowledge sources, and task workflows into usable, controllable, iterative AI product experiences."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&amp;display=swap"
       rel="stylesheet"
     />
     <script>
       document.documentElement.classList.add("js");
     </script>
-    <link rel="stylesheet" href="../detail.css" />
+    <link rel="stylesheet" href="../detail.css?v=20260509" />
+    <link rel="stylesheet" href="../../components/site-footer.css" />
+    <script src="../../components/site-footer.js" defer></script>
   </head>
   <body
-    data-title-en="AI Product Design"
-    data-title-zh="AI 产品设计"
-    data-description-en="AI Product Design - translating model capabilities into usable, measurable, AI-native product workflows."
-    data-description-zh="AI 产品设计 - 将模型能力转化为可用、可衡量、可落地的 AI 原生产品流程。"
+    data-title-en="01 | AI Product &amp; Agent Experience Design"
+    data-title-zh="01｜AI 产品与 Agent 体验设计"
+    data-description-en="AI Product and Agent Experience Design - turning models, tools, knowledge sources, and task workflows into usable, controllable, iterative AI product experiences."
+    data-description-zh="AI 产品与 Agent 体验设计 - 将大模型、工具、知识源与任务流程，转化为真实可用、可控、可迭代的 AI 产品体验。"
   >
     <div class="mesh-bg">
       <div class="mesh-blob blob-1"></div>
@@ -33,7 +35,9 @@
 
     <div class="nav-pill-wrapper">
       <nav class="nav-pill">
-        <a href="../../index.html" class="nav-logo">LL</a>
+        <a href="../../index.html" class="nav-logo" aria-label="Portfolio homepage">
+          <img src="../../images/logo.png" alt="LL Logo" />
+        </a>
         <div class="nav-links">
           <a href="../../index.html#capabilities" class="nav-item" data-en="Capabilities" data-zh="能力">Capabilities</a>
           <a href="../../index.html#philosophy" class="nav-item" data-en="Philosophy" data-zh="理念">Philosophy</a>
@@ -41,141 +45,103 @@
           <a href="../../index.html#stats" class="nav-item" data-en="Clients" data-zh="评价">Clients</a>
           <a href="../../index.html#contact" class="nav-item" data-en="Contact" data-zh="联系">Contact</a>
         </div>
-        <button class="lang-switch" id="lang-btn" type="button">EN / 中</button>
+        <div class="nav-actions">
+          <button class="lang-switch" id="lang-btn" type="button">EN / 中</button>
+        </div>
       </nav>
     </div>
 
     <main class="container detail-main">
       <section class="detail-hero">
         <div class="detail-copy stagger-item">
-          <a class="back-link" href="../../index.html#capabilities">
-            <span aria-hidden="true">←</span>
-            <span data-en="Back to capabilities" data-zh="返回能力模块">Back to capabilities</span>
-          </a>
-          <div class="detail-kicker" data-en="Capability / Product Systems" data-zh="能力 / 产品系统">Capability / Product Systems</div>
-          <h1 class="detail-title" data-en="AI Product Design" data-zh="AI 产品设计">AI Product Design</h1>
+          <div class="detail-nav" aria-label="页面导航">
+            <a class="back-link" href="../../index.html#capabilities">
+              <span aria-hidden="true">←</span>
+              <span data-en="Back" data-zh="返回">Back</span>
+            </a>
+            <div class="detail-kicker" data-en="Capability / AI Agent UX" data-zh="能力 / AI 产品与 Agent">Capability / AI Agent UX</div>
+          </div>
+          <h1 class="detail-title" data-en="01 | AI Product &amp; Agent Experience Design" data-zh="01｜AI 产品与 Agent 体验设计">01 | AI Product &amp; Agent Experience Design</h1>
           <p
             class="detail-summary"
-            data-en="Turning model capabilities, user needs, and evaluation loops into AI-native product structures that teams can confidently ship."
-            data-zh="将模型能力、用户需求与评估闭环整合为可被团队稳定交付的 AI 原生产品结构。"
+            data-en="Turning large models, tools, knowledge sources, and task workflows into AI product experiences that are genuinely usable, controllable, and iterative."
+            data-zh="将大模型、工具、知识源与任务流程，转化为真实可用、可控、可迭代的 AI 产品体验。"
           >
-            Turning model capabilities, user needs, and evaluation loops into AI-native product structures that teams can confidently ship.
+            Turning large models, tools, knowledge sources, and task workflows into AI product experiences that are genuinely usable, controllable, and iterative.
           </p>
           <div class="detail-tags">
-            <span class="detail-tag" data-en="Workflow-first framing" data-zh="工作流优先">Workflow-first framing</span>
-            <span class="detail-tag" data-en="System behavior design" data-zh="系统行为设计">System behavior design</span>
-            <span class="detail-tag" data-en="Evaluation-driven iteration" data-zh="评估驱动迭代">Evaluation-driven iteration</span>
+            <span class="detail-tag" data-en="Agent workflow design" data-zh="Agent 工作流设计">Agent workflow design</span>
+            <span class="detail-tag" data-en="Tool calling UX" data-zh="工具调用体验">Tool calling UX</span>
+            <span class="detail-tag" data-en="Controllable execution" data-zh="可控执行过程">Controllable execution</span>
           </div>
-        </div>
-        <div class="detail-visual glass-card stagger-item">
-          <img src="../../images/capabilities/ai-product-design.svg" alt="AI Product Design illustration" />
         </div>
       </section>
 
-      <section class="detail-grid">
-        <aside class="glass-card overview-card stagger-item">
-          <h2 data-en="Focus Areas" data-zh="核心聚焦">Focus Areas</h2>
-          <p
-            data-en="Designing products where AI is not a feature layer, but part of the product's operating model."
-            data-zh="设计把 AI 视为产品运行方式的一部分，而非简单功能叠加的产品体验。"
-          >
-            Designing products where AI is not a feature layer, but part of the product's operating model.
-          </p>
-          <ul>
-            <li data-en="Problem framing before model selection" data-zh="先定义问题，再决定模型">Problem framing before model selection</li>
-            <li data-en="Intent, retrieval, tool, and output orchestration" data-zh="意图、检索、工具与输出编排">Intent, retrieval, tool, and output orchestration</li>
-            <li data-en="Human-AI workflow clarity and control" data-zh="人机工作流的清晰度与控制权">Human-AI workflow clarity and control</li>
-            <li data-en="Success metrics tied to real task completion" data-zh="与真实任务完成挂钩的成功指标">Success metrics tied to real task completion</li>
-          </ul>
-        </aside>
-
+      <section class="detail-grid detail-grid--single">
         <article class="glass-card detail-article stagger-item">
+          <div class="detail-article-visual">
+            <img src="../../images/capabilities/01-agent.png" alt="AI Product and Agent Experience Design illustration" />
+          </div>
+
           <div class="detail-intro">
-            <p data-en="AI product design is not about connecting a model to an interface. It is about turning complex machine capabilities into products that people can actually use." data-zh="AI 产品设计不是把模型接到界面上这么简单，而是把复杂的机器能力转化为人们真正可用的产品。">
-              AI product design is not about connecting a model to an interface. It is about turning complex machine capabilities into products that people can actually use.
+            <p data-en="The core challenge of AI products is often not whether the model is powerful enough, but whether users can clearly understand how it works, how to intervene, and how to judge whether the result is trustworthy." data-zh="AI 产品的核心挑战，往往不在于模型是否足够强，而在于用户是否能清楚理解它如何工作、如何介入、如何判断结果是否可信。">
+              The core challenge of AI products is often not whether the model is powerful enough, but whether users can clearly understand how it works, how to intervene, and how to judge whether the result is trustworthy.
             </p>
-            <p data-en="Most AI systems today are incredibly powerful, but power alone does not create a good product. Without thoughtful design, AI tools often feel unpredictable, confusing, or difficult to control." data-zh="如今很多 AI 系统能力很强，但能力本身并不等于好产品。缺少精细设计时，AI 工具常会显得不可预测、令人困惑且难以控制。">
-              Most AI systems today are incredibly powerful, but power alone does not create a good product. Without thoughtful design, AI tools often feel unpredictable, confusing, or difficult to control.
-            </p>
-            <p data-en="My work focuses on bridging this gap by translating machine intelligence into clear workflows, understandable behaviors, and usable interfaces." data-zh="我的工作重点是弥合这道鸿沟，把机器智能转译为清晰的工作流、可理解的系统行为和可用的界面体验。">
-              My work focuses on bridging this gap by translating machine intelligence into clear workflows, understandable behaviors, and usable interfaces.
+            <p data-en="My design focus is to break complex Agent capabilities into a clear product structure: from user input, intent understanding, task planning, and tool calling to execution feedback, result validation, and continuous optimization." data-zh="我的设计重点，是把复杂的 Agent 能力拆解成清晰的产品结构：从用户输入、意图理解、任务规划、工具调用，到执行反馈、结果验证与持续优化，让 AI 能力真正进入可用的业务流程。">
+              My design focus is to break complex Agent capabilities into a clear product structure: from user input, intent understanding, task planning, and tool calling to execution feedback, result validation, and continuous optimization.
             </p>
           </div>
 
           <section class="article-section">
-            <h2 data-en="Understanding the Problem First" data-zh="先理解真实问题">Understanding the Problem First</h2>
-            <p data-en="Every AI project should start with the same question: what problem are we actually solving?" data-zh="每一个 AI 项目都应从同一个问题开始：我们真正要解决的是什么问题？">
-              Every AI project should start with the same question: what problem are we actually solving?
+            <h2 data-en="Complete Experience Chain" data-zh="完整体验链路">Complete Experience Chain</h2>
+            <p data-en="In the design process, I build a complete experience chain around user goal, system understanding, task execution, and result output." data-zh="在设计过程中，我会围绕“用户目标—系统理解—任务执行—结果输出”建立完整体验链路。">
+              In the design process, I build a complete experience chain around user goal, system understanding, task execution, and result output.
             </p>
-            <p data-en="Instead of starting with the technology, I begin by looking at how people currently perform a task. Where does the friction appear? Which steps require heavy cognitive effort? Where do people spend the most time?" data-zh="我不会先从技术出发，而是先看人们当下如何完成任务：阻力出现在哪里？哪些步骤认知负担高？哪些环节最耗时？">
-              Instead of starting with the technology, I begin by looking at how people currently perform a task. Where does the friction appear? Which steps require heavy cognitive effort? Where do people spend the most time?
+            <p data-en="After the user starts a task, the system needs to identify intent accurately and combine knowledge bases, memory, data sources, and tool APIs to break the task down." data-zh="用户发起任务后，系统需要准确识别意图，并结合知识库、记忆、数据源与工具 API 完成任务拆解。">
+              After the user starts a task, the system needs to identify intent accurately and combine knowledge bases, memory, data sources, and tool APIs to break the task down.
             </p>
-            <p data-en="Only after understanding the workflow does it become possible to evaluate whether AI can meaningfully improve it." data-zh="只有在充分理解工作流之后，我们才可能判断 AI 是否能带来真正有意义的提升。">
-              Only after understanding the workflow does it become possible to evaluate whether AI can meaningfully improve it.
-            </p>
-            <p data-en="In many situations, AI should not automate the entire process. Often the most effective solutions are hybrid systems where humans and AI collaborate within the same workflow." data-zh="在很多场景里，AI 不应包办全部流程。最有效的解法往往是人机协同的混合系统，让人和 AI 在同一工作流中配合。">
-              In many situations, AI should not automate the entire process. Often the most effective solutions are hybrid systems where humans and AI collaborate within the same workflow.
+            <p data-en="During execution, status feedback, process visualization, parameter configuration, permission control, and exception messaging help users understand what the system is doing, why it is doing it, and when human confirmation is required." data-zh="执行过程中，通过状态反馈、过程可视化、参数配置、权限控制与异常提示，让用户知道系统正在做什么、为什么这样做，以及什么时候需要人工确认。">
+              During execution, status feedback, process visualization, parameter configuration, permission control, and exception messaging help users understand what the system is doing, why it is doing it, and when human confirmation is required.
             </p>
           </section>
 
           <section class="article-section">
-            <h2 data-en="Mapping AI Capabilities to Real Needs" data-zh="把能力映射到真实需求">Mapping AI Capabilities to Real Needs</h2>
-            <p data-en="Once a problem space is clearly defined, the next step is to map available AI capabilities to the task." data-zh="当问题空间被清晰定义后，下一步就是把可用的 AI 能力映射到具体任务上。">
-              Once a problem space is clearly defined, the next step is to map available AI capabilities to the task.
+            <h2 data-en="Understandable Agent Collaboration" data-zh="可理解的智能协作机制">Understandable Agent Collaboration</h2>
+            <p data-en="Agent experience design is not just about making a chat window. More importantly, it establishes an understandable mechanism for intelligent collaboration." data-zh="Agent 体验设计并不只是做一个聊天窗口，更重要的是建立一套可理解的智能协作机制。">
+              Agent experience design is not just about making a chat window. More importantly, it establishes an understandable mechanism for intelligent collaboration.
             </p>
-            <p data-en="Modern AI systems can perform a wide range of functions:" data-zh="现代 AI 系统可以完成多种类型的能力：">Modern AI systems can perform a wide range of functions:</p>
-            <ul>
-              <li data-en="language understanding" data-zh="语言理解">language understanding</li>
-              <li data-en="information retrieval" data-zh="信息检索">information retrieval</li>
-              <li data-en="pattern recognition" data-zh="模式识别">pattern recognition</li>
-              <li data-en="reasoning and synthesis" data-zh="推理与综合">reasoning and synthesis</li>
-              <li data-en="tool usage" data-zh="工具调用">tool usage</li>
-            </ul>
-            <p data-en="However, these capabilities are rarely useful on their own. The design challenge is deciding how these abilities should be orchestrated inside a product so the user experience still feels simple." data-zh="但这些能力单独存在时很少真正有用。设计挑战在于：如何在产品内部编排这些能力，同时让用户体验依然保持简单清晰。">
-              However, these capabilities are rarely useful on their own. The design challenge is deciding how these abilities should be orchestrated inside a product so the user experience still feels simple.
+            <p data-en="It should let users enjoy the efficiency gains of AI while keeping judgment and control at key decision points." data-zh="它需要让用户既能享受 AI 带来的效率提升，也能在关键节点保持判断权和控制感。">
+              It should let users enjoy the efficiency gains of AI while keeping judgment and control at key decision points.
+            </p>
+            <p data-en="For example, in the task planning stage, users can see the execution path; in the tool calling stage, users can understand why a tool is being invoked; in the result output stage, users can trace sources, inspect the process, and give feedback or corrections." data-zh="比如在任务规划阶段，用户可以看到执行路径；在工具调用阶段，用户可以理解调用依据；在结果输出阶段，用户可以追溯来源、检查过程，并对结果进行反馈和修正。">
+              For example, in the task planning stage, users can see the execution path; in the tool calling stage, users can understand why a tool is being invoked; in the result output stage, users can trace sources, inspect the process, and give feedback or corrections.
             </p>
           </section>
 
           <section class="article-section">
-            <h2 data-en="Designing the System, Not Just the Interface" data-zh="设计系统，而不只是界面">Designing the System, Not Just the Interface</h2>
-            <p data-en="Traditional product design often focuses on screens and UI components. AI product design requires a broader perspective focused on system behavior." data-zh="传统产品设计常聚焦于页面与组件，而 AI 产品设计需要更广视角，关注系统行为本身。">
-              Traditional product design often focuses on screens and UI components. AI product design requires a broader perspective focused on system behavior.
+            <h2 data-en="Complex Business Scenarios" data-zh="复杂业务场景落地">Complex Business Scenarios</h2>
+            <p data-en="This kind of design is especially suitable for implementing AI products in complex business scenarios." data-zh="这类设计尤其适合复杂业务场景中的 AI 产品落地。">
+              This kind of design is especially suitable for implementing AI products in complex business scenarios.
             </p>
-            <ul>
-              <li data-en="How does the system interpret the user's intent?" data-zh="系统如何理解用户意图？">How does the system interpret the user's intent?</li>
-              <li data-en="What happens when the model is uncertain?" data-zh="当模型不确定时，系统会怎样处理？">What happens when the model is uncertain?</li>
-              <li data-en="How does the system retrieve relevant information?" data-zh="系统如何检索相关信息？">How does the system retrieve relevant information?</li>
-              <li data-en="How are tools triggered?" data-zh="工具是如何被触发的？">How are tools triggered?</li>
-              <li data-en="How does the system explain its output?" data-zh="系统如何解释自己的输出？">How does the system explain its output?</li>
-            </ul>
-            <p data-en="These questions shape the structure of the product long before visual design begins." data-zh="这些问题会在视觉设计开始之前，就决定产品结构的方向。">
-              These questions shape the structure of the product long before visual design begins.
+            <p data-en="For enterprise systems, automation processes, knowledge base Q&amp;A, AI Copilots, or Agent workbenches, the design must handle multiple roles, multiple data sources, multiple task states, and many kinds of exceptions at the same time." data-zh="面对企业级系统、自动化流程、知识库问答、AI Copilot 或 Agent 工作台，设计需要同时处理多角色、多数据源、多任务状态与多种异常情况。">
+              For enterprise systems, automation processes, knowledge base Q&amp;A, AI Copilots, or Agent workbenches, the design must handle multiple roles, multiple data sources, multiple task states, and many kinds of exceptions at the same time.
+            </p>
+            <p data-en="Through clear information architecture and workflow design, the originally black-box execution process of AI can become a product experience that users can perceive, operate, and iterate." data-zh="通过清晰的信息架构和工作流设计，可以把原本黑盒化的 AI 执行过程，转化为用户可感知、可操作、可迭代的产品体验。">
+              Through clear information architecture and workflow design, the originally black-box execution process of AI can become a product experience that users can perceive, operate, and iterate.
             </p>
           </section>
 
           <section class="article-section">
-            <h2 data-en="Designing the Human-AI Workflow" data-zh="设计人机协同工作流">Designing the Human-AI Workflow</h2>
-            <p data-en="A successful AI product does not simply generate answers. It supports an entire workflow from defining a goal, to exploring information, generating drafts, reviewing outputs, and refining the result." data-zh="一个成功的 AI 产品不只是“给答案”，而是支持完整工作流：从定义目标、探索信息、生成草稿，到审阅输出并持续优化结果。">
-              A successful AI product does not simply generate answers. It supports an entire workflow from defining a goal, to exploring information, generating drafts, reviewing outputs, and refining the result.
-            </p>
-            <p data-en="AI becomes one part of a larger loop between human intent and machine assistance. This loop must be carefully designed so that users remain confident, informed, and in control." data-zh="AI 是“人类意图—机器辅助”大循环中的一环。这个循环必须被精心设计，才能让用户始终保持信心、信息透明与控制感。">
-              AI becomes one part of a larger loop between human intent and machine assistance. This loop must be carefully designed so that users remain confident, informed, and in control.
+            <h2 data-en="Suitable Scenarios" data-zh="适合场景">Suitable Scenarios</h2>
+            <p data-en="AI Agent workbenches, intelligent assistants, automation workflows, LLM product experiences, tool calling interfaces, knowledge base Q&amp;A, AI Copilots, enterprise AI platforms, and internal productivity tools." data-zh="AI Agent 工作台、智能助手、自动化工作流、LLM 产品体验、工具调用界面、知识库问答、AI Copilot、企业级 AI 平台、内部效率工具。">
+              AI Agent workbenches, intelligent assistants, automation workflows, LLM product experiences, tool calling interfaces, knowledge base Q&amp;A, AI Copilots, enterprise AI platforms, and internal productivity tools.
             </p>
           </section>
 
           <section class="article-section">
-            <h2 data-en="Evaluation and Iteration" data-zh="持续评估与迭代">Evaluation and Iteration</h2>
-            <p data-en="Designing AI systems is an iterative process. Unlike traditional software, AI behavior can evolve as models improve or prompts change, so evaluation becomes an ongoing part of product design." data-zh="设计 AI 系统是持续迭代的过程。不同于传统软件，AI 行为会随着模型升级或提示词变化而改变，因此评估必须成为产品设计的常态环节。">
-              Designing AI systems is an iterative process. Unlike traditional software, AI behavior can evolve as models improve or prompts change, so evaluation becomes an ongoing part of product design.
-            </p>
-            <ul>
-              <li data-en="task success rate" data-zh="任务成功率">task success rate</li>
-              <li data-en="user trust and confidence" data-zh="用户信任与信心">user trust and confidence</li>
-              <li data-en="time saved" data-zh="节省时间">time saved</li>
-              <li data-en="error recovery behavior" data-zh="错误恢复表现">error recovery behavior</li>
-            </ul>
-            <p data-en="These signals reveal whether the AI system is genuinely helping people complete their tasks more effectively." data-zh="这些信号能够验证：AI 系统是否真正帮助用户更高效地完成任务。">
-              These signals reveal whether the AI system is genuinely helping people complete their tasks more effectively.
+            <h2 data-en="Deliverables" data-zh="可交付内容">Deliverables</h2>
+            <p data-en="Product experience architecture, core flow design, Agent workflow design, task status and execution feedback design, Prompt / Tool Calling interaction design, knowledge base and tool calling experience design, prototypes, design specifications, and implementation notes." data-zh="产品体验架构、核心流程设计、Agent 工作流设计、任务状态与执行反馈设计、Prompt / Tool Calling 交互设计、知识库与工具调用体验设计、原型设计、设计规范与落地说明。">
+              Product experience architecture, core flow design, Agent workflow design, task status and execution feedback design, Prompt / Tool Calling interaction design, knowledge base and tool calling experience design, prototypes, design specifications, and implementation notes.
             </p>
           </section>
         </article>
@@ -183,18 +149,19 @@
 
       <section class="glass-card detail-cta stagger-item">
         <div>
-          <h2 data-en="See how this fits into the full stack." data-zh="回到完整能力栈继续浏览。">See how this fits into the full stack.</h2>
+          <h2 data-en="Build AI products that can complete real tasks." data-zh="让 AI 产品真正进入任务完成。">Build AI products that can complete real tasks.</h2>
           <p
-            data-en="Return to the capability overview and explore the adjacent practices that shape AI-native products end to end."
-            data-zh="回到能力总览，继续查看与 AI 原生产品设计相邻的其他方法与实践。"
+            data-en="Return to the capability overview and explore the adjacent practices for AI workflows, enterprise platforms, and human-AI collaboration."
+            data-zh="回到能力总览，继续查看 AI 工作流、企业平台与人机协作相关的设计实践。"
           >
-            Return to the capability overview and explore the adjacent practices that shape AI-native products end to end.
+            Return to the capability overview and explore the adjacent practices for AI workflows, enterprise platforms, and human-AI collaboration.
           </p>
         </div>
-        <a class="cta-link" href="../../index.html#capabilities" data-en="Explore capabilities" data-zh="浏览能力">Explore capabilities</a>
       </section>
     </main>
 
-    <script src="../detail.js"></script>
+    <site-footer></site-footer>
+
+    <script src="../detail.js?v=20260509"></script>
   </body>
 </html>
