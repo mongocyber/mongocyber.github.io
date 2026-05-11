@@ -281,6 +281,7 @@ img {
   letter-spacing: 0;
   margin-bottom: 18px;
   white-space: nowrap;
+  overflow-wrap: anywhere;
 }
 
 html[lang="zh-CN"] .detail-title {
@@ -293,6 +294,7 @@ html[lang="zh-CN"] .detail-title {
   max-width: none;
   color: #5e6673;
   white-space: nowrap;
+  overflow-wrap: anywhere;
 }
 
 html[lang="zh-CN"] .detail-summary {
@@ -502,6 +504,10 @@ html[lang="zh-CN"] .detail-summary {
 }
 
 @media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+
   .nav-links {
     display: none;
   }
@@ -571,5 +577,24 @@ html[lang="zh-CN"] .detail-summary {
 
   .cta-link {
     width: 100%;
+  }
+
+  .detail-tags {
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .detail-tag {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .detail-kicker {
+    letter-spacing: 0.12em;
+  }
+
+  .article-section h2 {
+    font-size: clamp(22px, 6.5vw, 28px);
+    margin-bottom: 16px;
   }
 }
