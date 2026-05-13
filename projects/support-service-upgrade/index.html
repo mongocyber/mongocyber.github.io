@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Support &amp; Service Upgrade｜支持与服务升级</title>
+    <meta
+      name="description"
+      content="Support & Service Upgrade 支持与服务新建工单优化案例，展示 AI 自动填充分类、上下文解答、个性化推荐和高质量转人工的体验设计。"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="../../components/site-nav.css" />
+    <link rel="stylesheet" href="../../components/site-footer.css" />
+    <script src="../../components/site-nav.js" defer></script>
+    <script src="../../components/site-footer.js" defer></script>
+  </head>
+  <body>
+    <div class="page-grid" aria-hidden="true"></div>
+
+    <site-nav data-root="../../" data-home="../../index.html"></site-nav>
+
+    <main>
+      <section class="hero-section">
+        <div class="container hero-layout">
+          <div class="hero-copy reveal">
+            <div class="detail-nav" aria-label="页面导航">
+              <a class="back-link" href="../../index.html#projects">返回</a>
+              <span class="breadcrumb-label">作品 / Support & Service Upgrade</span>
+            </div>
+            <h1>Support &amp; Service Upgrade</h1>
+            <p class="hero-subtitle">支持与服务升级</p>
+            <p class="hero-summary">
+              围绕云服务新建工单场景，重构问题描述、AI 解答、分类填充和推荐内容之间的关系。用户只需要描述问题，系统自动填充产品分类与问题类型，并在提交前提供带上下文的 AI 解答、工具、案例和文档，帮助基础问题前置解决，复杂问题高效转人工。
+            </p>
+
+            <div class="hero-metrics" aria-label="核心设计范围">
+              <div>
+                <strong>1</strong>
+                <span>以问题描述作为主输入入口</span>
+              </div>
+              <div>
+                <strong>3</strong>
+                <span>AI 解答、自动填充、描述润色能力</span>
+              </div>
+              <div>
+                <strong>2</strong>
+                <span>自助解决与人工工单分流路径</span>
+              </div>
+            </div>
+          </div>
+
+          <figure class="hero-image-card reveal">
+            <img
+              src="./assets/ai-process-recommendation-flow.png"
+              alt="AI 处理与推荐解决流程图，展示问题描述、AI 处理、推荐解决和转人工路径"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section problem-section" id="project-background">
+        <div class="container problem-layout">
+          <div class="section-copy problem-intro reveal">
+            <p class="section-kicker">01 项目背景</p>
+            <h2>从手动填表，升级为 AI 辅助的问题分流</h2>
+            <p>
+              在云服务控制台中，用户遇到问题后通常会进入新建工单页面寻求支持。但现有流程要求用户手动选择产品分类和问题类型，分类层级多、判断成本高，用户还没有正式描述问题，就已经被表单选择消耗了大量时间。
+            </p>
+            <p>
+              页面虽然引入了云宝助手，但它更像独立聊天窗口，缺少当前服务、浏览记录、已购产品和工单输入内容的上下文。优化方向是把 AI 能力嵌入新建工单流程，让它参与分类填充、问题解答、描述润色和内容推荐。
+            </p>
+            <p class="callout-text">核心问题：如何把分类判断和基础问题解答前置交给系统，让真正需要人工支持的问题更快、更完整地提交？</p>
+          </div>
+
+          <figure class="problem-image-card reveal">
+            <img
+              src="./assets/problem-overview.png"
+              alt="新建工单当前问题概览：提交效率低、AI 缺少上下文、基础问题流入人工、工单信息不完整"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section muted-section">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="section-kicker">02 设计目标</p>
+            <h2>让真正的问题更快提交，让已知问题更少进工单</h2>
+          </div>
+          <div class="goal-grid">
+            <article class="text-card reveal">
+              <span>01</span>
+              <h3>自动填充分类</h3>
+              <p>根据问题内容、已购服务、当前页面和浏览记录，自动填充产品分类与问题类型。</p>
+            </article>
+            <article class="text-card reveal">
+              <span>02</span>
+              <h3>提交前 AI 解答</h3>
+              <p>在问题描述区增加 AI 解答按钮，帮助用户先尝试解决基础问题和常见问题。</p>
+            </article>
+            <article class="text-card reveal">
+              <span>03</span>
+              <h3>个性化推荐</h3>
+              <p>按用户正在使用的云服务和输入内容，实时推荐相关工具、案例和文档。</p>
+            </article>
+            <article class="text-card reveal">
+              <span>04</span>
+              <h3>高质量转人工</h3>
+              <p>AI 无法解决时，带着分类、描述、推荐尝试和上下文提交给匹配的在线工程师。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="container split-layout">
+          <div class="section-copy reveal">
+            <p class="section-kicker">03 方案结构</p>
+            <h2>围绕“描述问题、AI 处理、推荐解决、转人工”组织页面</h2>
+            <p>
+              新建工单不再只是表单录入页，而是问题分流入口。左侧聚焦问题描述和 AI 处理，负责自动填充分类、解答问题和润色描述；右侧根据上下文推荐工具、案例和文档。只有当这些内容无法解决问题时，用户再提交人工工单。
+            </p>
+            <div class="ia-list">
+              <span>问题描述</span>
+              <span>AI 解答</span>
+              <span>继续追问</span>
+              <span>产品分类自动填充</span>
+              <span>问题类型自动填充</span>
+              <span>描述润色</span>
+              <span>工具推荐</span>
+              <span>案例推荐</span>
+              <span>文档推荐</span>
+              <span>带上下文提交</span>
+            </div>
+          </div>
+
+          <div class="service-map reveal" aria-label="支持与服务信息架构图">
+            <div class="map-node map-node-strong">新建工单页面</div>
+            <div class="map-row">
+              <div class="map-node">问题描述区</div>
+              <div class="map-node">AI 处理区</div>
+              <div class="map-node">推荐内容区</div>
+            </div>
+            <div class="map-row map-row-wide">
+              <span>自动填充分类</span>
+              <span>AI 解答</span>
+              <span>继续追问</span>
+              <span>描述润色</span>
+              <span>工具推荐</span>
+              <span>案例文档</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section muted-section ticket-section">
+        <div class="container split-layout reverse">
+          <div class="ticket-panel reveal" aria-label="新建工单流程界面示意">
+            <div class="panel-header">
+              <span></span>
+              <strong>AI Assisted Ticket</strong>
+            </div>
+            <div class="stepper">
+              <span class="active">描述问题</span>
+              <span>AI 解答</span>
+              <span>自动填充</span>
+              <span>提交工单</span>
+            </div>
+            <div class="form-preview">
+              <label>问题描述</label>
+              <div class="select-row multi-line">OBS 上传文件失败，提示权限不足，想确认是桶策略还是账号权限配置问题。</div>
+              <button class="ai-answer-button" type="button">AI 解答</button>
+              <label>产品分类（AI 自动填充）</label>
+              <div class="select-row auto-filled">对象存储 OBS</div>
+              <label>问题类型（AI 自动填充）</label>
+              <div class="select-row auto-filled">权限与访问控制</div>
+              <label>问题描述润色</label>
+              <div class="text-lines">
+                <span>已补全服务名称、报错信息、操作场景和影响范围。</span>
+                <span class="short">用户确认后可提交或继续追问。</span>
+              </div>
+            </div>
+            <div class="panel-note">分类不再依赖用户手动判断，用户只需要确认或修正系统自动填充的结果。</div>
+          </div>
+
+          <div class="section-copy reveal">
+            <p class="section-kicker">04 核心方案 1：AI 辅助新建工单</p>
+            <h2>从手动选择分类，改为 AI 自动填充分类</h2>
+            <p>
+              工单提交的优化重点不是改变填写顺序，而是把产品分类和问题类型的判断成本从用户侧转移到系统侧。用户输入问题后，AI 根据问题内容、已购服务、当前页面和浏览记录自动填充分类，并辅助润色描述。
+            </p>
+            <ul class="dense-list">
+              <li>保留问题描述作为主输入，产品分类与问题类型由 AI 自动填充，用户只需确认或修正。</li>
+              <li>结合已购服务、当前页面、浏览记录和输入内容，提高分类命中率。</li>
+              <li>自动润色问题描述，补足产品、场景、报错、操作路径和影响范围。</li>
+              <li>对确需人工处理的问题，带着结构化上下文匹配更合适的在线工程师。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section self-service-section">
+        <div class="container split-layout">
+          <div class="section-copy reveal">
+            <p class="section-kicker">05 核心方案 2：上下文 AI 解答与推荐</p>
+            <h2>在提交前先解决可被解决的问题</h2>
+            <p>
+              问题描述区增加 AI 解答按钮。用户输入问题后，可以主动调用带有上下文的 AI 继续追问；右侧推荐内容也会随输入实时变化，从通用助手转为与当前问题相关的工具、案例和文档推荐。
+            </p>
+            <ul class="dense-list">
+              <li>点击 AI 解答后，系统基于问题描述、自动分类、已购服务和当前页面给出解决方案。</li>
+              <li>用户可以围绕同一问题继续追问，不需要重复补充背景信息。</li>
+              <li>右侧按问题意图推荐相关排查工具、解决案例和官方文档，优先拦截基础问题。</li>
+              <li>若仍未解决，系统保留 AI 对话、推荐尝试和分类结果，生成更完整的人工工单。</li>
+            </ul>
+          </div>
+
+          <div class="knowledge-panel reveal" aria-label="自助服务界面示意">
+            <div class="search-box">用户问题：OBS 上传失败，提示权限不足</div>
+            <div class="answer-card featured">
+              <strong>AI 解答</strong>
+              <span>可能与桶策略、IAM 权限或临时凭证范围有关。建议先检查当前账号是否具备对象写入权限。</span>
+            </div>
+            <div class="answer-grid">
+              <div><strong>继续追问</strong><span>为什么同一账号下载正常但上传失败？</span></div>
+              <div><strong>工具推荐</strong><span>OBS 权限诊断与桶策略检查</span></div>
+              <div><strong>案例文档</strong><span>上传 403 报错排查指南</span></div>
+            </div>
+            <div class="feedback-bar">
+              <span>问题未解决时</span>
+              <button type="button">带上下文提交工单</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section outcome-section">
+        <div class="container outcome-layout">
+          <div class="outcome-visual reveal" aria-label="项目价值总结">
+            <div class="outcome-number">3</div>
+            <p>类核心智能能力</p>
+            <div class="outcome-rings">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+
+          <div class="section-copy outcome-copy reveal">
+            <p class="section-kicker outcome-kicker"><span aria-hidden="true"></span>06 项目价值与沉淀</p>
+            <h2>把新建工单从录入入口变成智能分流入口</h2>
+            <p>
+              对用户，提交工单不再从复杂分类选择开始，而是围绕问题描述获得解答、推荐和自动补全。对服务团队，基础问题被前置解决，真正进入人工的工单也带有更完整的上下文。
+            </p>
+            <ul class="outcome-value-list">
+              <li><span class="value-mark mark-layers" aria-hidden="true"></span>减少产品分类、问题类型等手动选择成本，提升新建工单效率。</li>
+              <li><span class="value-mark mark-link" aria-hidden="true"></span>用带上下文的 AI 解答和继续追问，拦截基础问题和已有方案问题。</li>
+              <li><span class="value-mark mark-code" aria-hidden="true"></span>把自动分类、描述润色、推荐尝试沉淀为人工工单上下文。</li>
+              <li><span class="value-mark mark-trend" aria-hidden="true"></span>通过推荐命中、未解决反馈和工单结果，持续优化知识库与推荐规则。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <site-footer data-root="../../" data-home="../../index.html"></site-footer>
+
+    <script>
+      (() => {
+        const revealItems = document.querySelectorAll(".reveal");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12 }
+        );
+
+        revealItems.forEach((item) => observer.observe(item));
+      })();
+    </script>
+  </body>
+</html>

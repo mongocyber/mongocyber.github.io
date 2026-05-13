@@ -101,8 +101,8 @@ figure {
 
 .hero-layout {
   display: grid;
-  grid-template-columns: minmax(0, 560px) minmax(0, 1fr);
-  gap: 60px;
+  grid-template-columns: minmax(0, 660px) minmax(0, 1fr);
+  gap: 48px;
   align-items: start;
 }
 
@@ -1717,17 +1717,17 @@ body {
 }
 
 .hero-layout {
-  align-items: center;
+  align-items: end;
 }
 
 h1 {
   max-width: none;
-  font-size: clamp(58px, 5.8vw, 88px);
+  font-size: clamp(44px, 3vw, 54px);
   line-height: 1.06;
 }
 
 .hero-copy h1 {
-  white-space: normal;
+  white-space: nowrap;
   word-break: normal;
   overflow-wrap: normal;
 }
@@ -1756,14 +1756,21 @@ h1 {
   position: relative;
   z-index: 1;
   width: clamp(720px, 52vw, 980px);
+  align-self: end;
   justify-self: start;
-  transform: translate(var(--hero-image-x), 72px);
+  transform: translateX(var(--hero-image-x));
+}
+
+.hero-section {
+  overflow: hidden;
 }
 
 .hero-image-card img {
   width: 100%;
   display: block;
   height: auto;
+  background: transparent;
+  filter: drop-shadow(0 28px 56px rgba(58, 91, 160, 0.13));
 }
 
 .problem-section,
@@ -1777,7 +1784,7 @@ h1 {
 }
 
 .problem-layout {
-  grid-template-columns: minmax(460px, 1.1fr) minmax(0, 0.9fr);
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
 }
 
 .problem-intro {
@@ -1819,11 +1826,12 @@ h1 {
   display: block;
   height: auto;
   aspect-ratio: 16 / 9;
-  object-fit: cover;
-  border: 1px solid var(--line);
+  object-fit: contain;
+  border: 0;
   border-radius: var(--radius);
-  background: #fff;
-  box-shadow: var(--shadow-soft);
+  background: transparent;
+  box-shadow: none;
+  filter: drop-shadow(0 24px 54px rgba(58, 91, 160, 0.12));
 }
 
 .workflow-image.image-slot {
@@ -1847,14 +1855,31 @@ h1 {
   width: 100%;
   display: block;
   height: auto;
-  border: 1px solid var(--line);
+  border: 0;
   border-radius: var(--radius);
-  background: #fff;
-  box-shadow: var(--shadow-soft);
+  background: transparent;
+  box-shadow: none;
+  filter: drop-shadow(0 24px 54px rgba(58, 91, 160, 0.12));
 }
 
 .config-section .split-layout {
-  align-items: start;
+  align-items: end;
+}
+
+.config-section .section-copy {
+  position: relative;
+  z-index: 2;
+}
+
+.config-section .section-copy > p:not(.section-kicker) {
+  max-width: none;
+  white-space: nowrap;
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+
+.challenge-section .split-layout {
+  align-items: end;
 }
 
 .config-type-grid {
@@ -1920,7 +1945,7 @@ h1 {
   display: grid;
   grid-template-columns: minmax(440px, 0.92fr) minmax(0, 1.08fr);
   gap: 52px;
-  align-items: end;
+  align-items: stretch;
 }
 
 .outcome-layout > * {
@@ -1928,8 +1953,22 @@ h1 {
 }
 
 .outcome-visual {
-  width: min(100%, 520px);
+  width: min(100%, 560px);
+  height: auto;
+  display: grid;
+  place-items: end center;
+  align-self: end;
   justify-self: center;
+}
+
+.outcome-visual img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: 760px;
+  object-fit: contain;
+  background: transparent;
+  filter: drop-shadow(0 28px 64px rgba(38, 81, 145, 0.14));
 }
 
 .outcome-copy {
@@ -2032,10 +2071,28 @@ h1 {
 }
 
 @media (max-width: 1080px) {
+  .hero-layout {
+    align-items: start;
+  }
+
+  .hero-copy h1 {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .config-section .section-copy > p:not(.section-kicker) {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
   .hero-image-card {
     width: min(100%, 820px);
     justify-self: start;
     transform: none;
+  }
+
+  .problem-layout {
+    grid-template-columns: 1fr;
   }
 
   .problem-layout .problem-intro,
@@ -2049,6 +2106,19 @@ h1 {
   .outcome-layout {
     grid-template-columns: 1fr;
     align-items: start;
+  }
+
+  .outcome-visual {
+    width: min(100%, 640px);
+    height: auto;
+    align-self: start;
+    justify-self: start;
+  }
+
+  .outcome-visual img {
+    width: 100%;
+    height: auto;
+    max-height: 560px;
   }
 }
 
@@ -2076,7 +2146,19 @@ h1 {
 
   .image-slot,
   .workflow-image.image-slot {
+    width: 100%;
+    max-width: 100%;
     min-height: auto;
+  }
+
+  .hero-image-card,
+  .outcome-visual {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .outcome-visual img {
+    max-height: 380px;
   }
 
   .outcome-copy h2 {

@@ -1722,45 +1722,6 @@
       flex-wrap: wrap;
     }
 
-    .hero-secondary-btn {
-      display: inline-flex;
-      height: 80px;
-      padding: 0 48px;
-      background: transparent;
-      color: var(--ink);
-      border: 1.5px solid var(--ink);
-      border-radius: var(--radius-full);
-      align-items: center;
-      font-size: 20px;
-      font-weight: 600;
-      font-family: var(--font-heading);
-      text-decoration: none;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-    }
-
-    .hero-secondary-btn:hover,
-    .hero-secondary-btn:focus-visible {
-      background: var(--ink);
-      color: #fff;
-    }
-
-    :root[data-theme='dark'] .hero-secondary-btn {
-      color: var(--ink);
-      border-color: var(--ink);
-    }
-
-    :root[data-theme='dark'] .hero-secondary-btn:hover,
-    :root[data-theme='dark'] .hero-secondary-btn:focus-visible {
-      background: var(--ink);
-      color: #11141a;
-    }
-
-    .hero-secondary-btn:focus-visible {
-      outline: 3px solid rgba(18, 21, 27, 0.16);
-      outline-offset: 4px;
-    }
-
     .magnetic-btn {
       display: inline-flex;
       height: 80px;
@@ -1863,8 +1824,7 @@
         gap: 12px;
       }
 
-      .magnetic-btn,
-      .hero-secondary-btn {
+      .magnetic-btn {
         height: 64px;
         padding: 0 30px;
         font-size: 17px;
@@ -2253,9 +2213,6 @@
         <div class="hero-cta-group" style="opacity: 0; animation: fadeUp 0.8s 0.9s forwards;">
           <button class="magnetic-btn"
             onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})"><span data-en="View Projects" data-zh="查看作品">View Projects</span></button>
-          <a class="hero-secondary-btn" id="resume-download-btn" href="images/resume-ai-product-designer.png" type="image/png"
-            download="刘璐-高级AI产品设计师-简历.png" aria-label="下载图片简历"><span data-en="Download Resume"
-              data-zh="下载简历">Download Resume</span></a>
         </div>
       </div>
     </section>
@@ -2431,7 +2388,16 @@
             <h3 style="color: #fff;" data-en="Self-Service Analytics" data-zh="自助分析工具">Self-Service Analytics</h3>
           </div>
         </a>
-        <a class="glass-card project-card bento-col-2 stagger-item" href="projects/data-platform/index.html"
+        <a class="glass-card project-card stagger-item" href="projects/support-service-upgrade/index.html"
+          aria-label="View Support & Service Upgrade case study">
+          <div class="project-bg" style="background-image: url('images/feedback-visual.png');"></div>
+          <div class="project-overlay">
+            <div data-en="Support · Service" data-zh="支持服务 · 升级"
+              style="color: #fff; opacity: 0.8;">Support · Service</div>
+            <h3 style="color: #fff;" data-en="Support &amp; Service Upgrade" data-zh="支持与服务升级">Support &amp; Service Upgrade</h3>
+          </div>
+        </a>
+        <a class="glass-card project-card stagger-item" href="projects/data-platform/index.html"
           aria-label="View Data Platform case study">
           <div class="project-bg" style="background-image: url('images/projects/data-platform-cover.png');"></div>
           <div class="project-overlay">
@@ -2648,24 +2614,6 @@
       localStorage.setItem('site_theme', themeMode);
     }
 
-    async function downloadLinkedFile(link) {
-      const fileUrl = link.href;
-      const fileName = link.getAttribute('download') || 'resume.png';
-      const response = await fetch(fileUrl);
-      if (!response.ok) throw new Error(`Download failed: ${response.status}`);
-
-      const blob = await response.blob();
-      const blobUrl = URL.createObjectURL(blob);
-      const downloadLink = document.createElement('a');
-      downloadLink.href = blobUrl;
-      downloadLink.download = fileName;
-      downloadLink.style.display = 'none';
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
-      downloadLink.remove();
-      setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
-    }
-
     function splitHeroLine(el, baseDelay) {
       if (!el) return;
       const text = el.textContent || '';
@@ -2712,18 +2660,6 @@
     });
 
     applyTheme(currentTheme);
-
-    const resumeDownloadBtn = document.getElementById('resume-download-btn');
-    if (resumeDownloadBtn) {
-      resumeDownloadBtn.addEventListener('click', async (event) => {
-        event.preventDefault();
-        try {
-          await downloadLinkedFile(resumeDownloadBtn);
-        } catch (error) {
-          console.error(error);
-        }
-      });
-    }
 
     langBtn.addEventListener('click', () => {
       currentLang = currentLang === 'en' ? 'zh' : 'en';
